@@ -16,6 +16,7 @@
     >
       <!-- :temporary="$vuetify.breakpoint.smAndDown" -->
       <!-- style="height: 100vh; top: 0px; transform: translateX(0%); width: 256px; max-height: calc(100% - 0px);" -->
+
       <v-toolbar style="height: 64px; border-bottom: 0.5px solid #e6e6e6;" fixed app flat>
         <img class="mr-4" width="48px" height="48px" alt="Vue logo" src="@/assets/logo.png">
         <v-toolbar-title class="text-uppercase grey--text">
@@ -23,8 +24,23 @@
           <span>MUA SAM</span>
         </v-toolbar-title>
       </v-toolbar>
-      <v-list nav dense>
-        <v-list-item-group active-class="deep-purple--text text--accent-4">
+      <!-- <v-list-item class="sticky" style="height: 64px; border-bottom: 0.5px solid #e6e6e6">
+        <img class="mr-4" width="48px" height="48px" alt="Vue logo" src="@/assets/logo.png">
+        <v-toolbar-title class="text-uppercase blue--text text--darken-1">
+          <span class="font-weight-light">LOGI </span>
+          <span>MUA SAM</span>
+        </v-toolbar-title>
+      </v-list-item> -->
+
+      <v-list nav dense flat>
+
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>mdi-account-multiple-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title class="ml-n5 grey--text subtitle-1">Main</v-list-item-title>
+        </v-list-item>
+        <v-list-item-group>
           <!-- <v-list-item style="height: 64px; border-bottom: 0.5px solid #e6e6e6;" fixed app flat>
             <img class="mr-4" width="48px" height="48px" alt="Vue logo" src="@/assets/logo.png">
             <v-toolbar-title class="text-uppercase grey--text">
@@ -32,23 +48,104 @@
               <span>Tech</span>
             </v-toolbar-title>
           </v-list-item> -->
-
-          <v-list-item @click="hide_nav">
-            <v-list-item-title>Foo</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Bar</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Fizz</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Buzz</v-list-item-title>
+          <v-list-item
+            v-for="([title, icon, status], i) in admins"
+            :key="i"
+            active-class="orange--text darken-3 text--darken-3"
+            link
+          >
+            <!-- <v-list-item-icon>
+              <v-icon v-text="icon"></v-icon>
+            </v-list-item-icon> -->
+            <v-list-item-title
+              class="font-weight-light body-2 ml-9" v-text="title"
+            >
+            </v-list-item-title>
+            <!-- <v-icon>mdi-menu-right</v-icon> -->
           </v-list-item>
         </v-list-item-group>
+
+        <!-- <v-list-group
+          :value="true"
+          active-class="blue--text darken-2 text--darken-2"
+          no-action
+          class="mt-1 font-weight-regular prepend"
+          link
+        >
+          <template v-slot:activator>
+            <v-list-item-icon>
+              <v-icon>mdi-account-circle</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title class="ml-n4">Users</v-list-item-title>
+          </template>
+          <v-list-item-group>
+            <v-list-item
+              active-class="blue--text darken-2 text--darken-2"
+              v-for="([title, icon], i) in admins"
+              :key="i"
+              class="font-weight-regular"
+              link
+            >
+              <v-list-item-title class="ml-14" v-text="title"></v-list-item-title>
+
+              <v-list-item-icon>
+                <v-icon v-text="icon"></v-icon>
+              </v-list-item-icon>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list-group> -->
+
+          <!-- <v-list-group
+            :value="true"
+            no-action
+            sub-group
+            active-class="primary--text text--accent-4"
+          >
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title>Admin</v-list-item-title>
+              </v-list-item-content>
+            </template>
+
+            <v-list-item
+              v-for="([title, icon], i) in admins"
+              :key="i"
+              link
+              active-class="primary--text text--accent-4"
+            >
+              <v-list-item-title v-text="title"></v-list-item-title>
+
+              <v-list-item-icon>
+                <v-icon v-text="icon"></v-icon>
+              </v-list-item-icon>
+            </v-list-item>
+          </v-list-group>
+
+          <v-list-group
+            no-action
+            sub-group
+            active-class="primary--text text--accent-4"
+          >
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title>Actions</v-list-item-title>
+              </v-list-item-content>
+            </template>
+            <v-list-item-group>
+              <v-list-item
+                v-for="([title, icon], i) in cruds"
+                :key="i"
+                link
+                active-class="primary--text text--accent-4"
+              >
+                <v-list-item-title v-text="title"></v-list-item-title>
+
+                <v-list-item-icon>
+                  <v-icon v-text="icon"></v-icon>
+                </v-list-item-icon>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list-group> -->
       </v-list>
     </v-navigation-drawer>
 
@@ -57,10 +154,9 @@
       flat
       clipped
       fixed
-      white
       app
       height="64px"
-      style="z-index: 5; margin-top: 0px; transform: translateY(0px); right: 1px; border-bottom: 0.5px solid #e6e6e6"
+      style="background-color: white; z-index: 5; margin-top: 0px; transform: translateY(0px); right: 0px; border-bottom: 0.5px solid #e6e6e6"
     >
     <!-- style="height: 64px; margin-top: 0px; transform: translateY(0px); right: 1px; border-bottom: 0.5px solid #e6e6e6" -->
     <!-- border-bottom: 0.5px solid #000000; -->
@@ -82,7 +178,7 @@
       </v-container>
     </v-main>
 
-    <v-footer style="right: 1px" app>
+    <v-footer style="right: 1px;" app>
 
     </v-footer>
 
@@ -150,7 +246,17 @@ export default {
         x: 0,
         y: 0
       },
-      window_width_change: 0
+      window_width_change: 0,
+      admins: [
+        ['Management', 'mdi-account-multiple-outline', true],
+        ['Settings', 'mdi-cog-outline', false]
+      ],
+      cruds: [
+        ['Create', 'mdi-plus-outline', false],
+        ['Read', 'mdi-file-outline', false],
+        ['Update', 'mdi-update', false],
+        ['Delete', 'mdi-delete', false]
+      ]
     }
   },
   computed: {
@@ -186,6 +292,27 @@ export default {
       } else {
       }
     }
+    // lick_item_nav (i) {
+    //   console.log('----' + i)
+    //   this.admins.forEach(function (value, index) {
+    //     value[2] = false
+    //   })
+    //   this.admins[i] = true
+    // }
   }
 }
 </script>
+
+<style scoped>
+/* .v-list__group__header__prepend-icon .v-icon {
+    color: red;
+} */
+.v-icon {
+  font-size: 20px;
+  color: #b6b6b6;
+}
+.sticky {
+   position: sticky;
+   top: 0;
+}
+</style>
