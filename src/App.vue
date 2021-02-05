@@ -8,10 +8,9 @@
       left
       app
       v-model="drawer"
-      absolute
       disable-resize-watcher
-      :permanent="$vuetify.breakpoint.mdAndUp"
-      :temporary="$vuetify.breakpoint.smAndDown"
+      :permanent="$vuetify.breakpoint.lgAndUp"
+      :temporary="$vuetify.breakpoint.mdAndDown"
       overlay-opacity="0.2"
     >
       <!-- :temporary="$vuetify.breakpoint.smAndDown" -->
@@ -49,11 +48,18 @@
             </v-toolbar-title>
           </v-list-item> -->
           <v-list-item
-            v-for="([title, icon, status], i) in admins"
+            v-for="([title], i) in admins"
             :key="i"
             active-class="orange--text darken-3 text--darken-3"
             link
           >
+          <!-- <v-list-item
+            v-for="([title, icon, status], i) in admins"
+            :key="i"
+            active-class="orange--text darken-3 text--darken-3"
+            link
+          > -->
+
             <!-- <v-list-item-icon>
               <v-icon v-text="icon"></v-icon>
             </v-list-item-icon> -->
@@ -163,18 +169,18 @@
     <!-- <div class="v-app-ad d-inline-flex flex-child-1 grow-shrink-0 my-2 v-vuetify-ad v-sheet v-sheet--outlined theme--light rounded">
       <a class="rounded px-2 v-list-item v-list-item--link theme--light text-decoration-none">sadasdasdsa</a>
     </div> -->
-      <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon class="hidden-lg-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
     <!-- Sizes your content based upon application components -->
 
-    <v-main :class="$vuetify.breakpoint.smAndDown ? 'px-0' : 'px-256'">
+    <v-main :class="$vuetify.breakpoint.mdAndDown ? 'px-0' : 'px-256'">
       <!-- style="right: 0px; left: 256px" -->
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
 
         <!-- If using vue-router -->
         <router-view></router-view>
-        <RightNavigationDrawApp class="hidden-sm-and-down"/>
+        <RightNavigationDrawApp class="hidden-md-and-down"/>
       </v-container>
     </v-main>
 
@@ -286,9 +292,10 @@ export default {
       this.drawer = false
     },
     onResize () {
-      if (this.changeBreakpoint < 3) {
+      if (this.changeBreakpoint < 4) {
         this.windowSize = { x: window.innerWidth, y: window.innerHeight }
         this.window_width_change = window.innerWidth
+        console.log('------')
       } else {
       }
     }
