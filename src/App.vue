@@ -16,7 +16,7 @@
       <!-- :temporary="$vuetify.breakpoint.smAndDown" -->
       <!-- style="height: 100vh; top: 0px; transform: translateX(0%); width: 256px; max-height: calc(100% - 0px);" -->
 
-      <v-toolbar style="height: 64px; border-bottom: 0.5px solid #e6e6e6;" fixed app flat>
+      <v-toolbar style="height: 64px; border-bottom: 0.5px solid #e6e6e6;" fixed flat>
         <img class="mr-4" width="48px" height="48px" alt="Vue logo" src="@/assets/logo.png">
         <v-toolbar-title class="text-uppercase grey--text">
           <span class="font-weight-light">LOGI </span>
@@ -34,10 +34,10 @@
       <v-list nav dense flat>
 
         <v-list-item>
-          <v-list-item-icon>
+          <!-- <v-list-item-icon>
             <v-icon>mdi-account-multiple-outline</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title class="ml-n5 grey--text subtitle-1">Main</v-list-item-title>
+          </v-list-item-icon> -->
+          <v-list-item-title class="grey--text subtitle-1">Main</v-list-item-title>
         </v-list-item>
         <v-list-item-group>
           <!-- <v-list-item style="height: 64px; border-bottom: 0.5px solid #e6e6e6;" fixed app flat>
@@ -50,7 +50,7 @@
           <v-list-item
             v-for="([title], i) in admins"
             :key="i"
-            active-class="orange--text darken-3 text--darken-3"
+            active-class="blue--text darken-3 text--darken-3"
             link
           >
           <!-- <v-list-item
@@ -64,7 +64,7 @@
               <v-icon v-text="icon"></v-icon>
             </v-list-item-icon> -->
             <v-list-item-title
-              class="font-weight-light body-2 ml-9" v-text="title"
+              class="font-weight-light body-2 ml-4" v-text="title"
             >
             </v-list-item-title>
             <!-- <v-icon>mdi-menu-right</v-icon> -->
@@ -262,6 +262,26 @@ export default {
         ['Read', 'mdi-file-outline', false],
         ['Update', 'mdi-update', false],
         ['Delete', 'mdi-delete', false]
+      ],
+      items: [
+        {
+          action: 'mdi-plus-outline',
+          title: 'Attractions',
+          active: false,
+          items: [
+            { title: 'List Item' }
+          ]
+        },
+        {
+          action: 'mdi-plus-outline',
+          title: 'Dining',
+          active: true,
+          items: [
+            { title: 'Breakfast & brunch' },
+            { title: 'New American' },
+            { title: 'Sushi' }
+          ]
+        }
       ]
     }
   },
@@ -295,7 +315,6 @@ export default {
       if (this.changeBreakpoint < 4) {
         this.windowSize = { x: window.innerWidth, y: window.innerHeight }
         this.window_width_change = window.innerWidth
-        console.log('------')
       } else {
       }
     }
