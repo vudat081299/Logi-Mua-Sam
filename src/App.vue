@@ -33,7 +33,7 @@
 
       <v-list nav dense flat>
 
-        <v-list-item>
+        <v-list-item class="my-n2">
           <!-- <v-list-item-icon>
             <v-icon>mdi-account-multiple-outline</v-icon>
           </v-list-item-icon> -->
@@ -50,6 +50,7 @@
           <v-list-item
             v-for="([title], i) in admins"
             :key="i"
+            class="my-n2"
             active-class="blue--text darken-3 text--darken-3"
             link
           >

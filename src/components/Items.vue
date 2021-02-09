@@ -17,7 +17,7 @@
           <v-card
             :elevation="hover ? 8 : 0"
             :class="{ 'on-hover': hover }"
-            class="ma-1 hover-card"
+            class="ma-1 my-2 hover-card"
             tile
             width="250px"
             height="300px"
@@ -44,7 +44,7 @@
                 class="mx-1"
               >
                 <v-rating
-                  v-model="rating"
+                  v-model="rating[n]"
                   :value="3"
                   color="blue"
                   dense
@@ -69,7 +69,18 @@ export default {
 
   data () {
     return {
-      rating: 0,
+      rating: [
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      ],
       icons: ['mdi-rewind', 'mdi-play', 'mdi-fast-forward'],
       items: [
         {
