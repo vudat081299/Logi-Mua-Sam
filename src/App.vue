@@ -8,6 +8,7 @@
       left
       app
       v-model="drawer"
+      v-show="showNavBar"
       disable-resize-watcher
       :permanent="$vuetify.breakpoint.lgAndUp"
       :temporary="$vuetify.breakpoint.mdAndDown"
@@ -162,6 +163,7 @@
       clipped
       fixed
       app
+      v-show="showNavBar"
       height="64px"
       style="background-color: white; z-index: 5; margin-top: 0px; transform: translateY(0px); right: 0px; border-bottom: 0.5px solid #e6e6e6"
     >
@@ -171,17 +173,29 @@
       <a class="rounded px-2 v-list-item v-list-item--link theme--light text-decoration-none">sadasdasdsa</a>
     </div> -->
       <v-app-bar-nav-icon class="hidden-lg-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-spacer></v-spacer>
+      <v-btn
+        class="ma-2"
+        outlined
+        x-small
+        color="indigo"
+        @click="logout"
+      >
+        Đăng xuất
+      </v-btn>
     </v-app-bar>
     <!-- Sizes your content based upon application components -->
 
     <v-main :class="$vuetify.breakpoint.mdAndDown ? 'px-0' : 'px-256'">
       <!-- style="right: 0px; left: 256px" -->
       <!-- Provides the application the proper gutter -->
-      <v-container fluid>
+      <v-container fluid class="fill-height">
 
         <!-- If using vue-router -->
         <router-view></router-view>
-        <RightNavigationDrawApp class="hidden-md-and-down"/>
+        <RightNavigationDrawApp
+          v-show="showNavBar"
+          class="hidden-md-and-down"/>
       </v-container>
     </v-main>
 
@@ -245,10 +259,16 @@ export default {
   },
   mounted () {
     this.onResize()
+    this.checkDidLogin()
+  },
+  created () {
+    this.onResize()
+    this.checkDidLogin()
   },
   data () {
     return {
       drawer: false,
+      showNavBar: false,
       windowSize: {
         x: 0,
         y: 0
@@ -306,6 +326,9 @@ export default {
     // },
     window_width_change () {
       this.drawer = false // hide nav
+    },
+    $route (to, from) {
+      this.checkDidLogin()
     }
   },
   methods: {
@@ -318,6 +341,17 @@ export default {
         this.window_width_change = window.innerWidth
       } else {
       }
+    },
+    checkDidLogin () {
+      if (localStorage.getItem('didLogin') === '0') {
+        this.showNavBar = false
+      } else {
+        this.showNavBar = true
+      }
+    },
+    logout () {
+      localStorage.setItem('didLogin', '0')
+      this.$router.push('/login').catch(() => {})
     }
     // lick_item_nav (i) {
     //   console.log('----' + i)

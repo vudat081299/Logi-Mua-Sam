@@ -1,13 +1,18 @@
 <template>
   <v-container id="login-form" class="fill-height">
     <v-row align="center" justify="center" no-gutters>
-      <v-card width="450px" height="600px" class="rounded-lg" outlined>
+      <v-card :disabled="disabled" :loading="loading" width="450px" height="600px" class="rounded-lg" outlined>
         <v-row class="">
           <v-col cols="12" class="pt-6 pb-6">
-            <v-card-text height="600px">
+            <v-card-text>
               <v-form class="signup-form-form" @submit.prevent="signin">
-                <v-row class="justify-center my-4">
-                  <img class="justify-center" width="60px" height="60px" alt="Vue logo" src="@/assets/logo.png">
+                <v-row class="justify-center align-center my-4">
+                  <img width="60px" height="60px" alt="Vue logo" src="@/assets/logo.png">
+                  <h1
+                    class="primary--text font-weight-regular text-center ml-2"
+                  >
+                    LogiTech
+                  </h1>
                 </v-row>
                 <h1
                   class="text-center display-1 mb-10"
@@ -28,13 +33,14 @@
                     type="password"
                     color="primary"
                     outlined
+                    v-on:keyup.enter="login"
                   />
                   <a
-                    href="#"
+                    href="/"
                     class="align-center font-weight-bold text-decoration-none primary--text"
                   >
                     <!-- text-decoration-none -->
-                    Quên tài khoản?
+                    Quên tài khoản hoặc mật khẩu?
                   </a>
                 </v-col>
                 <v-layout justify-center>
@@ -49,12 +55,13 @@
                             Quên mật khẩu?
                           </a> -->
                 </div>
-                    <v-spacer></v-spacer>
+                <v-spacer/>
                 <v-col>
+                  <br/><br/><br/>
                   <v-row>
                     <v-col cols="6">
                       <a
-                        href="#"
+                        href="/signup"
                         class="align-center font-weight-bold text-decoration-none primary--text"
                       >
                         <!-- text-decoration-none -->
@@ -162,12 +169,17 @@
               </v-window-item> -->
           </v-card>
     </v-row>
+    <NotificationDialog @hide="hideNotificationDialog"
+      :title='titleNotificationDialog'
+      :content='contentNotificationDialog'
+      :dialog='notificationDialog'/>
   </v-container>
 </template>
 
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
+import NotificationDialog from '@/components/NotificationDialog.vue'
 
 export default {
   name: 'Login',
@@ -186,14 +198,60 @@ export default {
     }
   },
   components: {
+    NotificationDialog
   },
   data () {
     return {
+      usingDevAccount: true,
+
+      // Reactive login form
+      loading: false,
+      disabled: false,
+
+      // Dialog
+      notificationDialog: false,
+
+      // Dialog content
+      titleNotificationDialog: '',
+      contentNotificationDialog: '',
+
+      // Data
+      email: '',
+      password: '',
+      messenger: ''
     }
   },
   methods: {
     login () {
-      this.$router.push('/').catch(() => {})
+      this.loading = true
+      this.disabled = true
+      if (this.usingDevAccount) {
+        if (this.email === 'vudat81299@gmail.com' && this.password === 'vudat81299') {
+          localStorage.setItem('didLogin', '1')
+          this.$router.push('/').catch(() => {})
+        } else {
+          // this.notificationDialogAction('Lỗi đăng nhập', 'Bạn đã nhập sai tài khoản hoặc mật khẩu!')
+        }
+      } else {
+        localStorage.setItem('didLogin', '1')
+        this.$router.push('/').catch(() => {})
+      }
+      setTimeout(() => {
+        this.loading = false
+        this.disabled = false
+        this.notificationDialogAction('Lỗi đăng nhập', 'Bạn đã nhập sai tài khoản hoặc mật khẩu!')
+      }, 2000)
+    },
+    check () {
+      localStorage.setItem('didLogin', '0')
+    },
+    notificationDialogAction (title, content) {
+      this.notificationDialog = true
+      this.titleNotificationDialog = title
+      this.contentNotificationDialog = content
+    },
+    hideNotificationDialog () {
+      this.notificationDialog = false
     }
   }
 }

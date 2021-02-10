@@ -33,8 +33,9 @@
             >
               <span
                 class="headline white--text pl-4 pt-4 d-inline-block"
-                v-text="card"
-              ></span>
+                v-text="cardState"
+              >
+              </span>
             </v-img>
             <p class="cut-text ma-0 px-1 text-caption">
               [Quà Tết 2021] Túi Quà Tết Cao Cấp , Quà Tết Tân Sửu 2021, Hộp Quà Tết Cao Cấp, Hạt Dinh Dưỡng Cao Cấp - FAMINUTS249K03
@@ -69,6 +70,7 @@ export default {
 
   data () {
     return {
+      cardState: 'test',
       rating: [
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
