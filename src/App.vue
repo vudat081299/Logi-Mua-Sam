@@ -331,7 +331,6 @@ export default {
       } else {
         style += ' pt-0'
       }
-      console.log(style)
       return style
     }
   },

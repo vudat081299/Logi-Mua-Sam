@@ -23,15 +23,20 @@
                 <v-col>
                   <v-text-field
                     v-model="email"
-                    label="Gmail or phone"
+                    label="Gmail hoặc số điện thoại"
                     type="text"
                     color="primary"
                     outlined
                   />
                   <v-text-field
+                    :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                    :type="showPassword ? 'text' : 'password'"
+                    name="input-10-2"
+                    value="wqfasds"
+                    class="input-group--focused"
+                    @click:append="showPassword = !showPassword"
                     v-model="password"
-                    label="Enter your password"
-                    type="password"
+                    label="Nhập mật khẩu của bạn"
                     color="primary"
                     outlined
                     v-on:keyup.enter="login"
@@ -204,6 +209,7 @@ export default {
       // Reactive login form
       loading: false,
       disabled: false,
+      showPassword: false,
 
       // Dialog
       notificationDialog: false,
