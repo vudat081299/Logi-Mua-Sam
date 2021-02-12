@@ -186,7 +186,7 @@
     </v-app-bar>
     <!-- Sizes your content based upon application components -->
 
-    <v-main :class="$vuetify.breakpoint.mdAndDown ? 'px-0' : 'px-256'">
+    <v-main :class="checkStateFrame">
       <!-- style="right: 0px; left: 256px" -->
       <!-- Provides the application the proper gutter -->
       <v-container fluid class="fill-height">
@@ -318,6 +318,21 @@ export default {
         default:
           return '5' // xl
       }
+    },
+    checkStateFrame () { // Frame making
+      let style = ''
+      if (this.$vuetify.breakpoint.mdAndDown) {
+        style = 'px-0'
+      } else {
+        style = 'px-256'
+      }
+      if (this.showNavBar) {
+        style += ' pt-64'
+      } else {
+        style += ' pt-0'
+      }
+      console.log(style)
+      return style
     }
   },
   watch: {

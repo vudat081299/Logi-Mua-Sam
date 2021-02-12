@@ -1,19 +1,20 @@
 <template>
-  <v-container id="login-form" class="fill-height">
+  <v-container id="login-form" class="">
     <v-row align="center" justify="center" no-gutters>
       <v-card :disabled="disabled" :loading="loading" width="450px" height="600px" class="rounded-lg" outlined>
         <v-row class="">
           <v-col cols="12" class="pt-6 pb-6">
             <v-card-text>
               <v-form class="signup-form-form" @submit.prevent="signin">
-                <v-row class="justify-center align-center my-4">
+                <!-- <v-row class="justify-center align-center my-4">
                   <img width="60px" height="60px" alt="Vue logo" src="@/assets/logo.png">
                   <h1
                     class="primary--text font-weight-regular text-center ml-2"
                   >
                     LogiTech
-                  </h1>
-                </v-row>
+                  </h1> -->
+                <!-- </v-row> -->
+                <BrandIdentity :leading="'ml-n2'" class="my-4" :position="'justify-center'"/>
                 <h1
                   class="text-center display-1 mb-10"
                 >
@@ -58,18 +59,14 @@
                 <v-spacer/>
                 <v-col>
                   <br/><br/><br/>
-                  <v-row>
-                    <v-col cols="6">
+                  <v-row class="align-center">
                       <a
                         href="/signup"
-                        class="align-center font-weight-bold text-decoration-none primary--text"
+                        class="ml-3 align-center font-weight-bold text-decoration-none primary--text"
                       >
                         <!-- text-decoration-none -->
                         Tạo tài khoản
                       </a>
-                    </v-col>
-                    <v-col cols="6">
-                      <v-row>
                         <v-spacer></v-spacer>
                         <v-btn
                           large
@@ -79,8 +76,6 @@
                         >
                           Tiếp tục
                         </v-btn>
-                      </v-row>
-                    </v-col>
                   </v-row>
                 </v-col>
               </v-form>
@@ -180,6 +175,7 @@
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 import NotificationDialog from '@/components/NotificationDialog.vue'
+import BrandIdentity from '@/components/BrandIdentity.vue'
 
 export default {
   name: 'Login',
@@ -198,7 +194,8 @@ export default {
     }
   },
   components: {
-    NotificationDialog
+    NotificationDialog,
+    BrandIdentity
   },
   data () {
     return {
