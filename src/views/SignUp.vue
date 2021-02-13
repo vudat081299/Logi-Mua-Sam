@@ -8,7 +8,7 @@
               <v-stepper-items>
                 <v-stepper-content step="1">
                   <v-card-text>
-                    <v-form class="signup-form-form" @submit.prevent="signin">
+                    <v-form class="signup-form" ref="signupForm" @submit.prevent="signin">
                       <v-row class="ma-4">
                         <v-col>
                           <BrandIdentity :leading="'ml-2'" :posiotion="'justify-left'"/>
@@ -24,14 +24,18 @@
                         <v-col cols="12">
                           <v-row class="py-0">
                             <v-col class="py-0" cols="4">
-                              <v-text-field outlined dense label="Họ">
+                              <v-text-field outlined dense label="Họ"
+                                :rules="firstNameRules"
+                              >
                               </v-text-field>
                             </v-col>
-                            <v-col class="py-0" cols="4">
-                              <v-text-field outlined dense label="Tên">
+                            <v-col class="py-0 pl-0" cols="5">
+                              <v-text-field outlined dense label="Tên"
+                                :rules="lastNameRules"
+                              >
                               </v-text-field>
                             </v-col>
-                            <v-col class="py-0" cols="4">
+                            <v-col class="py-0 pl-0" cols="3">
                               <v-select
                                 :items="genderList"
                                 label="Giới tính"
@@ -42,7 +46,9 @@
                           </v-row>
                           <v-row class="py-0">
                             <v-col class="py-0" cols="12">
-                              <v-text-field outlined dense label="Email" suffix="@gmail.com">
+                              <v-text-field outlined dense label="Email" suffix="@gmail.com"
+                                :rules="gmailRules"
+                              >
                               </v-text-field>
                             </v-col>
                           </v-row>
@@ -57,6 +63,7 @@
                                 counter
                                 persistent-hint
                                 dense outlined
+                                :rules="passwordRules"
                               ></v-text-field>
                             </v-col>
                             <v-col cols="6">
@@ -68,6 +75,7 @@
                                 counter
                                 persistent-hint
                                 dense outlined
+                                :rules="confirmPasswordRules"
                               ></v-text-field>
                             </v-col>
                             <v-col class="pt-0 mt-n4" cols="12">
@@ -139,7 +147,12 @@
                               </v-text-field>
                             </v-col>
                             <v-col class="py-0" cols="8">
-                              <v-text-field v-model="phonenumber" outlined dense label="Số điện thoại">
+                              <v-text-field
+                                v-model="phonenumber"
+                                counter
+                                outlined
+                                dense
+                                label="Số điện thoại">
                               </v-text-field>
                             </v-col>
                           </v-row>
@@ -175,7 +188,77 @@
                 </v-stepper-content>
 
                 <v-stepper-content step="3">
+                  <v-card-text>
+                    <v-form class="signup-form-form" @submit.prevent="signin">
+                      <v-row class="ma-4">
+                        <v-col>
+                          <v-row class="justify-left align-center">
+                            <img class="ml-1" width="60px" height="60px" alt="Vue logo" src="@/assets/logo.png">
+                            <h1
+                              class="primary--text font-weight-regular text-center"
+                            >
+                              LogiTech
+                            </h1>
+                          </v-row>
+                          <br/><br/>
+                          <h1
+                            class="display-1"
+                          >
+                            Xác minh số điện thoại
+                          </h1>
+                          <h2 class="mt-4 subtitle-1">
+                            Để bảo mật cho bạn, LogiTech muốn đảm bảo rằng đó thực sự là bạn. LogiTech sẽ gửi một tin nhắn văn bản cùng mã xác minh gồm 6 chữ số. Có áp dụng cước phí chuẩn.
+                          </h2>
+                        </v-col>
+                      </v-row>
+                      <v-row class="ma-4">
+                        <v-col cols="12">
+                          <v-row class="py-0">
+                            <v-col class="py-0" cols="5">
+                              <v-text-field v-model="userPhoneNumber" outlined dense disabled label="Số điện thoại">
+                              </v-text-field>
+                            </v-col>
+                            <v-col class="py-0" cols="7">
+                              <v-text-field
+                                v-model="confirmCode"
+                                outlined dense label="Nhập mã xác minh"
+                                hint="Sử dụng 8 ký tự trở lên và kết hợp chữ cái, chữ số và biểu tượng"
+                                counter
+                                persistent-hint>
+                              </v-text-field>
+                            </v-col>
+                          </v-row>
+                          <v-row>
+                            <v-col class="" cols="12">
+                              <br/>
+                              <v-row class="mx-0">
+                                <v-btn
+                                  large
+                                  text
+                                  color="primary"
+                                  @click="e1 = 2"
+                                  class="elevation-0 primary--text"
+                                >
+                                  Trở lại
+                                </v-btn>
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                  large
+                                  color="info"
+                                  @click="confirming"
+                                  class="elevation-0"
+                                >
+                                  Xác minh
+                                </v-btn>
+                              </v-row>
+                            </v-col>
+                          </v-row>
+                        </v-col>
+                      </v-row>
+                    </v-form>
+                  </v-card-text>
                 </v-stepper-content>
+                <LoadingCircleOverlay :dialog="isLoadingDialog"/>
               </v-stepper-items>
             </v-stepper>
           </v-col>
@@ -198,6 +281,7 @@
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 import BrandIdentity from '@/components/BrandIdentity.vue'
+import LoadingCircleOverlay from '@/components/LoadingCircleOverlay.vue'
 
 export default {
   name: 'SignUp',
@@ -216,7 +300,8 @@ export default {
     }
   },
   components: {
-    BrandIdentity
+    BrandIdentity,
+    LoadingCircleOverlay
   },
   data () {
     return {
@@ -226,16 +311,22 @@ export default {
         'Khác'
       ],
       showPassword: false,
+      isLoadingDialog: false,
       password1: '',
       password2: '',
       e1: 1,
       countryCode: '+84',
-      phonenumber: ''
+      phonenumber: '',
+      userPhoneNumber: '+84 899 081299',
+      confirmCode: ''
     }
   },
   methods: {
     login () {
       this.$router.push('/login').catch(() => {})
+    },
+    confirming () {
+      this.isLoadingDialog = !this.isLoadingDialog
     }
   }
 }
@@ -249,8 +340,8 @@ export default {
 .container:before {
   content: "";
   position: absolute;
-  height: 2000px;
-  width: 2000px;
+  height: 1500px;
+  width: 1500px;
   top: -10%;
   left: 48%;
   transform: translateY(-50%);

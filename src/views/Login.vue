@@ -1,11 +1,11 @@
 <template>
-  <v-container id="login-form" class="">
+  <v-container id="form" class="">
     <v-row align="center" justify="center" no-gutters>
       <v-card :disabled="disabled" :loading="loading" width="450px" height="600px" class="rounded-lg" outlined>
         <v-row class="">
           <v-col cols="12" class="pt-6 pb-6">
             <v-card-text>
-              <v-form class="signup-form-form" @submit.prevent="signin">
+              <v-form class="login-form" ref="loginForm" @submit.prevent="signin">
                 <!-- <v-row class="justify-center align-center my-4">
                   <img width="60px" height="60px" alt="Vue logo" src="@/assets/logo.png">
                   <h1
@@ -22,11 +22,12 @@
                 </h1>
                 <v-col>
                   <v-text-field
-                    v-model="email"
+                    v-model="account"
                     label="Gmail hoặc số điện thoại"
                     type="text"
                     color="primary"
                     outlined
+                    :rules="accountRules"
                   />
                   <v-text-field
                     :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
@@ -40,6 +41,7 @@
                     color="primary"
                     outlined
                     v-on:keyup.enter="login"
+                    :rules="passwordRules"
                   />
                   <a
                     href="/"
@@ -202,6 +204,14 @@ export default {
     NotificationDialog,
     BrandIdentity
   },
+  computed: {
+    loginForm () {
+      return {
+        account: this.account,
+        password: this.password
+      }
+    }
+  },
   data () {
     return {
       usingDevAccount: true,
@@ -219,17 +229,34 @@ export default {
       contentNotificationDialog: '',
 
       // Data
-      email: '',
+      account: '',
       password: '',
-      messenger: ''
+      messenger: '',
+
+      // Rules
+      accountRules: [
+        v => !!v || 'Không được để trống',
+        v => (/[!@#$%^&*,`~'")(+=_-]/.test(v) === false) || 'Tài khoản không chứa ký tự đặc biệt'
+      ],
+      passwordRules: [
+        v => !!v || 'Không được để trống',
+        v => (/[!@#$%^&*, `~'")(+=_-]/.test(v) === false) || 'Mật khẩu chứa ký tự đặc biệt'
+      ]
     }
   },
   methods: {
+    validate () {
+      this.$refs.loginForm.validate()
+      return this.$refs.loginForm.validate()
+    },
     login () {
+      if (!this.validate()) {
+        return
+      }
       this.loading = true
       this.disabled = true
       if (this.usingDevAccount) {
-        if (this.email === 'vudat81299@gmail.com' && this.password === 'vudat81299') {
+        if (this.account === 'vudat81299@gmail.com' && this.password === 'vudat81299') {
           localStorage.setItem('didLogin', '1')
           this.$router.push('/').catch(() => {})
         } else {
