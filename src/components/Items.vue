@@ -16,7 +16,7 @@
         >
           <v-card
             :class="{ 'on-hover': hover }"
-            class="bottom-gradient ma-2 hover-card elevation-0"
+            class="bottom-gradient ma-1 hover-card elevation-0"
             tile
             width="250px"
             height="300px"
@@ -30,7 +30,7 @@
             <v-img
               src="https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI"
               height="175px"
-              class="ma-3 mb-2"
+              class="ma-3 mb-2 rounded-t-sm"
             >
               <span
                 class="headline white--text pl-4 pt-4 d-inline-block"
