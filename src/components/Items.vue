@@ -1,7 +1,7 @@
 <template>
-  <v-container>
+  <v-container class="px-0">
     <v-card
-      class="d-flex flex-wrap px-2 justify-center"
+      class="d-flex flex-wrap px-0 justify-center"
       color=""
       flat
       tile
@@ -15,13 +15,13 @@
           :key="n"
         >
           <v-card
-            :elevation="hover ? 8 : 0"
             :class="{ 'on-hover': hover }"
-            class="ma-1 my-2 hover-card"
+            class="bottom-gradient ma-2 hover-card elevation-0"
             tile
             width="250px"
             height="300px"
           >
+            <!-- :elevation="hover ? 2 : 0" -->
             <!-- :style="`border-top: ${hover ? 4 : 0}px solid #42A5F5;border-right: ${hover ? 4 : 0}px solid #42A5F5;border-bottom: ${hover ? 4 : 0}px solid #42A5F5;border-left: ${hover ? 4 : 0}px solid #42A5F5;`" -->
             <!-- <v-img
               :src="`https://picsum.photos/200/300?image=${getImage()}`"
@@ -30,6 +30,7 @@
             <v-img
               src="https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI"
               height="175px"
+              class="ma-3 mb-2"
             >
               <span
                 class="headline white--text pl-4 pt-4 d-inline-block"
@@ -127,10 +128,16 @@ export default {
 }
 .hover-card:not(.on-hover) {
   opacity: 0.85;
+  border-width: 0px;
 }
-/* .hover-card {
+.hover-card {
   opacity: 1;
- } */
+  /* border-width: 10px;
+  border:rgba(0, 0, 0, 1); */
+  border-width: 1px;
+  border-style: solid;
+  border-color: #c6daff;
+ }
 .show-btns {
   color: rgba(255, 255, 255, 1) !important;
 }
@@ -149,5 +156,19 @@ export default {
   /* autoprefixer: on */
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.bottom-gradient {
+  /* background-image: linear-gradient(to bottom, rgba(220, 220, 220, 0.3) 0%, transparent 150px); */
+}
+.bottom-gradient:not(.on-hover) {
+  /* background-image: linear-gradient(to bottom, rgba(245, 245, 245, 0) 0%, transparent 0px); */
+}
+.repeating-gradient {
+  background-image: repeating-linear-gradient(-45deg,
+                      rgba(255,0,0,.25),
+                      rgba(255,0,0,.25) 5px,
+                      rgba(0,0,255,.25) 5px,
+                      rgba(0,0,255,.25) 10px
+                    );
 }
 </style>

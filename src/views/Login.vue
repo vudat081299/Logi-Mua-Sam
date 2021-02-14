@@ -1,7 +1,7 @@
 <template>
   <v-container id="form" class="">
     <v-row align="center" justify="center" no-gutters>
-      <v-card :disabled="disabled" :loading="loading" width="450px" height="600px" class="rounded-lg" outlined>
+      <v-card :disabled="disabled" :loading="loading" min-width="450px" max-width="450px" width="450px" height="600px" class="rounded-lg" outlined>
         <v-row class="">
           <v-col cols="12" class="pt-6 pb-6">
             <v-card-text>
@@ -236,11 +236,11 @@ export default {
       // Rules
       accountRules: [
         v => !!v || 'Không được để trống',
-        v => (/[!@#$%^&*,`~'")(+=_-]/.test(v) === false) || 'Tài khoản không chứa ký tự đặc biệt'
+        v => (/[!#$%^&*,`~'")(+=_-]/.test(v) === false) || 'Tài khoản không được chứa ký tự đặc biệt'
       ],
       passwordRules: [
         v => !!v || 'Không được để trống',
-        v => (/[!@#$%^&*, `~'")(+=_-]/.test(v) === false) || 'Mật khẩu chứa ký tự đặc biệt'
+        v => (/[!#$%^&*, `~'")(+=_-]/.test(v) === false) || 'Mật khẩu không được chứa ký tự đặc biệt'
       ]
     }
   },

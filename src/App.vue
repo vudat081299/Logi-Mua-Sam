@@ -10,10 +10,11 @@
       v-model="drawer"
       v-show="showNavBar"
       disable-resize-watcher
-      :permanent="$vuetify.breakpoint.lgAndUp"
-      :temporary="$vuetify.breakpoint.mdAndDown"
       overlay-opacity="0.2"
+      temporary
     >
+      <!-- :permanent="$vuetify.breakpoint.lgAndUp"
+      :temporary="$vuetify.breakpoint.mdAndDown" -->
       <!-- :temporary="$vuetify.breakpoint.smAndDown" -->
       <!-- style="height: 100vh; top: 0px; transform: translateX(0%); width: 256px; max-height: calc(100% - 0px);" -->
 
@@ -172,7 +173,8 @@
     <!-- <div class="v-app-ad d-inline-flex flex-child-1 grow-shrink-0 my-2 v-vuetify-ad v-sheet v-sheet--outlined theme--light rounded">
       <a class="rounded px-2 v-list-item v-list-item--link theme--light text-decoration-none">sadasdasdsa</a>
     </div> -->
-      <v-app-bar-nav-icon class="hidden-lg-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <!-- class="hidden-lg-and-up" -->
       <v-spacer></v-spacer>
       <v-btn
         class="ma-2"
@@ -194,8 +196,9 @@
         <!-- If using vue-router -->
         <router-view></router-view>
         <RightNavigationDrawApp
-          v-show="showNavBar"
+          v-show="false"
           class="hidden-md-and-down"/>
+          <!-- showNavBar -->
       </v-container>
     </v-main>
 
@@ -324,7 +327,7 @@ export default {
       if (this.$vuetify.breakpoint.mdAndDown) {
         style = 'px-0'
       } else {
-        style = 'px-256'
+        style = 'px-0'
       }
       if (this.showNavBar) {
         style += ' pt-64'
