@@ -1,9 +1,17 @@
 <template>
-  <div class="home">
+  <!-- <div class="home"> -->
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <Items/>
-  </div>
+    <!-- <V-row>
+      <v-col>
+      </v-col>
+      <v-col> -->
+        <Items/>
+      <!-- </v-col>
+      <v-col>
+      </v-col>
+    </V-row> -->
+  <!-- </div> -->
 </template>
 
 <script>

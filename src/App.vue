@@ -7,12 +7,13 @@
       open
       left
       app
-      v-model="drawer"
+      :v-model="false"
       v-show="showNavBar"
       disable-resize-watcher
       overlay-opacity="0.2"
       temporary
     >
+      <!-- v-model="drawer" -->
       <!-- :permanent="$vuetify.breakpoint.lgAndUp"
       :temporary="$vuetify.breakpoint.mdAndDown" -->
       <!-- :temporary="$vuetify.breakpoint.smAndDown" -->
@@ -164,10 +165,11 @@
       clipped
       fixed
       app
-      v-show="showNavBar"
+      v-show="false"
       height="64px"
       style="background-color: white; z-index: 5; margin-top: 0px; transform: translateY(0px); right: 0px; border-bottom: 0.5px solid #e6e6e6"
     >
+    <!-- v-show="showNavBar" -->
     <!-- style="height: 64px; margin-top: 0px; transform: translateY(0px); right: 1px; border-bottom: 0.5px solid #e6e6e6" -->
     <!-- border-bottom: 0.5px solid #000000; -->
     <!-- <div class="v-app-ad d-inline-flex flex-child-1 grow-shrink-0 my-2 v-vuetify-ad v-sheet v-sheet--outlined theme--light rounded">
@@ -187,24 +189,42 @@
       </v-btn>
     </v-app-bar>
     <!-- Sizes your content based upon application components -->
-
+    <div style="height:128px">
+      <v-row class="mt-2">
+        <v-col cols="4" offset="4">
+          <v-text-field
+            v-model="search"
+            clearable
+            flat
+            hide-details
+            outlined
+            dense
+            append-icon="mdi-magnify"
+            placeholder="Tìm kiếm sản phẩm"
+            @click:append="toggleMarker"
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+      </v-row>
+    </div>
     <v-main :class="checkStateFrame">
       <!-- style="right: 0px; left: 256px" -->
       <!-- Provides the application the proper gutter -->
-      <v-container fluid class="fill-height">
+      <v-container fluid class="fill-height containerColor">
 
         <!-- If using vue-router -->
         <router-view></router-view>
-        <RightNavigationDrawApp
+        <!-- <RightNavigationDrawApp
           v-show="false"
-          class="hidden-md-and-down"/>
+          class="hidden-md-and-down"/> -->
           <!-- showNavBar -->
       </v-container>
     </v-main>
 
-    <v-footer style="right: 1px;" app>
+    <!-- <v-footer style="right: 1px;" app>
 
-    </v-footer>
+    </v-footer> -->
 
     <!-- <v-bottom-navigation></v-bottom-navigation> -->
 
@@ -253,12 +273,12 @@
 
 <script>
 // @ is an alias to /src
-import RightNavigationDrawApp from '@/components/RightNavigationDrawApp.vue'
+// import RightNavigationDrawApp from '@/components/RightNavigationDrawApp.vue'
 
 export default {
   name: 'App',
   components: {
-    RightNavigationDrawApp
+    // RightNavigationDrawApp
   },
   mounted () {
     this.onResize()
@@ -272,6 +292,8 @@ export default {
     return {
       drawer: false,
       showNavBar: false,
+
+      search: '',
       windowSize: {
         x: 0,
         y: 0
@@ -330,7 +352,8 @@ export default {
         style = 'px-0'
       }
       if (this.showNavBar) {
-        style += ' pt-64'
+        style += ' pt-0'
+        // style += ' pt-64'
       } else {
         style += ' pt-0'
       }
@@ -369,6 +392,9 @@ export default {
     logout () {
       localStorage.setItem('didLogin', '0')
       this.$router.push('/login').catch(() => {})
+    },
+    toggleMarker () {
+
     }
     // lick_item_nav (i) {
     //   console.log('----' + i)
@@ -392,5 +418,8 @@ export default {
 .sticky {
    position: sticky;
    top: 0;
+}
+.containerColor {
+  background-color:#f4f4f4;
 }
 </style>

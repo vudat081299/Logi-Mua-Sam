@@ -1,14 +1,12 @@
 <template>
-  <v-container class="px-0">
     <v-card
-      class="d-flex flex-wrap px-0 justify-center"
-      color=""
+      class="d-flex fixedDivContent mx-auto flex-wrap px-0 py-0-0 pb-4 align-center"
+      color="#ffffff"
       flat
       tile
     >
-
       <template
-        v-for="n in 100"
+        v-for="n in 101"
       >
         <v-hover
           v-slot="{ hover }"
@@ -16,10 +14,11 @@
         >
           <v-card
             :class="{ 'on-hover': hover }"
-            class="bottom-gradient ma-1 hover-card elevation-0"
+            class="bottom-gradient ma-0 mb-2 hover-card elevation-0"
             tile
+            color="#ffffff00"
             width="250px"
-            height="300px"
+            height="350px"
           >
             <!-- :elevation="hover ? 2 : 0" -->
             <!-- :style="`border-top: ${hover ? 4 : 0}px solid #42A5F5;border-right: ${hover ? 4 : 0}px solid #42A5F5;border-bottom: ${hover ? 4 : 0}px solid #42A5F5;border-left: ${hover ? 4 : 0}px solid #42A5F5;`" -->
@@ -28,22 +27,26 @@
               height="175px"
             > -->
             <v-img
-              src="https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI"
-              height="175px"
-              class="ma-3 mb-2 rounded-t-sm"
+              :class="{ 'on-hover': hover }"
+              src="@/assets/e8d149d839d14346d2c14731f7f84f30.jpg"
+              height="200px"
+              class="ma-4 mb-2 rounded-t-sm hover-img"
             >
+              <!-- src="https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI" -->
+
               <span
                 class="headline white--text pl-4 pt-4 d-inline-block"
                 v-text="cardState"
               >
               </span>
             </v-img>
-            <p class="cut-text ma-0 px-1 text-caption">
-              [Quà Tết 2021] Túi Quà Tết Cao Cấp , Quà Tết Tân Sửu 2021, Hộp Quà Tết Cao Cấp, Hạt Dinh Dưỡng Cao Cấp - FAMINUTS249K03
-            </p>
-            <v-card-text class="px-0 pt-2">
+            <v-card-text class="px-4 py-0">
+              <!-- <p style="background: rgb(242, 242, 242); line-height: 12px; display: inline-block; padding: 0px 4px; font-size: 9px; margin: 0px 4px 0px 0px; position: relative; top: -1px; border-radius: 2px;">Ad</p> -->
+              <p class="black--text cut-text">
+                Máy nhào bột/thực phẩm đa năng DK30: Dùng để nhào, trộn mọi loại thực phẩm. Hàng chính hãng Thailand. Dùng cho hộ gia đình, hộ kinh doanh, doanh nghiệp.
+              </p>
               <v-row
-                class="mx-1"
+                class="ma-0 px-0 align-center"
               >
                 <v-rating
                   v-model="rating[n]"
@@ -62,7 +65,6 @@
         </v-hover>
       </template>
     </v-card>
-  </v-container>
 </template>
 
 <script>
@@ -108,6 +110,8 @@ export default {
       transparent: 'rgba(255, 255, 255, 0)'
     }
   },
+  watch: {
+  },
   methods: {
     getImage () {
       // const min = 550
@@ -127,17 +131,30 @@ export default {
   transition: opacity .2s ease-in-out;
 }
 .hover-card:not(.on-hover) {
-  opacity: 0.85;
-  border-width: 0px;
+  /* opacity: 0.95; */
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.10), 0 0px 0px 0 rgba(0, 0, 0, 0.10) !important;
+  z-index: 0;
+  /* border-width: 0px; */
 }
 .hover-card {
-  opacity: 1;
+  /* opacity: 1; */
+  box-shadow: -9px -9px 20px 0 rgba(240, 240, 240, 1.0), 9px 9px 20px 0 rgba(240, 240, 240, 1.0) !important;
+  /* box-shadow: 0 100px 80px -80px rgba(0, 0, 0, 0.9) !important; */
+  /* box-shadow: inset 25px 0px 25px -25px rgba(0,0,0,0.45), inset -25px 0px 25px -25px rgba(0,0,0,0.45); */
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 20px 0 rgba(0, 0, 0, 0.10) !important; */
+  z-index: 1;
   /* border-width: 10px;
   border:rgba(0, 0, 0, 1); */
-  border-width: 1px;
+  /* border-width: 1px;
   border-style: solid;
-  border-color: #c6daff;
+  border-color: #c6daff; */
  }
+.hover-img:not(.on-hover) {
+  opacity: 0.9;
+}
+.hover-img {
+  opacity: 1;
+}
 .show-btns {
   color: rgba(255, 255, 255, 1) !important;
 }
@@ -170,5 +187,10 @@ export default {
                       rgba(0,0,255,.25) 5px,
                       rgba(0,0,255,.25) 10px
                     );
+}
+.fixedDivContent {
+  width: 1250px;
+  max-width: 1250px;
+  min-width: 1250px;
 }
 </style>
