@@ -41,9 +41,9 @@
               </span>
             </v-img>
             <v-card-text class="px-4 py-0">
-              <!-- <p style="background: rgb(242, 242, 242); line-height: 12px; display: inline-block; padding: 0px 4px; font-size: 9px; margin: 0px 4px 0px 0px; position: relative; top: -1px; border-radius: 2px;">Ad</p> -->
               <p class="black--text cut-text">
-                Máy nhào bột/thực phẩm đa năng DK30: Dùng để nhào, trộn mọi loại thực phẩm. Hàng chính hãng Thailand. Dùng cho hộ gia đình, hộ kinh doanh, doanh nghiệp.
+                <span style="background: rgb(242, 242, 242); line-height: 12px; display: inline-block; padding: 0px 4px; font-size: 9px; margin: 0px 4px 0px 0px; position: relative; top: -1px; border-radius: 2px;">Ad</span>
+                  Máy nhào bột/thực phẩm đa năng DK30: Dùng để nhào, trộn mọi loại thực phẩm. Hàng chính hãng Thailand. Dùng cho hộ gia đình, hộ kinh doanh, doanh nghiệp.
               </p>
               <v-row
                 class="ma-0 px-0 align-center"
@@ -51,13 +51,26 @@
                 <v-rating
                   v-model="rating[n]"
                   :value="3"
-                  color="blue"
+                  color="orange"
+                  background-color="#dddddd"
+                  empty-icon="mdi-star"
                   dense
-                  size="12"
+                  size="13"
                 ></v-rating>
 
-                <div class="text-caption grey--text ml-1">
-                  4.5 (413)
+                <div class="caption ml-1">
+                  (4000 lượt đánh giá)
+                </div>
+              </v-row>
+              <v-row
+                class="mx-0 px-0 align-center"
+              >
+                <div class="text-subtitle-2 black--text">1.000.000
+                  <span class="text-decoration-underline">đ</span>
+                  <span class="" style="color: white; background: rgb(255, 66, 78); line-height: 20px; display: inline-block; padding: 4px 8px;
+                   font-size: 15px; margin: 0px 0px 0px 6px; position: relative; top: -1px; border-radius: 4px;">-20%</span>
+                  <!-- <div class="percent_discount">-30%
+                  </div> -->
                 </div>
               </v-row>
             </v-card-text>
@@ -192,5 +205,13 @@ export default {
   width: 1250px;
   max-width: 1250px;
   min-width: 1250px;
+}
+.percent_discount {
+  font-size: 13px;
+  line-height: 20px;
+  border-radius: 2px;
+  background: rgb(255, 66, 78);
+  color: black;
+  padding: 0px 2px;
 }
 </style>

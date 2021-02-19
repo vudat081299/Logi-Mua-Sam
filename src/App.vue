@@ -189,29 +189,79 @@
       </v-btn>
     </v-app-bar>
     <!-- Sizes your content based upon application components -->
-    <div style="height:128px">
-      <v-row class="mt-2">
-        <v-col cols="4" offset="4">
-          <v-text-field
-            v-model="search"
-            clearable
-            flat
-            hide-details
+    <div class="ma-0" style="height: 100px; width: 100%;" v-show="showNavBar">
+      <v-row class="ma-0 pa-0 align-center" style="height: 100px">
+        <v-col cols="4" class="">
+          <v-row class="mx-0 ml-4">
+          <BrandIdentity :position="''" :size="'50'"/>
+          </v-row>
+        </v-col>
+        <!-- <v-text-field
+          v-model="search"
+          clearable
+          flat
+          hide-details
+          outlined
+          dense
+          append-icon="mdi-magnify"
+          placeholder="Tìm kiếm sản phẩm"
+          @click:append="toggleMarker"
+          width="400px"
+        ></v-text-field> -->
+        <v-col>
+          <v-autocomplete
+            v-model="friends"
+            :disabled="isUpdating"
+            :items="people"
+            append-icon=""
             outlined
+            chips
             dense
-            append-icon="mdi-magnify"
-            placeholder="Tìm kiếm sản phẩm"
-            @click:append="toggleMarker"
-          ></v-text-field>
+            color="blue-grey lighten-2"
+            item-text="name"
+            item-value="name"
+          >
+            <template v-slot:selection="data">
+              <v-chip
+                v-bind="data.attrs"
+                :input-value="data.selected"
+                close
+                @click="data.select"
+                @click:close="remove(data.item)"
+              >
+                <v-avatar left>
+                  <v-img :src="data.item.avatar"></v-img>
+                </v-avatar>
+                {{ data.item.name }}
+              </v-chip>
+            </template>
+            <template v-slot:item="data">
+              <template v-if="typeof data.item !== 'object'">
+                <v-list-item-content v-text="data.item"></v-list-item-content>
+              </template>
+              <template v-else>
+                <v-list-item-avatar>
+                  <img :src="data.item.avatar">
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title v-html="data.item.name"></v-list-item-title>
+                  <v-list-item-subtitle v-html="data.item.group"></v-list-item-subtitle>
+                </v-list-item-content>
+              </template>
+            </template>
+          </v-autocomplete>
+        </v-col>
+        <v-col cols="1" offset="3">
+          <span @click="logout">Đăng xuất</span>
         </v-col>
       </v-row>
       <v-row>
       </v-row>
     </div>
-    <v-main :class="checkStateFrame">
+    <v-main class="containerColor" :class="checkStateFrame">
       <!-- style="right: 0px; left: 256px" -->
       <!-- Provides the application the proper gutter -->
-      <v-container fluid class="fill-height containerColor">
+      <v-container fluid class="fill-height">
 
         <!-- If using vue-router -->
         <router-view></router-view>
@@ -274,11 +324,13 @@
 <script>
 // @ is an alias to /src
 // import RightNavigationDrawApp from '@/components/RightNavigationDrawApp.vue'
+import BrandIdentity from '@/components/BrandIdentity.vue'
 
 export default {
   name: 'App',
   components: {
     // RightNavigationDrawApp
+    BrandIdentity
   },
   mounted () {
     this.onResize()
@@ -289,7 +341,33 @@ export default {
     this.checkDidLogin()
   },
   data () {
+    const srcs = {
+      1: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
+      2: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
+      3: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
+      4: 'https://cdn.vuetifyjs.com/images/lists/4.jpg',
+      5: 'https://cdn.vuetifyjs.com/images/lists/5.jpg'
+    }
     return {
+      autoUpdate: true,
+      friends: ['Sandra Adams', 'Britta Holt'],
+      isUpdating: false,
+      name: 'Midnight Crew',
+      people: [
+        { header: 'Group 1' },
+        { name: 'Sandra Adams', group: 'Group 1', avatar: srcs[1] },
+        { name: 'Ali Connors', group: 'Group 1', avatar: srcs[2] },
+        { name: 'Trevor Hansen', group: 'Group 1', avatar: srcs[3] },
+        { name: 'Tucker Smith', group: 'Group 1', avatar: srcs[2] },
+        { divider: true },
+        { header: 'Group 2' },
+        { name: 'Britta Holt', group: 'Group 2', avatar: srcs[4] },
+        { name: 'Jane Smith ', group: 'Group 2', avatar: srcs[5] },
+        { name: 'John Smith', group: 'Group 2', avatar: srcs[1] },
+        { name: 'Sandra Williams', group: 'Group 2', avatar: srcs[3] }
+      ],
+      title: 'The summer breeze',
+
       drawer: false,
       showNavBar: false,
 
@@ -421,5 +499,6 @@ export default {
 }
 .containerColor {
   background-color:#f4f4f4;
+  overflow: scroll;
 }
 </style>

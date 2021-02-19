@@ -1,6 +1,6 @@
 <template>
   <v-row :class="`${position} align-center`">
-    <img :class="leading" width="60px" height="60px" alt="Vue logo" src="@/assets/logo.png">
+    <img :class="leading" :width="size" :height="size" alt="Vue logo" src="@/assets/logo.png">
     <h1
       class="primary--text font-weight-regular text-center"
     >
@@ -14,7 +14,20 @@
 
 export default {
   name: 'BrandIdentity',
-  props: ['position', 'leading'],
+  props: {
+    position: {
+      type: String,
+      default: 'justify-center'
+    },
+    leading: {
+      type: String,
+      default: 'ml-0'
+    },
+    size: {
+      type: String,
+      default: '60'
+    }
+  },
   components: {
   },
   data () {
