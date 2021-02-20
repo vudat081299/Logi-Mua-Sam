@@ -19,6 +19,7 @@
             color="#ffffff00"
             width="250px"
             height="350px"
+            href="/signup"
           >
             <!-- :elevation="hover ? 2 : 0" -->
             <!-- :style="`border-top: ${hover ? 4 : 0}px solid #42A5F5;border-right: ${hover ? 4 : 0}px solid #42A5F5;border-bottom: ${hover ? 4 : 0}px solid #42A5F5;border-left: ${hover ? 4 : 0}px solid #42A5F5;`" -->
@@ -67,7 +68,7 @@
               >
                 <div class="text-subtitle-2 black--text">1.000.000
                   <span class="text-decoration-underline">đ</span>
-                  <span class="" style="color: white; background: rgb(255, 66, 78); line-height: 20px; display: inline-block; padding: 4px 8px;
+                  <span class="" style="color: white; background: rgb(255, 66, 78); line-height: 20px; display: inline-block; padding: 3px 6px;
                    font-size: 15px; margin: 0px 0px 0px 6px; position: relative; top: -1px; border-radius: 4px;">-20%</span>
                   <!-- <div class="percent_discount">-30%
                   </div> -->
@@ -131,6 +132,8 @@ export default {
       // const max = 560
       return 666
       // return Math.floor(Math.random() * (max - min + 1)) + min
+    },
+    detailItem () {
     }
   }
 }

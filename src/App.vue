@@ -189,11 +189,11 @@
       </v-btn>
     </v-app-bar>
     <!-- Sizes your content based upon application components -->
-    <div class="ma-0" style="height: 100px; width: 100%;" v-show="showNavBar">
-      <v-row class="ma-0 pa-0 align-center" style="height: 100px">
+    <div class="ma-0" style="height: 80px; width: 100%;" v-show="showNavBar">
+      <v-row class="ma-0 pa-0 align-center" style="height: 80px">
         <v-col cols="4" class="">
           <v-row class="mx-0 ml-4">
-          <BrandIdentity :position="''" :size="'50'"/>
+            <BrandIdentity :position="''" :size="'45'"/>
           </v-row>
         </v-col>
         <!-- <v-text-field
@@ -209,7 +209,7 @@
           width="400px"
         ></v-text-field> -->
         <v-col>
-          <v-autocomplete
+          <!-- <v-autocomplete
             v-model="friends"
             :disabled="isUpdating"
             :items="people"
@@ -249,10 +249,37 @@
                 </v-list-item-content>
               </template>
             </template>
-          </v-autocomplete>
+          </v-autocomplete> -->
         </v-col>
-        <v-col cols="1" offset="3">
-          <span @click="logout">Đăng xuất</span>
+        <v-col class="align-center justify-center" cols="2" offset="2">
+          <!-- <span @click="logout">Đăng xuất</span> -->
+
+          <!-- <div class="text-center"> -->
+            <v-menu offset-y open-on-hover>
+              <template v-slot:activator="{ on, attrs }">
+                <!-- <v-btn
+                  color="primary"
+                  text dark
+                  v-bind="attrs"
+                  v-on="on"
+                > -->
+                <p class="align-center black--text"
+                  v-bind="attrs"
+                  v-on="on">
+                  Tài khoản/{{}}
+                </p>
+                <!-- </v-btn> -->
+              </template>
+              <v-list>
+                <v-list-item
+                  v-for="(item, index) in items"
+                  :key="index"
+                >
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          <!-- </div> -->
         </v-col>
       </v-row>
       <v-row>
@@ -388,24 +415,10 @@ export default {
         ['Delete', 'mdi-delete', false]
       ],
       items: [
-        {
-          action: 'mdi-plus-outline',
-          title: 'Attractions',
-          active: false,
-          items: [
-            { title: 'List Item' }
-          ]
-        },
-        {
-          action: 'mdi-plus-outline',
-          title: 'Dining',
-          active: true,
-          items: [
-            { title: 'Breakfast & brunch' },
-            { title: 'New American' },
-            { title: 'Sushi' }
-          ]
-        }
+        { title: 'Click Me' },
+        { title: 'Click Me' },
+        { title: 'Click Me' },
+        { title: 'Click Me 2' }
       ]
     }
   },
