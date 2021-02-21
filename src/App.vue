@@ -251,34 +251,11 @@
             </template>
           </v-autocomplete> -->
         </v-col>
-        <v-col class="align-center justify-center" cols="2" offset="2">
+        <v-col class="align-center" cols="2" offset="2">
           <!-- <span @click="logout">Đăng xuất</span> -->
 
           <!-- <div class="text-center"> -->
-            <v-menu offset-y open-on-hover>
-              <template v-slot:activator="{ on, attrs }">
-                <!-- <v-btn
-                  color="primary"
-                  text dark
-                  v-bind="attrs"
-                  v-on="on"
-                > -->
-                <p class="align-center black--text"
-                  v-bind="attrs"
-                  v-on="on">
-                  Tài khoản/{{}}
-                </p>
-                <!-- </v-btn> -->
-              </template>
-              <v-list>
-                <v-list-item
-                  v-for="(item, index) in items"
-                  :key="index"
-                >
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
+            <MenuAccount/>
           <!-- </div> -->
         </v-col>
       </v-row>
@@ -352,12 +329,14 @@
 // @ is an alias to /src
 // import RightNavigationDrawApp from '@/components/RightNavigationDrawApp.vue'
 import BrandIdentity from '@/components/BrandIdentity.vue'
+import MenuAccount from '@/components/MenuAccount.vue'
 
 export default {
   name: 'App',
   components: {
     // RightNavigationDrawApp
-    BrandIdentity
+    BrandIdentity,
+    MenuAccount
   },
   mounted () {
     this.onResize()
@@ -413,12 +392,6 @@ export default {
         ['Read', 'mdi-file-outline', false],
         ['Update', 'mdi-update', false],
         ['Delete', 'mdi-delete', false]
-      ],
-      items: [
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me 2' }
       ]
     }
   },

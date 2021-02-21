@@ -19,7 +19,7 @@
             color="#ffffff00"
             width="250px"
             height="350px"
-            href="/signup"
+            href="/detailitem"
           >
             <!-- :elevation="hover ? 2 : 0" -->
             <!-- :style="`border-top: ${hover ? 4 : 0}px solid #42A5F5;border-right: ${hover ? 4 : 0}px solid #42A5F5;border-bottom: ${hover ? 4 : 0}px solid #42A5F5;border-left: ${hover ? 4 : 0}px solid #42A5F5;`" -->
@@ -63,10 +63,20 @@
                   (4000 lượt đánh giá)
                 </div>
               </v-row>
+
               <v-row
-                class="mx-0 px-0 align-center"
+                class="ma-0 pa-0 align-center"
               >
-                <div class="text-subtitle-2 black--text">1.000.000
+                <div class="black--text text-decoration-line-through mb-n2" style="font-size: 11px; text-align: right;">
+                  1.000.000
+                  <span class="text-decoration-underline">đ</span>
+                </div>
+              </v-row>
+              <v-row
+                class="ma-0 px-0 align-center"
+              >
+                <div class="text-subtitle-2 black--text">
+                  1.000.000
                   <span class="text-decoration-underline">đ</span>
                   <span class="" style="color: white; background: rgb(255, 66, 78); line-height: 20px; display: inline-block; padding: 3px 6px;
                    font-size: 15px; margin: 0px 0px 0px 6px; position: relative; top: -1px; border-radius: 4px;">-20%</span>

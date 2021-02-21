@@ -1,11 +1,11 @@
 <template>
   <v-row :class="`${position} align-center`">
     <img :class="leading" :width="size" :height="size" alt="Vue logo" src="@/assets/logo.png">
-    <h1
+    <h2
       class="primary--text font-weight-regular text-center"
     >
       LogiTech
-    </h1>
+    </h2>
   </v-row>
 </template>
 
