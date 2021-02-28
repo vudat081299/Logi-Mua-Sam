@@ -42,7 +42,8 @@
 
           <v-list-item-content>
             <v-list-item-title>Dat vu</v-list-item-title>
-            <v-list-item-subtitle>vudat81299@gmail.com</v-list-item-subtitle>
+            <v-list-item-subtitle>Gmail: vudat81299@gmail.com</v-list-item-subtitle>
+            <v-list-item-subtitle>Liên hệ: 0899 081299</v-list-item-subtitle>
           </v-list-item-content>
 
           <v-list-item-action>
@@ -111,6 +112,6 @@ export default {
   text-transform: none;
 }
 .menu-card {
-  width: 300px;
+  width: 400px;
 }
 </style>

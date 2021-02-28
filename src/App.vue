@@ -262,10 +262,10 @@
       <v-row>
       </v-row>
     </div>
-    <v-main class="containerColor" :class="checkStateFrame">
+    <v-main :style="style" :class="checkStateFrame">
       <!-- style="right: 0px; left: 256px" -->
       <!-- Provides the application the proper gutter -->
-      <v-container fluid class="fill-height">
+      <v-container fluid class="fill-height pb-10">
 
         <!-- If using vue-router -->
         <router-view></router-view>
@@ -355,6 +355,7 @@ export default {
       5: 'https://cdn.vuetifyjs.com/images/lists/5.jpg'
     }
     return {
+      style: 'background-color:#f4f4f4; overflow: scroll;',
       autoUpdate: true,
       friends: ['Sandra Adams', 'Britta Holt'],
       isUpdating: false,
@@ -433,6 +434,12 @@ export default {
     },
     $route (to, from) {
       this.checkDidLogin()
+      console.log(to)
+      if (to.path === '/login' || to.path === '/signup') {
+        this.style = 'background-color:#ffffff; overflow: scroll;'
+      } else {
+        this.style = 'background-color:#f4f4f4; overflow: scroll;'
+      }
     }
   },
   methods: {
@@ -482,9 +489,5 @@ export default {
 .sticky {
    position: sticky;
    top: 0;
-}
-.containerColor {
-  background-color:#f4f4f4;
-  overflow: scroll;
 }
 </style>

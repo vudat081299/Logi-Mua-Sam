@@ -44,7 +44,7 @@
                     :rules="passwordRules"
                   />
                   <a
-                    href="/"
+                    href="/forgotpassword"
                     class="align-center font-weight-bold text-decoration-none primary--text"
                   >
                     <!-- text-decoration-none -->
@@ -255,6 +255,7 @@ export default {
       }
       this.loading = true
       this.disabled = true
+      console.log(this.account + this.password)
       if (this.usingDevAccount) {
         if (this.account === 'vudat81299@gmail.com' && this.password === 'vudat81299') {
           localStorage.setItem('didLogin', '1')

@@ -80,6 +80,7 @@
                                 dense outlined
                                 :rules="confirmPasswordRules"
                                 v-model="confirmPassword"
+                                v-on:keyup.enter="nextStep"
                               ></v-text-field>
                             </v-col>
                             <v-col class="pt-0 mt-n4" cols="12">
@@ -155,11 +156,11 @@
                               <v-col class="py-0" cols="8">
                                 <v-text-field
                                   v-model="phonenumber"
-                                  counter
                                   outlined
                                   dense
                                   label="Số điện thoại"
                                   :rules="phonenumberRules"
+                                  v-on:keyup.enter="nextStep"
                                 >
                                 </v-text-field>
                               </v-col>
@@ -234,6 +235,7 @@
                                   counter
                                   persistent-hint
                                   :rules="confirmCodeRules"
+                                  v-on:keyup.enter="nextStep"
                                 >
                                 </v-text-field>
                               </v-col>
@@ -395,7 +397,7 @@ export default {
       phonenumberRules: [
         v => !!v || 'Không được để trống',
         v => (/[!@#$%^&*,`~'")(+=_-abcdefghijklmnopqrstvwxyz ABCDEFGHIJKLMNOPQRSTVWXYZ]/.test(v) === false) || 'Không được chứa ký tự đặc biệt hoặc chữ cái',
-        v => (v.length < 11 || 'Số điện thoại không hợp lệ')
+        v => ((v.length < 11 && v.length > 8) || 'Số điện thoại không hợp lệ')
       ],
       confirmCodeRules: [
         v => !!v || 'Không được để trống',
@@ -427,6 +429,8 @@ export default {
       setTimeout(() => {
         this.disabled = false
         this.loading = false
+        localStorage.setItem('didLogin', '1')
+        this.$router.push('/').catch(() => {})
       }, 2000)
     },
     login () {

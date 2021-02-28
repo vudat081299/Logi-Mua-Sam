@@ -1,6 +1,6 @@
 <template>
     <v-card
-      class="d-flex fixedDivContent mx-auto flex-wrap px-0 py-0-0 pb-4 align-center"
+      class="d-flex fixedDivContent mx-auto flex-wrap pa-0 pb-4 align-center"
       color="#ffffff"
       flat
       tile
@@ -29,17 +29,18 @@
             > -->
             <v-img
               :class="{ 'on-hover': hover }"
-              src="@/assets/e8d149d839d14346d2c14731f7f84f30.jpg"
+              :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
               height="200px"
               class="ma-4 mb-2 rounded-t-sm hover-img"
             >
+              <!-- src="@/assets/e8d149d839d14346d2c14731f7f84f30.jpg" -->
               <!-- src="https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI" -->
 
-              <span
+              <!-- <span
                 class="headline white--text pl-4 pt-4 d-inline-block"
                 v-text="cardState"
               >
-              </span>
+              </span> -->
             </v-img>
             <v-card-text class="px-4 py-0">
               <p class="black--text cut-text">
@@ -52,7 +53,7 @@
                 <v-rating
                   v-model="rating[n]"
                   :value="3"
-                  color="orange"
+                  color="amber"
                   background-color="#dddddd"
                   empty-icon="mdi-star"
                   dense
