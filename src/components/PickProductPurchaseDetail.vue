@@ -16,9 +16,11 @@
               2.000.000
               <span class="text-decoration-underline">đ</span>
             </div>
-            <div class="ml-2 black--text" style="font-size: 13px;">
+            <!-- <div class="ml-2 black--text" style="font-size: 13px;">
               -50%
-            </div>
+            </div> -->
+            <span class="" style="color: white; background: rgb(255, 66, 78); line-height: 20px; display: inline-block; padding: 3px 6px;
+             font-size: 13px; margin: 0px 0px 0px 6px; position: relative; top: -1px; border-radius: 4px;">-20%</span>
           </v-row>
         </v-card>
         <v-col class="my-6 pa-0" cols="12">
@@ -31,8 +33,8 @@
               <v-row>
                 <v-text-field
                   v-model="number"
-                  prepend-icon="mdi-minus"
-                  append-outer-icon="mdi-plus"
+                  prepend-icon="mdi-minus-circle-outline"
+                  append-outer-icon="mdi-plus-circle-outline"
                   @click:append-outer="increment"
                   dense
                   outlined
@@ -53,12 +55,12 @@
 
               </v-row>
             </v-col>
-            <div class="text-h6 orange--text">
+            <div class="text-subtitle-2 orange--text">
               Chỉ còn lại 20 sản phẩm
             </div>
           </v-row>
           <v-btn
-            width="60%"
+            width="65%"
             height="50px"
             color="#FF424E"
             class="white--text"
@@ -128,5 +130,10 @@ export default {
 <style scoped>
 .v-btn {
   text-transform: none;
+}
+.border-box {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #c6daff;
 }
 </style>

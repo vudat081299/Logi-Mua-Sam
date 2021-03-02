@@ -41,13 +41,19 @@
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title>Dat vu</v-list-item-title>
+            <v-list-item-title>Dat vu - id: 081299
+              <!-- <v-btn class="mt-n0" icon x-small depressed>
+                <v-icon>mdi-content-copy</v-icon>
+              </v-btn> -->
+            </v-list-item-title>
             <v-list-item-subtitle>Gmail: vudat81299@gmail.com</v-list-item-subtitle>
             <v-list-item-subtitle>Liên hệ: 0899 081299</v-list-item-subtitle>
           </v-list-item-content>
 
           <v-list-item-action>
-            <v-btn :class="fav ? '' : ''" icon>
+            <v-btn outlined
+              :class="fav ? '' : ''" icon
+            >
               <v-icon>mdi-cog</v-icon>
             </v-btn>
           </v-list-item-action>
@@ -74,7 +80,7 @@
         <v-spacer></v-spacer>
 
         <!-- <v-btn icon @click="menu = false"> <v-icon>mdi-cog</v-icon> </v-btn> -->
-        <v-btn color="primary" text @click="logout()"> Đăng xuất </v-btn>
+        <v-btn color="primary" text @click="logout()">Đăng xuất</v-btn>
       </v-card-actions>
     </v-card>
   </v-menu>

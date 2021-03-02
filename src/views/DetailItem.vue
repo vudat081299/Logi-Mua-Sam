@@ -86,16 +86,16 @@
                 </template>
               </v-card>
             </v-col>
-            <v-col class="pt-8" cols="7">
+            <v-col class="pt-6" cols="7">
               <!-- <v-row class=""> -->
                 <span class="text-caption">Thương hiệu:
                   <a
-                    href="/forgotpassword"
+                    href="/"
                     class="text-decoration-none primary--text"
                   >
                     LogiTech
                   </a>
-                  <p class="text-subtitle-1">Máy nhào bột/thực phẩm đa năng DK30: Dùng để nhào, trộn mọi loại thực phẩm. Hàng chính hãng Thailand. Dùng cho hộ gia đình, hộ kinh doanh, doanh nghiệp.</p>
+                  <p class="text-h5">Máy nhào bột/thực phẩm đa năng DK30: Dùng để nhào, trộn mọi loại thực phẩm. Hàng chính hãng Thailand. Dùng cho hộ gia đình, hộ kinh doanh, doanh nghiệp.</p>
                 </span>
                 <v-row
                   class="px-2 py-0 align-center"
