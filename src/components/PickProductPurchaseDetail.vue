@@ -23,7 +23,7 @@
              font-size: 13px; margin: 0px 0px 0px 6px; position: relative; top: -1px; border-radius: 4px;">-20%</span>
           </v-row>
         </v-card>
-        <v-col class="my-6 pa-0" cols="12">
+        <v-col class="my-3 pa-0" cols="12">
           <div class="text-subtitle-2">
             Số lượng
           </div>
@@ -39,6 +39,7 @@
                   dense
                   outlined
                   @click:prepend="decrement"
+                  class="centered-input inputPrice" type="number"
                 >
                   <!-- <template  v-slot:prepend-icon="{ on, attrs }">
                     <v-btn
@@ -118,11 +119,13 @@ export default {
   methods: {
     decrement () {
       if (this.number > 1) {
-        this.number = (this.number - 1) || 0
+        this.number = +this.number - 1
+      } else {
+        this.number = 1
       }
     },
     increment () {
-      this.number = (this.number + 1) || 100
+      this.number = +this.number + 1 || 1
     }
   }
 }
@@ -131,9 +134,19 @@ export default {
 .v-btn {
   text-transform: none;
 }
+.centered-input >>> input {
+  text-align: center
+  }
 .border-box {
   border-width: 1px;
   border-style: solid;
   border-color: #c6daff;
+}
+.inputPrice input[type='number'] {
+    -moz-appearance:textfield;
+}
+::v-deep input::-webkit-outer-spin-button,
+::v-deep input::-webkit-inner-spin-button {
+-webkit-appearance: none;
 }
 </style>
