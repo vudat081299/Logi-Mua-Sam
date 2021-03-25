@@ -265,7 +265,7 @@
     <v-main :style="style" :class="checkStateFrame">
       <!-- style="right: 0px; left: 256px" -->
       <!-- Provides the application the proper gutter -->
-      <v-container fluid class="fill-height pb-10">
+      <v-container fluid class="pa-0">
 
         <!-- If using vue-router -->
         <router-view></router-view>
@@ -437,6 +437,8 @@ export default {
       console.log(to)
       if (to.path === '/login' || to.path === '/signup') {
         this.style = 'background-color:#ffffff; overflow: scroll;'
+      } else if (to.path === 'landingpage') {
+        this.style = ''
       } else {
         this.style = 'background-color:#f4f4f4; overflow: scroll;'
       }
