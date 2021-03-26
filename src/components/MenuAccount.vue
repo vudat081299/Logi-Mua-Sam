@@ -80,7 +80,7 @@
         <v-spacer></v-spacer>
 
         <!-- <v-btn icon @click="menu = false"> <v-icon>mdi-cog</v-icon> </v-btn> -->
-        <v-btn color="primary" text @click="logout()">Đăng xuất</v-btn>
+        <v-btn color="primary" text @click="logout()"></v-btn>
       </v-card-actions>
     </v-card>
   </v-menu>

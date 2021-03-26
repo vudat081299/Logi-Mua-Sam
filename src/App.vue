@@ -262,11 +262,12 @@
       <v-row>
       </v-row>
     </div>
+
+    <AppToolbar></AppToolbar>
     <v-main :style="style" :class="checkStateFrame">
       <!-- style="right: 0px; left: 256px" -->
       <!-- Provides the application the proper gutter -->
-      <v-container fluid class="pa-0">
-
+      <v-container fluid class="pa-0 fill-height">
         <!-- If using vue-router -->
         <router-view></router-view>
         <!-- <RightNavigationDrawApp
@@ -330,13 +331,15 @@
 // import RightNavigationDrawApp from '@/components/RightNavigationDrawApp.vue'
 import BrandIdentity from '@/components/BrandIdentity.vue'
 import MenuAccount from '@/components/MenuAccount.vue'
+import AppToolbar from '@/components/AppToolbar.vue'
 
 export default {
   name: 'App',
   components: {
     // RightNavigationDrawApp
     BrandIdentity,
-    MenuAccount
+    MenuAccount,
+    AppToolbar
   },
   mounted () {
     this.onResize()
@@ -491,5 +494,42 @@ export default {
 .sticky {
    position: sticky;
    top: 0;
+}
+
+.main-content {
+  width: 1200px;
+  max-width: 1200px;
+  height: 72px;
+  padding: 0px;
+  padding-top: 64px;
+}
+
+/* toolbar */
+.background-toolbar {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  height: 72px;
+}
+.toolbar-card {
+  position: absolute;
+  top: 0px;
+  width:1200px;
+  height: 72px;
+}
+.main-toolbar {
+  position: absolute;
+  width: 1200px;
+  height: 72px;
+}
+
+/*  */
+.v-btn {
+  text-transform: none;
+}
+.custom-font {
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+  font-size: 16px!important;
 }
 </style>

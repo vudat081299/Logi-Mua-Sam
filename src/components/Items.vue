@@ -14,7 +14,7 @@
         >
           <v-card
             :class="{ 'on-hover': hover }"
-            class="bottom-gradient ma-0 mb-2 hover-card elevation-0"
+            class="hover-grow bottom-gradient ma-0 mb-2 hover-card elevation-0"
             tile
             color="#ffffff00"
             width="250px"
@@ -216,9 +216,9 @@ export default {
                     );
 }
 .fixedDivContent {
-  width: 1250px;
-  max-width: 1250px;
-  min-width: 1250px;
+  width: 1000px;
+  max-width: 1000px;
+  min-width: 1000px;
 }
 .percent_discount {
   font-size: 13px;
