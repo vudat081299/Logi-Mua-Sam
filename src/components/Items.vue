@@ -14,10 +14,10 @@
         >
           <v-card
             :class="{ 'on-hover': hover }"
-            class="hover-grow bottom-gradient ma-0 mb-2 hover-card elevation-0"
+            class="hover-grow ma-4 hover-card elevation-1"
             tile
             color="#ffffff00"
-            width="250px"
+            width="300px"
             height="350px"
             href="/detailitem"
           >
@@ -155,21 +155,23 @@ export default {
   max-width: 2000px;
 }
 .v-card {
-  transition: opacity .2s ease-in-out;
+  /* transition: opacity .2s ease-in-out; */
 }
 .hover-card:not(.on-hover) {
+  /* box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.10), 0 0px 0px 0 rgba(0, 0, 0, 0.10) !important;
+  z-index: 0; */
+
   /* opacity: 0.95; */
-  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.10), 0 0px 0px 0 rgba(0, 0, 0, 0.10) !important;
-  z-index: 0;
   /* border-width: 0px; */
 }
 .hover-card {
-  /* opacity: 1; */
   box-shadow: -9px -9px 20px 0 rgba(240, 240, 240, 1.0), 9px 9px 20px 0 rgba(240, 240, 240, 1.0) !important;
+  z-index: 1;
+
+  /* opacity: 1; */
   /* box-shadow: 0 100px 80px -80px rgba(0, 0, 0, 0.9) !important; */
   /* box-shadow: inset 25px 0px 25px -25px rgba(0,0,0,0.45), inset -25px 0px 25px -25px rgba(0,0,0,0.45); */
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 20px 0 rgba(0, 0, 0, 0.10) !important; */
-  z-index: 1;
   /* border-width: 10px;
   border:rgba(0, 0, 0, 1); */
   /* border-width: 1px;

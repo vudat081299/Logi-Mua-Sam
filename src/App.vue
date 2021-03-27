@@ -497,8 +497,8 @@ export default {
 }
 
 .main-content {
-  width: 1200px;
-  max-width: 1200px;
+  width: 1000px;
+  max-width: 1000px;
   height: 72px;
   padding: 0px;
   padding-top: 64px;
@@ -515,12 +515,12 @@ export default {
 .toolbar-card {
   position: absolute;
   top: 0px;
-  width:1200px;
+  width:1000px;
   height: 72px;
 }
 .main-toolbar {
   position: absolute;
-  width: 1200px;
+  width: 1000px;
   height: 72px;
 }
 

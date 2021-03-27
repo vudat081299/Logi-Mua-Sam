@@ -1,44 +1,6 @@
 <template>
   <v-container class="landing-page fill-height">
     <v-container class="main-content fill-height">
-
-<div class="position-relative z-1">
-  <div class="features-new--background position-absolute width-full left-0 right-0 z-n1">
-    <img class="width-full height-auto" src="https://github.githubassets.com/images/modules/site/features/launchpad/backgrounds/bg-whats-new.svg" aria-hidden="true" alt="" width="1676" height="1040">
-  </div>
-  <div class="p-responsive-fluid container-xl overflow-x-hidden pt-4 d-flex flex-column flex-md-row">
-    <div class="col-12 col-md-6 mb-6 px-md-4">
-      <a href="https://docs.github.com/github/setting-up-and-managing-your-github-user-account/managing-your-theme-settings" class="d-block hover-grow rounded-2 box-shadow-card-border-mktg overflow-hidden position-relative no-underline" data-ga-click="Features, click to learn about Codespaces, ref_page:/features;ref_cta:Learn More;ref_loc:whats new section">
-        <picture>
-          <source srcset="https://github.githubassets.com/images/modules/site/features/launchpad/backgrounds/dark-mode.webp" type="image/webp">
-          <img src="https://github.githubassets.com/images/modules/site/features/launchpad/backgrounds/dark-mode.jpg" aria-hidden="true" alt="" class="position-relative top-0 left-0 width-full height-auto d-block rounded-2" width="600px" height="407px">
-        </picture>
-        <span class="position-absolute width-full height-full top-0 left-0 d-flex flex-column text-left p-3 p-lg-4">
-          <span class="features-Label features-Label--blue text-blue-light h6-mktg-fluid flex-self-start">new</span>
-          <span class="d-block mt-auto d-flex flex-row flex-nowrap flex-justify-between flex-items-end flex-lg-items-center">
-            <span class="h3-mktg-fluid color-text-white">Dark mode</span>
-            <span class="no-wrap h6-mktg-fluid color-text-white Bump-link">Learn more<span class="Bump-link-symbol ml-1"><svg width="16" height="16" class="octicon octicon-arrow-right" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06l2.97-2.97H3.75a.75.75 0 010-1.5h7.44L8.22 4.03a.75.75 0 010-1.06z"></path></svg></span></span>
-          </span>
-        </span>
-      </a>
-    </div>
-    <div class="col-12 col-md-6 mb-6 px-md-4">
-      <a href="/github/roadmap" class="d-block hover-grow rounded-2 box-shadow-card-border-mktg overflow-hidden position-relative no-underline" data-ga-click="Features, click to learn about GitHub Product Roadmap, ref_page:/features;ref_cta:Learn More;ref_loc:whats new section">
-        <picture>
-          <source srcset="https://github.githubassets.com/images/modules/site/features/launchpad/backgrounds/bg-new-roadmap.webp" type="image/webp">
-          <img src="https://github.githubassets.com/images/modules/site/features/launchpad/backgrounds/bg-new-roadmap.png" aria-hidden="true" alt="" class="position-relative top-0 left-0 width-full height-auto d-block rounded-2" width="600px" height="407px">
-        </picture>
-        <span class="position-absolute width-full height-full top-0 left-0 d-flex flex-column text-left p-3 p-lg-4">
-          <span class="features-Label features-Label--blue h6-mktg-fluid d-inline-block flex-self-start">new</span>
-          <span class="d-block mt-auto d-flex flex-row flex-nowrap flex-justify-between flex-items-end flex-lg-items-center">
-            <span class="h3-mktg-fluid features--color-title">Product Roadmap</span>
-            <span class="no-wrap h6-mktg-fluid link-blue-mktg Bump-link">Learn more<span class="Bump-link-symbol ml-1"><svg width="16" height="16" class="octicon octicon-arrow-right" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06l2.97-2.97H3.75a.75.75 0 010-1.5h7.44L8.22 4.03a.75.75 0 010-1.06z"></path></svg></span></span>
-          </span>
-        </span>
-      </a>
-    </div>
-  </div>
-</div>
       <div
         class="application-main mb-9"
         data-commit-hovercards-enabled
@@ -46,22 +8,22 @@
         data-issue-and-pr-hovercards-enabled
       >
               <main class="font-mktg">
-    <div class="pt-0 pt-lg-0 font-mktg">
+    <div class="pt-lg-3 font-mktg">
       <div class="container-xl p-responsive">
         <div class="col-12 col-lg-7 mb-8 mx-auto text-center">
-          <h1 class="h2-5-mktg-fluid h1-sm-mktg-fluid h0-lg-mktg-fluid mb-0">
+          <h1 class="h3-5-mktg-fluid h2-sm-mktg-fluid h1-lg-mktg-fluid mb-0">
             Logi Mua Sắm <br class="d-block d-lg-none">
           </h1>
-          <h1 class="h2-5-mktg-fluid h1-sm-mktg-fluid h0-lg-mktg-fluid mb-3">
+          <h1 class="h3-5-mktg-fluid h2-sm-mktg-fluid h1-lg-mktg-fluid mb-3">
             tiếp cận xu hướng
           </h1>
 
           <p class="f4-mktg-fluid f2-sm-mktg-fluid text-gray-light-mktg mb-4 lh-condensed lh-sm-default">
-            Millions of developers and companies build, ship, and maintain their software on GitHub—the largest and most advanced development platform in the world.
+            Sàn thương mại điện tử "Logi Mua Sắm" với đội ngũ nhân viên luôn nỗ lực cung cấp cho khách hàng trải nghiệm với dịch vụ mua sắm tốt nhất
           </p>
         </div>
-
-        <div class="mb-6 text-center">
+        <!-- <a href="#adasdas">Appendix</a> -->
+        <div class="mb-6 mt-n9 text-center">
           <div class="d-flex gutter-condensed-fluid gutter-md-spacious-fluid col-12 col-lg-8 flex-justify-between mx-auto">
             <div class="col-6 col-sm-4 col-md-3">
               <h2 class="h5-mktg-fluid text-mono text-normal no-wrap">56<span class="text-gray-light-mktg">+</span> million</h2>
@@ -85,7 +47,60 @@
           </div>
         </div>
 
-        <div class="mb-8 mx-auto text-center">
+<div class="position-relative z-1">
+  <div class="features-new--background position-absolute width-full left-0 right-0 z-n1">
+    <img class="width-full height-auto" src="https://github.githubassets.com/images/modules/site/features/launchpad/backgrounds/bg-whats-new.svg" aria-hidden="true" alt="" width="1676" height="1040">
+  </div>
+  <div class="p-responsive-fluid container-xl overflow-x-hidden pt-4 d-flex flex-column flex-md-row">
+    <div class="col-4">
+      <a href="https://docs.github.com/github/setting-up-and-managing-your-github-user-account/managing-your-theme-settings" class="d-block hover-grow rounded-2 box-shadow-card-border-mktg overflow-hidden position-relative no-underline" data-ga-click="Features, click to learn about Codespaces, ref_page:/features;ref_cta:Learn More;ref_loc:whats new section">
+        <picture>
+          <source srcset="https://github.githubassets.com/images/modules/site/features/launchpad/backgrounds/dark-mode.webp" type="image/webp">
+          <img src="https://github.githubassets.com/images/modules/site/features/launchpad/backgrounds/dark-mode.jpg" aria-hidden="true" alt="" class="position-relative top-0 left-0 width-full height-auto d-block rounded-2" width="600px" height="407px">
+        </picture>
+        <span class="position-absolute width-full height-full top-0 left-0 d-flex flex-column text-left p-3 p-lg-4">
+          <span class="features-Label features-Label--blue text-blue-light h6-mktg-fluid flex-self-start">new</span>
+          <span class="d-block mt-auto d-flex flex-row flex-nowrap flex-justify-between flex-items-end flex-lg-items-center">
+            <span class="h3-mktg-fluid color-text-white">Dark mode</span>
+            <span class="no-wrap h6-mktg-fluid color-text-white Bump-link">Learn more<span class="Bump-link-symbol ml-1"><svg width="16" height="16" class="octicon octicon-arrow-right" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06l2.97-2.97H3.75a.75.75 0 010-1.5h7.44L8.22 4.03a.75.75 0 010-1.06z"></path></svg></span></span>
+          </span>
+        </span>
+      </a>
+    </div>
+    <div class="col-4">
+      <a href="/github/roadmap" class="d-block hover-grow rounded-2 box-shadow-card-border-mktg overflow-hidden position-relative no-underline" data-ga-click="Features, click to learn about GitHub Product Roadmap, ref_page:/features;ref_cta:Learn More;ref_loc:whats new section">
+        <picture>
+          <source srcset="https://github.githubassets.com/images/modules/site/features/launchpad/backgrounds/bg-new-roadmap.webp" type="image/webp">
+          <img src="https://github.githubassets.com/images/modules/site/features/launchpad/backgrounds/bg-new-roadmap.png" aria-hidden="true" alt="" class="position-relative top-0 left-0 width-full height-auto d-block rounded-2" width="600px" height="407px">
+        </picture>
+        <span class="position-absolute width-full height-full top-0 left-0 d-flex flex-column text-left p-3 p-lg-4">
+          <span class="features-Label features-Label--blue h6-mktg-fluid d-inline-block flex-self-start">new</span>
+          <span class="d-block mt-auto d-flex flex-row flex-nowrap flex-justify-between flex-items-end flex-lg-items-center">
+            <span class="h3-mktg-fluid features--color-title">Product Roadmap</span>
+            <span class="no-wrap h6-mktg-fluid link-blue-mktg Bump-link">Learn more<span class="Bump-link-symbol ml-1"><svg width="16" height="16" class="octicon octicon-arrow-right" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06l2.97-2.97H3.75a.75.75 0 010-1.5h7.44L8.22 4.03a.75.75 0 010-1.06z"></path></svg></span></span>
+          </span>
+        </span>
+      </a>
+    </div>
+    <div class="col-4">
+      <a href="/github/roadmap" class="d-block hover-grow rounded-2 box-shadow-card-border-mktg overflow-hidden position-relative no-underline" data-ga-click="Features, click to learn about GitHub Product Roadmap, ref_page:/features;ref_cta:Learn More;ref_loc:whats new section">
+        <picture>
+          <source srcset="https://github.githubassets.com/images/modules/site/features/launchpad/backgrounds/bg-new-roadmap.webp" type="image/webp">
+          <img src="https://github.githubassets.com/images/modules/site/features/launchpad/backgrounds/bg-new-roadmap.png" aria-hidden="true" alt="" class="position-relative top-0 left-0 width-full height-auto d-block rounded-2" width="600px" height="407px">
+        </picture>
+        <span class="position-absolute width-full height-full top-0 left-0 d-flex flex-column text-left p-3 p-lg-4">
+          <span class="features-Label features-Label--blue h6-mktg-fluid d-inline-block flex-self-start">new</span>
+          <span class="d-block mt-auto d-flex flex-row flex-nowrap flex-justify-between flex-items-end flex-lg-items-center">
+            <span class="h3-mktg-fluid features--color-title">Product Roadmap</span>
+            <span class="no-wrap h6-mktg-fluid link-blue-mktg Bump-link">Learn more<span class="Bump-link-symbol ml-1"><svg width="16" height="16" class="octicon octicon-arrow-right" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06l2.97-2.97H3.75a.75.75 0 010-1.5h7.44L8.22 4.03a.75.75 0 010-1.06z"></path></svg></span></span>
+          </span>
+        </span>
+      </a>
+    </div>
+  </div>
+</div>
+
+        <div class="my-6 mx-auto text-center">
           <div class="d-inline-block border p-4 rounded-2">
             <span class="d-inline-block f4-mktg-fluid">
               Theo dõi chúng tôi
@@ -127,101 +142,10 @@
           </div>
         </div>
 
-        <picture>
+        <!-- <picture>
           <source srcset="https://github.githubassets.com/images/modules/site/about/octocats.webp" type="image/webp">
           <img src="https://github.githubassets.com/images/modules/site/about/octocats.png" alt="An array of octocats working and enjoying life" class="mx-auto width-fit height-auto p-responsive mb-6" width="1600" height="255">
-        </picture>
-
-        <div class="col-md-10 col-lg-6 mx-auto mb-8">
-        <a href="https://github.blog" class="d-block width-full py-5 border-bottom Link--secondary no-underline Bump-link">
-          <h3 class="mb-3 h5-mktg-fluid h4-md-mktg-fluid">
-            Blog <span class="Bump-link-symbol">→</span>
-          </h3>
-          <p class="mb-0 f4-mktg-fluid f3-md-mktg-fluid color-text-tertiary">
-            Read up on product innovations and updates, company announcements, community spotlights, and more.
-          </p>
-        </a>
-        <a href="/logos" class="d-block width-full py-5 border-bottom Link--secondary no-underline Bump-link">
-          <h3 class="mb-3 h5-mktg-fluid h4-md-mktg-fluid">
-            Brand assets <span class="Bump-link-symbol">→</span>
-          </h3>
-          <p class="mb-0 f4-mktg-fluid f3-md-mktg-fluid color-text-tertiary">
-            Want to use Mona the octocat? Looking for the right way to display the GitHub logo for your latest project? Download the assets and see how and where to use them.
-          </p>
-        </a>
-        <a href="/readme" class="d-block width-full py-5 border-bottom Link--secondary no-underline Bump-link">
-          <h3 class="mb-3 h5-mktg-fluid h4-md-mktg-fluid">
-            Community stories <span class="Bump-link-symbol">→</span>
-          </h3>
-          <p class="mb-0 f4-mktg-fluid f3-md-mktg-fluid color-text-tertiary">
-            Developers are building the future on GitHub every day, explore their stories, celebrate their accomplishments, and find inspiration for your own work.
-          </p>
-        </a>
-        <a href="/customer-stories?type=enterprise" class="d-block width-full py-5 border-bottom Link--secondary no-underline Bump-link">
-          <h3 class="mb-3 h5-mktg-fluid h4-md-mktg-fluid">
-            Customer stories <span class="Bump-link-symbol">→</span>
-          </h3>
-          <p class="mb-0 f4-mktg-fluid f3-md-mktg-fluid color-text-tertiary">
-            See how some of the most influential businesses around the world use GitHub to provide the best services, products, and experiences for their customers.
-          </p>
-        </a>
-        <a href="/about/careers" class="d-block width-full py-5 border-bottom Link--secondary no-underline Bump-link">
-          <h3 class="mb-3 h5-mktg-fluid h4-md-mktg-fluid">
-            Careers <span class="Bump-link-symbol">→</span>
-          </h3>
-          <p class="mb-0 f4-mktg-fluid f3-md-mktg-fluid color-text-tertiary">
-            Help us build the home for all developers. We’re a passionate group of people dedicated to software development and collaboration. Come join us!
-          </p>
-        </a>
-        <a href="/about/diversity" class="d-block width-full py-5 border-bottom Link--secondary no-underline Bump-link">
-          <h3 class="mb-3 h5-mktg-fluid h4-md-mktg-fluid">
-            Diversity, Inclusions &amp; Belonging <span class="Bump-link-symbol">→</span>
-          </h3>
-          <p class="mb-0 f4-mktg-fluid f3-md-mktg-fluid color-text-tertiary">
-            We are dedicated to building a community and team that reflects the world we live in and pushes the boundaries of software innovation. Learn more about our DI&amp;B efforts.
-          </p>
-        </a>
-        <a href="https://www.githubstatus.com" class="d-block width-full py-5 border-bottom Link--secondary no-underline Bump-link">
-          <h3 class="mb-3 h5-mktg-fluid h4-md-mktg-fluid">
-            GitHub Status <span class="Bump-link-symbol">→</span>
-          </h3>
-          <p class="mb-0 f4-mktg-fluid f3-md-mktg-fluid color-text-tertiary">
-            We are always monitoring the status of github.com and all its related services. Updates and status interruptions are posted in real-time here.
-          </p>
-        </a>
-        <a href="/about/leadership" class="d-block width-full py-5 border-bottom Link--secondary no-underline Bump-link">
-          <h3 class="mb-3 h5-mktg-fluid h4-md-mktg-fluid">
-            Leadership <span class="Bump-link-symbol">→</span>
-          </h3>
-          <p class="mb-0 f4-mktg-fluid f3-md-mktg-fluid color-text-tertiary">
-            Meet the leadership team guiding us as we continue on this journey building the world’s largest and most advanced software development platform in the world.
-          </p>
-        </a>
-        <a href="https://octoverse.github.com" class="d-block width-full py-5 border-bottom Link--secondary no-underline Bump-link">
-          <h3 class="mb-3 h5-mktg-fluid h4-md-mktg-fluid">
-            Octoverse <span class="Bump-link-symbol">→</span>
-          </h3>
-          <p class="mb-0 f4-mktg-fluid f3-md-mktg-fluid color-text-tertiary">
-            Dive into the details with our annual State of the Octoverse report looking at the trends and patterns in the code and communities that build on GitHub.
-          </p>
-        </a>
-        <a href="/about/press" class="d-block width-full py-5 border-bottom Link--secondary no-underline Bump-link">
-          <h3 class="mb-3 h5-mktg-fluid h4-md-mktg-fluid">
-            Press <span class="Bump-link-symbol">→</span>
-          </h3>
-          <p class="mb-0 f4-mktg-fluid f3-md-mktg-fluid color-text-tertiary">
-            Explore the latest press stories on our company, products, and global community.
-          </p>
-        </a>
-        <a href="https://socialimpact.github.com" class="d-block width-full py-5 border-bottom Link--secondary no-underline Bump-link">
-          <h3 class="mb-3 h5-mktg-fluid h4-md-mktg-fluid">
-            Social Impact <span class="Bump-link-symbol">→</span>
-          </h3>
-          <p class="mb-0 f4-mktg-fluid f3-md-mktg-fluid color-text-tertiary">
-            Learn about how GitHub’s people, products, and platform are creating positive and lasting change around the world.
-          </p>
-        </a>
-    </div>
+        </picture> -->
 
       </div>
     </div>
@@ -229,9 +153,14 @@
 
       </div>
 
-      <h1 class="mb-6 font-mktg h2-5-mktg-fluid h1-sm-mktg-fluid h0-lg-mktg-fluid mb-3">
+      <h1 id="user-content-adasdas" href="#adasdas" class="mb-6 font-mktg h2-5-mktg-fluid h1-sm-mktg-fluid h0-lg-mktg-fluid mb-3">
         Các mặt hàng
       </h1>
+      <!-- <h2><a id="user-content-appendix" class="anchor " aria-hidden="true" href="#appendix"><svg
+       class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd"
+        d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25
+         1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25
+          1.25a2 2 0 01-2.83 0z"></path></svg></a>Appendix</h2> -->
       <Items/>
     </v-container>
   </v-container>
@@ -251,7 +180,17 @@ export default {
   data () {
     return {}
   },
-  methods: {}
+  methods: {
+    goto (refName) {
+      var element = this.$refs[refName]
+      console.log(element)
+      var top = element.offsetTop
+      window.scrollTo(0, top)
+    },
+    scroll () {
+      this.goto('Items')
+    }
+  }
 }
 </script>
 
@@ -261,13 +200,13 @@ export default {
   background-color: #ffffff;
   width: 100%;
   max-width: 100%;
+  min-width: 1000px;
   padding: 0px;
 }
 .main-content {
-  width: 1200px;
-  max-width: 1200px;
+  width: 1000px;
+  max-width: 1000px;
   padding: 0px;
-  padding-top: 64px;
 }
 
 /*  */

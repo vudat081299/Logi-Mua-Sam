@@ -15,8 +15,16 @@
         <!-- <img class="mr-4" width="48px" height="48px" alt="Vue logo" src="@/assets/logo.png"> -->
         <v-icon class="mx-4" dark x-large>mdi-dev-to</v-icon>
         <v-toolbar-title class="white--text">
-          <span class="font-weight-light">Logi </span>
-          <span>Mua Sam</span>
+          <!-- <a class="font-weight-bold white--text">Logi <span class="font-weight-light white--text">Mua Sam</span></a> -->
+          <a
+            href="/"
+            class="HeaderMenu-link flex-shrink-0 no-underline mr-3"
+            data-hydro-click='{"event_type":"authentication.click","payload":{"location_in_page":"site header menu","repository_id":null,"auth_type":"SIGN_UP","originating_url":"https://github.com/about","user_id":null}}'
+            data-hydro-click-hmac="5c74a448d0c5a3899bded30f9177b04a134915494f39328527e6830ff83efc11"
+            data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in"
+          >
+            Logi <span class="font-weight-light">Mua Sam</span>
+          </a>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <!-- <v-btn dark text>Sign in</v-btn>
@@ -75,12 +83,12 @@ export default {
 .toolbar-card {
   position: absolute;
   top: 0px;
-  width: 1200px;
+  width: 1000px;
   height: 72px;
 }
 .main-toolbar {
   position: absolute;
-  width: 1200px;
+  width: 1000px;
   height: 72px;
 }
 /*  */
