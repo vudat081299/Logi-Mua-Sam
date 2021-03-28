@@ -22,7 +22,7 @@ E-Commerse web app.
 #### Chung
 > 1. Sign in / Sign up / Quên tài khoản.
 > 2. Quản lý tài khoản.
-> 3. Xem chi tiết 1 sản phẩm. (nhưng nếu là ở kênh người bán thì được phép chỉnh sửa thông tin sản phẩm).
+> 3. Xem chi tiết 1 sản phẩm. (nhưng nếu là ở kênh người bán thì được phép chỉnh sửa thông tin sản phẩm của chính họ).
 > 4. Xem lịch sử các đơn hàng, danh sách các đơn hàng trong lịch sử và các đơn hàng hiện đang chuyển giao.
  
 #### Kênh người mua
