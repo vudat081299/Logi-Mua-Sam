@@ -11,14 +11,14 @@
     <div class="pt-lg-3 font-mktg">
       <div class="container-xl p-responsive">
         <div class="col-12 col-lg-7 mb-8 mx-auto text-center">
-          <h1 class="h3-5-mktg-fluid h2-sm-mktg-fluid h1-lg-mktg-fluid mb-0">
+          <h1 class="h3-5-mktg-fluid h3-sm-mktg-fluid h2-lg-mktg-fluid mb-0">
             Logi Mua Sắm <br class="d-block d-lg-none">
           </h1>
-          <h1 class="h3-5-mktg-fluid h2-sm-mktg-fluid h1-lg-mktg-fluid mb-3">
+          <h1 class="h3-5-mktg-fluid h3-sm-mktg-fluid h2-lg-mktg-fluid mb-3">
             tiếp cận xu hướng
           </h1>
 
-          <p class="f4-mktg-fluid f2-sm-mktg-fluid text-gray-light-mktg mb-4 lh-condensed lh-sm-default">
+          <p class="f5-mktg-fluid f3-sm-mktg-fluid text-gray-light-mktg mb-4 lh-condensed lh-sm-default">
             Sàn thương mại điện tử "Logi Mua Sắm" với đội ngũ nhân viên luôn nỗ lực cung cấp cho khách hàng trải nghiệm với dịch vụ mua sắm tốt nhất
           </p>
         </div>
@@ -153,7 +153,7 @@
 
       </div>
 
-      <h1 id="user-content-adasdas" href="#adasdas" class="mb-6 font-mktg h2-5-mktg-fluid h1-sm-mktg-fluid h0-lg-mktg-fluid mb-3">
+      <h1 id="user-content-items" href="#items" class="mb-6 font-mktg h2-5-mktg-fluid h1-sm-mktg-fluid h0-lg-mktg-fluid mb-3">
         Các mặt hàng
       </h1>
       <!-- <h2><a id="user-content-appendix" class="anchor " aria-hidden="true" href="#appendix"><svg

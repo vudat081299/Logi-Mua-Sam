@@ -1,6 +1,6 @@
 <template>
     <v-card
-      class="d-flex fixedDivContent mx-auto flex-wrap pa-0 pb-4 align-center"
+      class="d-flex fixedDivContent mx-auto flex-wrap pa-0 pb-9 align-center"
       color="#ffffff"
       flat
       tile
@@ -155,7 +155,10 @@ export default {
   max-width: 2000px;
 }
 .v-card {
-  /* transition: opacity .2s ease-in-out; */
+  /* transition: opacity 1.2s ease-in-out; */
+  /* border-width: 1px;
+  border-style: solid;
+  border-color: #000000; */
 }
 .hover-card:not(.on-hover) {
   /* box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.10), 0 0px 0px 0 rgba(0, 0, 0, 0.10) !important;
