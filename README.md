@@ -2,12 +2,12 @@
 E-Commerse web app.
 ## Các chức năng chính:
 #### Kênh người mua
-> Sign in / sign up / Quên tài khoản.
-> Landing page (trang chính):
+> ### Sign in / sign up / Quên tài khoản.
+> ### Landing page (trang chính):
 > + Giới thiệu công ty.
 > + Danh sách các sản phẩm. (hiển thị luôn trên trang này vì số lượng sản phẩm ít)
 > + Xem chi tiết sản phẩm.
-> Quản lý tài khoản:
+> ### Quản lý tài khoản:
 > + Quản lý, chỉnh sửa thông tin tài khoản (mật khẩu, họ tên, chứng minh thư, địa chỉ, sđt, ...)
 > + Xem **lịch sử các đơn hàng** và các **đơn hàng hiện tại đang được đặt**.
 > + Xem chi tiết **lịch sử các đơn hàng** và các **đơn hàng hiện tại đang được đặt**.
