@@ -1,12 +1,13 @@
 <template>
-  <v-row :class="`${position} align-center`">
+  <div style="display: flex; justify-content: center;
+  align-items: center;">
     <img :class="leading" :width="size" :height="size" alt="Vue logo" src="@/assets/logo.png">
     <h2
-      class="primary--text font-weight-regular text-center"
+      class="primary--text font-weight-regular"
     >
       LogiTech
     </h2>
-  </v-row>
+  </div>
 </template>
 
 <script>
