@@ -61,21 +61,22 @@
                 prepend-icon="mdi-minus-circle-outline"
                 append-outer-icon="mdi-plus-circle-outline"
                 @click:append-outer="
-                  (item.number = item.number + 1) &&
-                    detectNumberProduct(item.number)
+                  (item.number = increment(item.number)) &&
+                    changeValueTextField()
                 "
                 dense
                 outlined
                 @click:prepend="
                   item.number > 1
                     ? (item.number = item.number - 1) &&
-                      detectNumberProduct(item.number)
+                      changeValueTextField()
                     : (item.number = 1)
                 "
                 class="centered-input inputPrice"
                 type="number"
                 style="margin-top: 20px"
                 @change="changeValueTextField()"
+                input="Number"
               >
               </v-text-field>
           </template>
@@ -217,8 +218,8 @@ export default {
       }
     },
     increment(number) {
-      number = number + 1 || 1;
-      console.log(number);
+      number = parseInt(number) + 1 || 1;
+      return number
     },
     detectNumberProduct() {
       this.numberProduct = number;
@@ -273,6 +274,7 @@ export default {
       loading: false,
       numberTextField: 0,
       images: [],
+      plus: 1
     };
   },
 };
