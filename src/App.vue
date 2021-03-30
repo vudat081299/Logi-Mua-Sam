@@ -264,7 +264,7 @@
     </div>
 
     <AppToolbar></AppToolbar>
-    <v-main :style="style" :class="checkStateFrame">
+    <v-main :style="{ backgroundImage: getBg() }" :class="checkStateFrame" >
       <!-- style="right: 0px; left: 256px" -->
       <!-- Provides the application the proper gutter -->
       <v-container fluid class="pa-0 pb-9 fill-height">
@@ -422,6 +422,7 @@ export default {
 
       drawer: false,
       showNavBar: false,
+      logInStatus: false,
 
       search: '',
       windowSize: {
@@ -490,6 +491,13 @@ export default {
     }
   },
   methods: {
+    getBg() {
+      if (this.logInStatus) {
+        return "";
+      } else {
+        return "url('" + require("@/assets/background.jpeg") + "')";
+      }
+    },
     hide_nav () { // onclick
       this.drawer = false
     },
@@ -501,10 +509,13 @@ export default {
       }
     },
     checkDidLogin () {
+      console.log(localStorage.getItem('didLogin'))
       if (localStorage.getItem('didLogin') === '0') {
         this.showNavBar = false
+        this.logInStatus = false
       } else {
         this.showNavBar = true
+        this.logInStatus = true
       }
     },
     logout () {

@@ -381,14 +381,16 @@ export default {
         v => (/[!#$%^&*,`~'")(+=_-]/.test(v) === false) || 'Không được chứa ký tự đặc biệt'
       ],
       passwordRules: [
-        v => !!v || 'Không được để trống',
-        v => (/[!#$%^&*,`~'")(+=_-]/.test(v) === false) || 'Không được chứa ký tự đặc biệt'
+        (v) => !!v || "Không được để trống",
+        (v) => (v != null && v.length >= 8) || "Mật khẩu quá ngắn",
+        (v) => (v != null && v.length <= 32) || "Mật khẩu quá dài",
+        (v) => /\d/.test(v) || "Mật khẩu cần chứa số",
+        (v) => /[A-Z]/.test(v) || "Mật khẩu cần ký tự in hoa",
+        (v) => /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(v) || "Mật khẩu cần ký tự đặc biệt",
       ],
       confirmPasswordRules: [
         v => !!v || 'Không được để trống',
-        v => (/[!#$%^&*,`~'")(+=_-]/.test(v) === false) || 'Không được chứa ký tự đặc biệt',
-        v => ((this.password.length < 8 || v === this.password) || 'Mật khẩu xác nhận không khớp'),
-        v => (v.length >= 8 || 'Mật khẩu phải sử dụng 8 ký tự trở lên')
+        v => ((v === this.password) || 'Mật khẩu xác nhận không khớp'),
       ],
       countryCodeRules: [
         v => !!v || 'Không được để trống',

@@ -56,27 +56,28 @@
             </div>
           </template>
           <template v-slot:[`item.number`]="{ item }">
-            <v-text-field
-              v-model="item.number"
-              prepend-icon="mdi-minus-circle-outline"
-              append-outer-icon="mdi-plus-circle-outline"
-              @click:append-outer="
-                (item.number = item.number + 1) &&
-                  detectNumberProduct(item.number)
-              "
-              dense
-              outlined
-              @click:prepend="
-                item.number > 1
-                  ? (item.number = item.number - 1) &&
+              <v-text-field
+                v-model="item.number"
+                prepend-icon="mdi-minus-circle-outline"
+                append-outer-icon="mdi-plus-circle-outline"
+                @click:append-outer="
+                  (item.number = item.number + 1) &&
                     detectNumberProduct(item.number)
-                  : (item.number = 1)
-              "
-              class="centered-input inputPrice"
-              type="number"
-              style="margin-top: 20px"
-            >
-            </v-text-field>
+                "
+                dense
+                outlined
+                @click:prepend="
+                  item.number > 1
+                    ? (item.number = item.number - 1) &&
+                      detectNumberProduct(item.number)
+                    : (item.number = 1)
+                "
+                class="centered-input inputPrice"
+                type="number"
+                style="margin-top: 20px"
+                @change="changeValueTextField()"
+              >
+              </v-text-field>
           </template>
           <template v-slot:[`item.func`]="{ item }">
             <v-icon @click="deleteCart(item.id)">mdi-delete</v-icon>
@@ -126,7 +127,7 @@ export default {
             this.totalCash +=
               this.selectProduct[index].cash_product *
               this.selectProduct[index].number;
-            this.totalProduct += this.selectProduct[index].number;
+            this.totalProduct += eval(this.selectProduct[index].number);
           }
         } else {
           this.totalProduct = 0;
@@ -146,7 +147,7 @@ export default {
             this.totalCash +=
               this.selectProduct[index].cash_product *
               this.selectProduct[index].number;
-            this.totalProduct += this.selectProduct[index].number;
+            this.totalProduct += eval(this.selectProduct[index].number);
           }
         } else {
           this.totalProduct = 0;
@@ -154,6 +155,13 @@ export default {
         }
         console.log(this.totalProduct);
         console.log(this.totalCash);
+        // changeValueTextField()
+      },
+      immediate: true,
+    },
+    numberTextField: {
+      handler: function () {
+        console.log(this.numberTextField);
       },
       immediate: true,
     },
@@ -212,9 +220,25 @@ export default {
       number = number + 1 || 1;
       console.log(number);
     },
-    detectNumberProduct(number) {
+    detectNumberProduct() {
       this.numberProduct = number;
-      console.log(this.numberProduct);
+    },
+    changeValueTextField () {
+      if (this.selectProduct !== []) {
+          this.totalProduct = 0;
+          this.totalCash = 0;
+          for (var index = 0; index < this.selectProduct.length; index++) {
+            this.totalCash +=
+              this.selectProduct[index].cash_product *
+              this.selectProduct[index].number;
+            this.totalProduct +=  eval(this.selectProduct[index].number);
+          }
+        } else {
+          this.totalProduct = 0;
+          this.totalCash = 0;
+        }
+        console.log(this.totalProduct);
+        console.log(this.totalCash);
     },
     deleteCart(id) {
       axios
@@ -247,6 +271,7 @@ export default {
       totalCash: 0,
       numberProduct: 0,
       loading: false,
+      numberTextField: 0,
       images: [],
     };
   },
@@ -261,5 +286,8 @@ export default {
   > tr:last-child
   > th {
   font-size: 15px;
+}
+.centered-input input {
+  text-align: center
 }
 </style>
