@@ -22,7 +22,7 @@
       </div>
       <v-spacer/>
 
-      <a href="/login?return_to=%2Fabout"
+      <a href="/login"
         class="HeaderMenu-link flex-shrink-0 no-underline mr-3"
       >
         Sign in
