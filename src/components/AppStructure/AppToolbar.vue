@@ -12,7 +12,7 @@
           Logi <span class="font-weight-light">Mua Sam</span>
         </a>
         <a
-          href="#items"
+          href="/#items"
           class="ml-4 HeaderMenu-link flex-shrink-0 no-underline mr-3"
           v-bind="attrs"
           v-on="on"

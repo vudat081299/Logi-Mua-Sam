@@ -1,7 +1,7 @@
 <template>
   <v-app v-resize="onResize">
 
-    <AppToolbar></AppToolbar>
+    <AppToolbar/>
     <v-main :style="{ backgroundImage: getBg() }">
       <!-- style="right: 0px; left: 256px" -->
       <!-- Provides the application the proper gutter -->
@@ -14,52 +14,7 @@
           <!-- showNavBar -->
       </v-container>
     </v-main>
-
-    <v-footer class="">
-      <div class="customFooter color-bg-secondary">
-        <div style="width: 1000px;" class="container-xl p-responsive f6 py-4 d-sm-flex flex-justify-between flex-row-reverse flex-items-center">
-          <ul class="list-style-none d-flex flex-items-center mb-3 mb-sm-0 lh-condensed-ultra">
-            <li class="mr-3">
-              <a href="https://twitter.com/github" data-ga-click="Footer, go to Twitter, text:twitter" class="color-gray-4">
-                <img src="https://github.githubassets.com/images/modules/site/icons/footer/twitter.svg" height="18" class="d-block" loading="lazy" decoding="async" alt="Twitter icon">
-                <span class="sr-only">GitHub on Twitter</span>
-              </a>
-            </li>
-            <li class="mr-3">
-              <a href="https://www.facebook.com/GitHub" data-ga-click="Footer, go to Facebook, text:facebook" class="color-gray-4">
-                <img src="https://github.githubassets.com/images/modules/site/icons/footer/facebook.svg" height="18" class="d-block" loading="lazy" decoding="async" alt="Facebook icon">
-                <span class="sr-only">GitHub on Facebook</span>
-              </a>
-            </li>
-            <li class="mr-3">
-              <a href="https://www.youtube.com/github" data-ga-click="Footer, go to YouTube, text:youtube" class="color-gray-4">
-                <img src="https://github.githubassets.com/images/modules/site/icons/footer/youtube.svg" height="16" class="d-block" loading="lazy" decoding="async" alt="YouTube icon">
-                <span class="sr-only">GitHub on YouTube</span>
-              </a>
-            </li>
-            <li class="mr-3 flex-self-start">
-              <a href="https://www.linkedin.com/company/github" data-ga-click="Footer, go to Linkedin, text:linkedin" class="color-gray-4">
-                <img src="https://github.githubassets.com/images/modules/site/icons/footer/linkedin.svg" height="18" class="d-block" loading="lazy" decoding="async" alt="Linkedin icon">
-                <span class="sr-only">GitHub on LinkedIn</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://github.com/github" data-ga-click="Footer, go to github's org, text:github" class="color-gray-4">
-                <img src="https://github.githubassets.com/images/modules/site/icons/footer/github-mark.svg" height="20" class="d-block" loading="lazy" decoding="async" alt="GitHub mark">
-                <span class="sr-only">GitHub’s organization on GitHub</span>
-              </a>
-            </li>
-          </ul>
-          <ul class="list-style-none d-flex flex-wrap color-text-secondary">
-            <li class="mr-3">&copy; 2021 GitHub, Inc.</li>
-            <li class="mr-3"><a href="https://docs.github.com/en/github/site-policy/github-terms-of-service" data-ga-click="Footer, go to terms, text:terms" class="Link--secondary">Terms</a></li>
-            <li class="mr-3"><a href="https://docs.github.com/en/github/site-policy/github-privacy-statement" data-ga-click="Footer, go to privacy, text:privacy" class="Link--secondary">Privacy</a></li>
-            <li class="mr-3"><a href="/site-map" data-ga-click="Footer, go to site map, text:site map" class="Link--secondary">Site Map</a></li>
-            <li><a href="/git-guides" data-ga-click="Footer, go to Git Guides, text:What is Git?" class="Link--secondary">What is Git?</a></li>
-          </ul>
-        </div>
-      </div>
-    </v-footer>
+    <AppFooter/>
 
     <!-- <v-bottom-navigation></v-bottom-navigation> -->
 
@@ -111,7 +66,8 @@
 // import RightNavigationDrawApp from '@/components/RightNavigationDrawApp.vue'
 import BrandIdentity from '@/components/BrandIdentity.vue'
 import MenuAccount from '@/components/MenuAccount.vue'
-import AppToolbar from '@/components/AppToolbar.vue'
+import AppToolbar from '@/components/AppStructure/AppToolbar.vue'
+import AppFooter from '@/components/AppStructure/AppFooter.vue'
 
 export default {
   name: 'App',
@@ -119,7 +75,8 @@ export default {
     // RightNavigationDrawApp
     BrandIdentity,
     MenuAccount,
-    AppToolbar
+    AppToolbar,
+    AppFooter
   },
   mounted () {
     this.onResize()
@@ -322,12 +279,5 @@ export default {
 .custom-font {
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
   font-size: 16px!important;
-}
-
-.customFooter {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
 }
 </style>
