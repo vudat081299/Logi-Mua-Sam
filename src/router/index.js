@@ -53,13 +53,12 @@ const routes = [
     meta: { requiresLogin: true }
   },
   {
-    path: '/detailitem',
+    path: '/detailitem/:id',
     name: 'DetailItem',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/DetailItem.vue'),
-    meta: { requiresLogin: true }
   },
   {
     path: '/landingpage',
@@ -84,7 +83,16 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/SalerChannel/Main.vue')
+  },
+  {
+       path: '/goods',
+    name: 'Goods',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/typesofgoods/GoodsManagement.vue')
   }
+
 
 ]
 

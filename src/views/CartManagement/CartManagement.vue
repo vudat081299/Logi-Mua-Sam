@@ -37,10 +37,9 @@
           <template v-slot:[`item.product`]="{ item }">
             <div style="display: flex; align-items: center">
               <v-img
-                :lazy-src="item.image"
-                max-height="70px"
-                max-width="70px"
-                contain
+                :src="`https://picsum.photos/500/300?image=${item.id * 5 + 10}`"
+                max-height="120px"
+                max-width="120px"
               ></v-img>
               <span style="margin-left: 15px">{{ item.product }}</span>
             </div>
