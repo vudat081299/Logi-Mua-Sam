@@ -1,97 +1,39 @@
 <template>
-  <v-container class="main-content fill-height">
-    <v-toolbar
-      flat
-      class="background-toolbar"
-      style="height: 72px; background-color: #25292e"
-    ></v-toolbar>
-    <v-card flat style="height: 72px" class="rounded-0 toolbar-card">
-      <v-toolbar
-        fixed
-        flat
-        class="pt-1 main-toolbar"
-        style="height: 72px; background-color: #25292e"
+  <header class="Header-old header-logged-out js-details-container Details position-relative f4 py-2" role="banner">
+    <div class="container-xl d-lg-flex flex-items-center p-responsive">
+      <div class="d-flex flex-justify-between flex-items-center">
+        <a class="" href="/" aria-label="Homepage">
+          <v-icon class="mx-4" dark x-large>mdi-dev-to</v-icon>
+        </a>
+        <a
+          href="/"
+          class="HeaderMenu-link flex-shrink-0 no-underline mr-3"
+        >
+          Logi <span class="font-weight-light">Mua Sam</span>
+        </a>
+        <a
+          href="#items"
+          class="ml-4 HeaderMenu-link flex-shrink-0 no-underline mr-3"
+          v-bind="attrs"
+          v-on="on"
+        >
+          <span class="font-weight-light">Mặt hàng</span>
+        </a>
+      </div>
+      <v-spacer/>
+
+      <a href="/login?return_to=%2Fabout"
+        class="HeaderMenu-link flex-shrink-0 no-underline mr-3"
       >
-        <!-- <img class="mr-4" width="48px" height="48px" alt="Vue logo" src="@/assets/logo.png"> -->
-        <v-icon class="mx-4" dark x-large>mdi-dev-to</v-icon>
-        <v-toolbar-title class="white--text">
-          <!-- <a class="font-weight-bold white--text">Logi <span class="font-weight-light white--text">Mua Sam</span></a> -->
-
-        <div class="font-weight-medium custom-font d-flex flex-items-center">
-          <a
-            href="/"
-            class="HeaderMenu-link flex-shrink-0 no-underline mr-3"
-            data-hydro-click='{"event_type":"authentication.click","payload":{"location_in_page":"site header menu","repository_id":null,"auth_type":"SIGN_UP","originating_url":"https://github.com/about","user_id":null}}'
-            data-hydro-click-hmac="5c74a448d0c5a3899bded30f9177b04a134915494f39328527e6830ff83efc11"
-            data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in"
-          >
-            Logi <span class="font-weight-light">Mua Sam</span>
-          </a>
-          <!-- <v-menu
-            open-on-hover
-            offset-y
-          >
-            <template v-slot:activator="{ on, attrs }"> -->
-              <a
-                href="#items"
-                class="ml-4 HeaderMenu-link flex-shrink-0 no-underline mr-3"
-                data-hydro-click='{"event_type":"authentication.click","payload":{"location_in_page":"site header menu","repository_id":null,"auth_type":"SIGN_UP","originating_url":"https://github.com/about","user_id":null}}'
-                data-hydro-click-hmac="5c74a448d0c5a3899bded30f9177b04a134915494f39328527e6830ff83efc11"
-                data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in"
-                v-bind="attrs"
-                v-on="on"
-              >
-                <span class="font-weight-light">Mặt hàng</span>
-              </a>
-            <!-- </template>
-
-            <v-list>
-              <v-list-item
-                v-for="(item, index) in items"
-                :key="index"
-              >
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu> -->
-        </div>
-        </v-toolbar-title>
-        <v-spacer></v-spacer>
-        <!-- <v-btn dark text>Sign in</v-btn>
-            <v-btn dark outlined>Sign up</v-btn> -->
-
-          <a
-            href="/cart"
-            class="mr-9 HeaderMenu-link flex-shrink-0 d-inline-block no-underline color-border-tertiary rounded-2 px-2 py-1 js-signup-redesign-target js-signup-redesign-control"
-            data-hydro-click='{"event_type":"analytics.click","payload":{"category":"Sign up","action":"click to sign up for account","label":"ref_page:/about;ref_cta:Sign up;ref_loc:header logged out","originating_url":"https://github.com/about","user_id":null}}'
-            data-hydro-click-hmac="ccd99aea4b7ecb44734b581afed8808b69de7ea682e56eacb5d80a453d1dae48"
-          >
-            <v-icon dark>mdi-cart</v-icon>
-            Giỏ hàng
-          </a>
-
-        <div class="font-weight-medium custom-font d-flex flex-items-center">
-          <a
-            href="/login"
-            class="HeaderMenu-link flex-shrink-0 no-underline mr-3"
-            data-hydro-click='{"event_type":"authentication.click","payload":{"location_in_page":"site header menu","repository_id":null,"auth_type":"SIGN_UP","originating_url":"https://github.com/about","user_id":null}}'
-            data-hydro-click-hmac="5c74a448d0c5a3899bded30f9177b04a134915494f39328527e6830ff83efc11"
-            data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in"
-          >
-            Sign in
-          </a>
-          <a
-            href="/signup"
-            class="HeaderMenu-link flex-shrink-0 d-inline-block no-underline border color-border-tertiary rounded-2 px-2 py-1 js-signup-redesign-target js-signup-redesign-control"
-            data-hydro-click='{"event_type":"analytics.click","payload":{"category":"Sign up","action":"click to sign up for account","label":"ref_page:/about;ref_cta:Sign up;ref_loc:header logged out","originating_url":"https://github.com/about","user_id":null}}'
-            data-hydro-click-hmac="ccd99aea4b7ecb44734b581afed8808b69de7ea682e56eacb5d80a453d1dae48"
-          >
-            Sign up
-          </a>
-        </div>
-      </v-toolbar>
-    </v-card>
-  </v-container>
+        Sign in
+      </a>
+      <a href="/signup"
+        class="HeaderMenu-link flex-shrink-0 d-inline-block no-underline border color-border-tertiary rounded px-2 py-1 js-signup-redesign-target js-signup-redesign-control"
+      >
+        Sign up
+      </a>
+    </div>
+  </header>
 </template>
 
 <script>

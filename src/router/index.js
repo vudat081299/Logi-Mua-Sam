@@ -77,7 +77,15 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/CartManagement/CartManagement.vue')
   },
   {
-    path: '/goods',
+    path: '/salerchannel',
+    name: 'Main',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/SalerChannel/Main.vue')
+  },
+  {
+       path: '/goods',
     name: 'Goods',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
