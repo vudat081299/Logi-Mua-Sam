@@ -492,7 +492,7 @@ export default {
   },
   methods: {
     getBg() {
-      if (!this.logInStatus) {
+      if (this.logInStatus) {
         return "";
       } else {
         return "url('" + require("@/assets/background.jpeg") + "')";
