@@ -22,6 +22,15 @@
       </div>
       <v-spacer/>
 
+      <a
+        href="/cart"
+        class="mr-9 HeaderMenu-link flex-shrink-0 d-inline-block no-underline color-border-tertiary rounded-2 px-2 py-1 js-signup-redesign-target js-signup-redesign-control"
+        data-hydro-click='{"event_type":"analytics.click","payload":{"category":"Sign up","action":"click to sign up for account","label":"ref_page:/about;ref_cta:Sign up;ref_loc:header logged out","originating_url":"https://github.com/about","user_id":null}}'
+        data-hydro-click-hmac="ccd99aea4b7ecb44734b581afed8808b69de7ea682e56eacb5d80a453d1dae48"
+      >
+        <v-icon dark>mdi-cart</v-icon>
+        Giỏ hàng
+      </a>
       <a href="/login"
         class="HeaderMenu-link flex-shrink-0 no-underline mr-3"
       >
