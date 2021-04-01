@@ -82,18 +82,16 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/SalerChannel/Main.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/SalerChannel/main.vue')
   },
   {
-       path: '/goods',
+    path: '/goods',
     name: 'Goods',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/typesofgoods/GoodsManagement.vue')
   }
-
-
 ]
 
 const router = new VueRouter({
@@ -102,17 +100,17 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresLogin) && localStorage.getItem('didLogin') === '0') {
-    // Did not login
-    // You can use store variable here to access globalError or commit mutation
-    next('/login')
-  } else if (to.name === 'Login' && localStorage.getItem('didLogin') === '1') {
-    // Did login
-    next('/')
-  } else {
-    next()
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some(record => record.meta.requiresLogin) && localStorage.getItem('didLogin') === '0') {
+//     // Did not login
+//     // You can use store variable here to access globalError or commit mutation
+//     next('/login')
+//   } else if (to.name === 'Login' && localStorage.getItem('didLogin') === '1') {
+//     // Did login
+//     next('/')
+//   } else {
+//     next()
+//   }
+// })
 
 export default router

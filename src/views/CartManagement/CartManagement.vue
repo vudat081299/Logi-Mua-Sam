@@ -3,6 +3,10 @@
     <BrandIdentity/>
   </div> -->
   <v-container>
+    
+    <!-- <div >
+    <IconCart :cartNumber="items.length"/>
+    </div> -->
     <v-card color="#ffffff00" flat>
       <v-card-title>
         <BrandIdentity />
@@ -113,9 +117,11 @@
 <script>
 import BrandIdentity from "@/components/BrandIdentity";
 import axios from "axios";
+import IconCart from '@/views/CartManagement/IconCart'
 export default {
   components: {
     BrandIdentity,
+    IconCart
   },
   watch: {
     selectProduct: {
@@ -195,7 +201,6 @@ export default {
       axios
         .get("https://5f7e99cb0198da0016893b3a.mockapi.io/usermanager/cart")
         .then((response) => {
-          console.log(response);
           this.items = response.data;
           this.loading = false;
         });

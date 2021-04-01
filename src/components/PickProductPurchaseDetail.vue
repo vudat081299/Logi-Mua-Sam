@@ -7,7 +7,14 @@
             <v-row align="baseline">
               <v-col cols="8">
                 <div class="pa-3 text-h4 black--text">
-                  {{ formatPrice(itemInfor.cash[0].cash_product - (itemInfor.cash[0].cash_product * Math.ceil(itemInfor.cash[0].cash_sale / 10000) / 100)) }}
+                  {{
+                    formatPrice(
+                      itemInfor.cash[0].cash_product -
+                        (itemInfor.cash[0].cash_product *
+                          Math.ceil(itemInfor.cash[0].cash_sale / 10000)) /
+                          100
+                    )
+                  }}
                   <span
                     class="black--text text-decoration-line-through"
                     style="font-size: 13px; margin-left: 10px"
@@ -32,7 +39,8 @@
                     top: -1px;
                     border-radius: 4px;
                   "
-                  > - {{ Math.ceil(itemInfor.cash[0].cash_sale / 10000) }}%</span
+                >
+                  - {{ Math.ceil(itemInfor.cash[0].cash_sale / 10000) }}%</span
                 >
               </v-col>
               <!-- <div class="ml-2 black--text" style="font-size: 13px;">
@@ -40,24 +48,30 @@
             </div> -->
             </v-row>
           </v-card>
-          <v-col class="my-3 pa-0" cols="12">
-            <div class="text-subtitle-2">Số lượng</div>
-            <v-row class="mt-1 align-baseline">
-              <v-col class="mx-4" cols="4">
-                <!-- <v-text-field v-model="number" :rules="countProductRules" type="number"></v-text-field> -->
-                <v-row>
-                  <v-text-field
-                    v-model="number"
-                    prepend-icon="mdi-minus-circle-outline"
-                    append-outer-icon="mdi-plus-circle-outline"
-                    @click:append-outer="increment"
-                    dense
-                    outlined
-                    @click:prepend="decrement"
-                    class="centered-input inputPrice"
-                    type="number"
-                  >
-                    <!-- <template  v-slot:prepend-icon="{ on, attrs }">
+          <v-container>
+            <!-- <v-text-field v-model="number" :rules="countProductRules" type="number"></v-text-field> -->
+            <div
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <div class="text-subtitle-2">Số lượng:</div>
+              <v-spacer></v-spacer>
+              <div style="width: 35%; padding-top: 15px">
+                <v-text-field
+                  v-model="number"
+                  prepend-icon="mdi-minus-circle-outline"
+                  append-outer-icon="mdi-plus-circle-outline"
+                  @click:append-outer="increment"
+                  dense
+                  outlined
+                  @click:prepend="decrement"
+                  class="centered-input inputPrice"
+                  type="number"
+                >
+                  <!-- <template  v-slot:prepend-icon="{ on, attrs }">
                     <v-btn
                       v-bind="attrs"
                       disabled
@@ -68,35 +82,41 @@
                       </v-icon>
                     </v-btn>
                   </template> -->
-                  </v-text-field>
-                </v-row>
-              </v-col>
+                </v-text-field>
+              </div>
+              <v-spacer></v-spacer>
               <div class="text-subtitle-2 orange--text">
                 {{ itemInfor.number_product }} sản phẩm có sẵn
               </div>
-            </v-row>
-            <v-row>
-              <v-spacer></v-spacer>
-              <v-col>
-                <v-btn height="50px" color="#F5F5F5" class="red--text"  elevation="0" outlined>
-                  <v-icon dark style="margin-right: 5px"> mdi-cart </v-icon>
-                    Thêm vào giỏ hàng
-                </v-btn>
-              </v-col>
-              <v-spacer></v-spacer>
-              <v-col>
-                <v-btn
-                  height="50px"
-                  color="#FF424E"
-                  class="white--text"
-                  elevation="0"
-                >
-                  <span style="font-size: 15px;"> Mua ngay </span>
-                </v-btn>
-              </v-col>
-              <v-spacer></v-spacer>
-            </v-row>
-          </v-col>
+            </div>
+          </v-container>
+          <v-row>
+            <v-spacer></v-spacer>
+            <v-col>
+              <v-btn
+                height="50px"
+                color="#F5F5F5"
+                class="red--text"
+                elevation="0"
+                outlined
+              >
+                <v-icon dark style="margin-right: 5px"> mdi-cart </v-icon>
+                Thêm vào giỏ hàng
+              </v-btn>
+            </v-col>
+            <v-spacer></v-spacer>
+            <v-col>
+              <v-btn
+                height="50px"
+                color="#FF424E"
+                class="white--text"
+                elevation="0"
+              >
+                <span style="font-size: 15px"> Mua ngay </span>
+              </v-btn>
+            </v-col>
+            <v-spacer></v-spacer>
+          </v-row>
         </v-list-item-content>
 
         <!-- <v-list-item-avatar

@@ -28,8 +28,7 @@
         data-hydro-click='{"event_type":"analytics.click","payload":{"category":"Sign up","action":"click to sign up for account","label":"ref_page:/about;ref_cta:Sign up;ref_loc:header logged out","originating_url":"https://github.com/about","user_id":null}}'
         data-hydro-click-hmac="ccd99aea4b7ecb44734b581afed8808b69de7ea682e56eacb5d80a453d1dae48"
       >
-        <v-icon dark>mdi-cart</v-icon>
-        Giỏ hàng
+         <IconCart :cartNumber="listCart.length"/>
       </a>
       <a href="/login"
         class="HeaderMenu-link flex-shrink-0 no-underline mr-3"
@@ -47,12 +46,22 @@
 
 <script>
 // @ is an alias to /src
+import axios from 'axios'
+import IconCart from '@/views/CartManagement/IconCart'
 
 export default {
   name: 'AppToolbar',
-  components: {},
+  components: {
+    IconCart
+  },
+  created () {
+    this.getListCart()
+  },
+  mounted () {
+  },
   data () {
     return {
+      listCart: [],
       items: [
         { title: 'Click Me' },
         { title: 'Click Me' },
@@ -61,7 +70,19 @@ export default {
       ]
     }
   },
-  watch: {}
+  watch: {},
+  methods: {
+     getListCart() {
+       this.loading = true;
+       axios
+         .get("https://5f7e99cb0198da0016893b3a.mockapi.io/usermanager/cart")
+         .then((response) => {
+           console.log(response);
+           this.listCart = response.data;
+         });
+         console.log(this.listCart)
+     },
+  }
 }
 </script>
 

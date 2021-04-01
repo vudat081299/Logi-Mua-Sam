@@ -1,7 +1,7 @@
 <template>
   <v-container class="pa-0 fill-height align-start">
     <v-col class="pa-0">
-      <v-row no-gutters>
+      <v-row no-gutters style="margin-top: 10px">
         <v-breadcrumbs class="pa-0" :items="breadcrumbList">
           <template v-slot:divider>
             <v-icon>mdi-chevron-right</v-icon>
