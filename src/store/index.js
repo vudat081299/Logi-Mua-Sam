@@ -5,6 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    numberCart: 0,
+    product: {},
+    selectProductList: []
   },
   mutations: {
   },

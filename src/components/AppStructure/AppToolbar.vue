@@ -28,7 +28,7 @@
         data-hydro-click='{"event_type":"analytics.click","payload":{"category":"Sign up","action":"click to sign up for account","label":"ref_page:/about;ref_cta:Sign up;ref_loc:header logged out","originating_url":"https://github.com/about","user_id":null}}'
         data-hydro-click-hmac="ccd99aea4b7ecb44734b581afed8808b69de7ea682e56eacb5d80a453d1dae48"
       >
-         <IconCart :cartNumber="listCart.length"/>
+         <IconCart :cartNumber=" this.$store.state.numberCart"/>
       </a>
       <a href="/login"
         class="HeaderMenu-link flex-shrink-0 no-underline mr-3"
@@ -73,12 +73,12 @@ export default {
   watch: {},
   methods: {
      getListCart() {
-       this.loading = true;
        axios
          .get("https://5f7e99cb0198da0016893b3a.mockapi.io/usermanager/cart")
          .then((response) => {
            console.log(response);
-           this.listCart = response.data;
+           this.$store.state.numberCart = response.data.length
+          //  this.listCart = response.data;
          });
          console.log(this.listCart)
      },

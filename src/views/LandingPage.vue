@@ -1,6 +1,7 @@
 <template>
   <v-container class="landing-page fill-height">
     <v-container class="main-content fill-height">
+      <v-row align="center" justify="center">
       <div
         class="application-main mb-9"
         data-commit-hovercards-enabled
@@ -159,6 +160,7 @@
          1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25
           1.25a2 2 0 01-2.83 0z"></path></svg></a>Appendix</h2> -->
       <GoodsManagement />
+      </v-row>
     </v-container>
   </v-container>
 </template>
@@ -197,12 +199,12 @@ export default {
   background-color: #ffffff;
   width: 100%;
   max-width: 100%;
-  min-width: 1000px;
+  /* min-width: 1000px; */
   padding: 0px;
 }
 .main-content {
-  width: 1000px;
-  max-width: 1000px;
+  /* width: 2000px; */
+  max-width: 2000px;
   padding: 0px;
 }
 

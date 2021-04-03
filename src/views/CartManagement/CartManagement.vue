@@ -3,7 +3,6 @@
     <BrandIdentity/>
   </div> -->
   <v-container>
-    
     <!-- <div >
     <IconCart :cartNumber="items.length"/>
     </div> -->
@@ -59,29 +58,27 @@
             </div>
           </template>
           <template v-slot:[`item.number`]="{ item }">
-              <v-text-field
-                v-model="item.number"
-                prepend-icon="mdi-minus-circle-outline"
-                append-outer-icon="mdi-plus-circle-outline"
-                @click:append-outer="
-                  (item.number = increment(item.number)) &&
-                    changeValueTextField()
-                "
-                dense
-                outlined
-                @click:prepend="
-                  item.number > 1
-                    ? (item.number = item.number - 1) &&
-                      changeValueTextField()
-                    : (item.number = 1)
-                "
-                class="centered-input inputPrice"
-                type="number"
-                style="margin-top: 20px"
-                @change="changeValueTextField()"
-                input="Number"
-              >
-              </v-text-field>
+            <v-text-field
+              v-model="item.number"
+              prepend-icon="mdi-minus-circle-outline"
+              append-outer-icon="mdi-plus-circle-outline"
+              @click:append-outer="
+                (item.number = increment(item.number)) && changeValueTextField()
+              "
+              dense
+              outlined
+              @click:prepend="
+                item.number > 1
+                  ? (item.number = item.number - 1) && changeValueTextField()
+                  : (item.number = 1)
+              "
+              class="centered-input inputPrice"
+              type="number"
+              style="margin-top: 20px"
+              @change="changeValueTextField()"
+              input="Number"
+            >
+            </v-text-field>
           </template>
           <template v-slot:[`item.func`]="{ item }">
             <v-icon @click="deleteCart(item.id)">mdi-delete</v-icon>
@@ -110,6 +107,21 @@
         </v-btn>
       </v-card-actions>
     </v-card>
+    <v-dialog max-width="500px" v-model="dialogBuy">
+      <v-card>
+        <v-card-title>
+          <v-spacer></v-spacer>
+          Thông báo
+          <v-spacer></v-spacer>
+        </v-card-title>
+        <v-layout justify-center style="margin: 20px"> Bạn cần chọn sản phẩm </v-layout>
+        <v-layout justify-center>
+          <v-card-actions>
+            <v-btn @click="closeDialog()" color="primary"> Đóng </v-btn>
+          </v-card-actions>
+        </v-layout>
+      </v-card>
+    </v-dialog>
   </v-container>
   <!-- <v-data-table :headers="headers" :items="items" width="100%"> </v-data-table> -->
 </template>
@@ -117,51 +129,55 @@
 <script>
 import BrandIdentity from "@/components/BrandIdentity";
 import axios from "axios";
-import IconCart from '@/views/CartManagement/IconCart'
+import IconCart from "@/views/CartManagement/IconCart";
 export default {
   components: {
     BrandIdentity,
-    IconCart
+    IconCart,
+  },
+  props: {
+    productPick: Object,
   },
   watch: {
     selectProduct: {
       handler: function () {
-        if (this.selectProduct !== []) {
-          this.totalProduct = 0;
-          this.totalCash = 0;
-          for (var index = 0; index < this.selectProduct.length; index++) {
-            this.totalCash +=
-              this.selectProduct[index].cash_product *
-              this.selectProduct[index].number;
-            this.totalProduct += eval(this.selectProduct[index].number);
-          }
-        } else {
-          this.totalProduct = 0;
-          this.totalCash = 0;
-        }
-        console.log(this.totalProduct);
-        console.log(this.totalCash);
+        // if (this.selectProduct !== []) {
+        //   this.totalProduct = 0;
+        //   this.totalCash = 0;
+        //   for (var index = 0; index < this.selectProduct.length; index++) {
+        //     this.totalCash +=
+        //       this.selectProduct[index].cash_product *
+        //       this.selectProduct[index].number;
+        //     this.totalProduct += eval(this.selectProduct[index].number);
+        //   }
+        // } else {
+        //   this.totalProduct = 0;
+        //   this.totalCash = 0;
+        // }
+        // console.log(this.totalProduct);
+        // console.log(this.totalCash);
+        this.changeValueTextField();
       },
       immediate: true,
     },
     numberProduct: {
       handler: function () {
-        if (this.selectProduct !== []) {
-          this.totalProduct = 0;
-          this.totalCash = 0;
-          for (var index = 0; index < this.selectProduct.length; index++) {
-            this.totalCash +=
-              this.selectProduct[index].cash_product *
-              this.selectProduct[index].number;
-            this.totalProduct += eval(this.selectProduct[index].number);
-          }
-        } else {
-          this.totalProduct = 0;
-          this.totalCash = 0;
-        }
-        console.log(this.totalProduct);
-        console.log(this.totalCash);
-        // changeValueTextField()
+        // if (this.selectProduct !== []) {
+        //   this.totalProduct = 0;
+        //   this.totalCash = 0;
+        //   for (var index = 0; index < this.selectProduct.length; index++) {
+        //     this.totalCash +=
+        //       this.selectProduct[index].cash_product *
+        //       this.selectProduct[index].number;
+        //     this.totalProduct += eval(this.selectProduct[index].number);
+        //   }
+        // } else {
+        //   this.totalProduct = 0;
+        //   this.totalCash = 0;
+        // }
+        // console.log(this.totalProduct);
+        // console.log(this.totalCash);
+        this.changeValueTextField();
       },
       immediate: true,
     },
@@ -174,9 +190,12 @@ export default {
   },
   created() {
     this.getListCart();
+    // this.selectProduct = this.productPick
   },
   mounted() {
     this.getListCart();
+    // this.selectProduct[0] = this.$store.state.product
+    // console.log(this.selectProduct)
   },
   computed: {
     headers() {
@@ -202,6 +221,7 @@ export default {
         .get("https://5f7e99cb0198da0016893b3a.mockapi.io/usermanager/cart")
         .then((response) => {
           this.items = response.data;
+          this.$store.state.numberCart = this.items.length;
           this.loading = false;
         });
     },
@@ -211,8 +231,18 @@ export default {
         currency: "VND",
       }).format(n);
     },
+    closeDialog() {
+      this.dialogBuy = false;
+    },
     buyProduct() {
-      console.log(this.selectProduct[0].number);
+      console.log(this.selectProduct);
+      if (this.selectProduct.length === 0) {
+        console.log("Ban can chon san pham");
+        this.dialogBuy = true;
+      } else {
+        localStorage.setItem("listProduct", JSON.stringify(this.selectProduct));
+        this.$router.push("/payment");
+      }
     },
     decrement(number) {
       if (number > 1) {
@@ -223,27 +253,25 @@ export default {
     },
     increment(number) {
       number = parseInt(number) + 1 || 1;
-      return number
+      return number;
     },
     detectNumberProduct() {
       this.numberProduct = number;
     },
-    changeValueTextField () {
+    changeValueTextField() {
       if (this.selectProduct !== []) {
-          this.totalProduct = 0;
-          this.totalCash = 0;
-          for (var index = 0; index < this.selectProduct.length; index++) {
-            this.totalCash +=
-              this.selectProduct[index].cash_product *
-              this.selectProduct[index].number;
-            this.totalProduct +=  eval(this.selectProduct[index].number);
-          }
-        } else {
-          this.totalProduct = 0;
-          this.totalCash = 0;
+        this.totalProduct = 0;
+        this.totalCash = 0;
+        for (var index = 0; index < this.selectProduct.length; index++) {
+          this.totalCash +=
+            this.selectProduct[index].cash_product *
+            this.selectProduct[index].number;
+          this.totalProduct += eval(this.selectProduct[index].number);
         }
-        console.log(this.totalProduct);
-        console.log(this.totalCash);
+      } else {
+        this.totalProduct = 0;
+        this.totalCash = 0;
+      }
     },
     deleteCart(id) {
       axios
@@ -262,6 +290,7 @@ export default {
   },
   data() {
     return {
+      dialogBuy: false,
       items: [],
       search: "",
       footerProps: {
@@ -278,7 +307,7 @@ export default {
       loading: false,
       numberTextField: 0,
       images: [],
-      plus: 1
+      plus: 1,
     };
   },
 };
@@ -294,6 +323,6 @@ export default {
   font-size: 15px;
 }
 .centered-input input {
-  text-align: center
+  text-align: center;
 }
 </style>

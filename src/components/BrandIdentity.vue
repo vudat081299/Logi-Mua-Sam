@@ -1,41 +1,46 @@
 <template>
-  <div style="display: flex; justify-content: center;
-  align-items: center;">
-    <img :class="leading" :width="size" :height="size" alt="Vue logo" src="@/assets/logo.png">
-    <h2
-      class="primary--text font-weight-regular"
-    >
-      LogiTech
-    </h2>
-  </div>
+  <a href="/">
+    <div style="display: flex; justify-content: center; align-items: center">
+      <img
+        :class="leading"
+        :width="size"
+        :height="size"
+        alt="Vue logo"
+        src="@/assets/logo.png"
+      />
+      <h2 class="primary--text font-weight-regular">LogiTech</h2>
+    </div>
+  </a>
 </template>
 
 <script>
 // @ is an alias to /src
 
 export default {
-  name: 'BrandIdentity',
+  name: "BrandIdentity",
   props: {
     position: {
       type: String,
-      default: 'justify-center'
+      default: "justify-center",
     },
     leading: {
       type: String,
-      default: 'ml-0 mr-2'
+      default: "ml-0 mr-2",
     },
     size: {
       type: String,
-      default: '60'
-    }
+      default: "60",
+    },
   },
-  components: {
+  components: {},
+  data() {
+    return {};
   },
-  data () {
-    return {
-    }
+  methods: {
+    pushToHome() {
+      this.$router.push("/");
+    },
   },
-  watch: {
-  }
-}
+  watch: {},
+};
 </script>

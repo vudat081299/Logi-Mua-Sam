@@ -1,5 +1,25 @@
 <template>
   <div>
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="timeout"
+      centered
+      color="green"
+    >
+      Đã thêm thành công vào giỏ hàng
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="black"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+        <v-spacer></v-spacer>
+          <v-icon small>mdi-close</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
     <v-card class="ma-0 pa-0" max-width="" flat>
       <v-list-item class="pa-0" three-line>
         <v-list-item-content class="pa-0">
@@ -99,23 +119,25 @@
                 class="red--text"
                 elevation="0"
                 outlined
+                @click="addToCart()"
               >
                 <v-icon dark style="margin-right: 5px"> mdi-cart </v-icon>
                 Thêm vào giỏ hàng
               </v-btn>
             </v-col>
             <v-spacer></v-spacer>
-            <v-col>
+            <!-- <v-col>
               <v-btn
                 height="50px"
                 color="#FF424E"
                 class="white--text"
                 elevation="0"
+                @click="addToCartNow()"
               >
                 <span style="font-size: 15px"> Mua ngay </span>
               </v-btn>
             </v-col>
-            <v-spacer></v-spacer>
+            <v-spacer></v-spacer> -->
           </v-row>
         </v-list-item-content>
 
@@ -131,13 +153,20 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "DetailItem",
   props: {
     itemInfor: Object,
   },
+  mounted () {
+    this.setValueForCart()
+  },
   data() {
     return {
+      cartValue: {},
+      snackbar: false,
+      timeout: 2000,
       number: 1,
       iconIndex: 0,
       countProductRules: [
@@ -168,6 +197,40 @@ export default {
   watch: {},
 
   methods: {
+    setValueForCart() {
+this.cartValue = this.itemInfor
+    },
+    addToCart() {
+      axios
+        .post("https://5f7e99cb0198da0016893b3a.mockapi.io/usermanager/cart", {
+          product: this.itemInfor.title,
+          cash_product: this.itemInfor.cash[0].cash_product,
+          number: this.number,
+        })
+        .then((response) => {
+          console.log(response);
+          this.snackbar = true
+          this.getListCart();
+          // this.$store.state.numberCart = response.data.length;
+          //  this.listCart = response.data;
+        });
+      // console.log(this.listCart);
+    },
+    addToCartNow() {
+      // console.log(this.itemInfor)
+      this.$store.state.product = this.itemInfor
+      this.addToCart()
+      this.$router.push("/cart")
+    },
+    getListCart() {
+       axios
+         .get("https://5f7e99cb0198da0016893b3a.mockapi.io/usermanager/cart")
+         .then((response) => {
+           console.log(response);
+           this.$store.state.numberCart = response.data.length
+          //  this.listCart = response.data;
+         });
+     },
     formatPrice(n) {
       return new Intl.NumberFormat("vi-VN", {
         style: "currency",
