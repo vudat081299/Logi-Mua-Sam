@@ -29,8 +29,8 @@
                     >
                       <v-img
                         contain
-                        :src="`https://picsum.photos/500/300?image=${id}`"
-                        :lazy-src="`https://picsum.photos/10/6?image=${id}`"
+                        :src="mainImg + id"
+                        :lazy-src="mainImg + id"
                         class=""
                         max-height="415"
                         max-width="415"
@@ -135,19 +135,18 @@
                         <template>
                           <v-card class="mx-auto" max-width="344">
                             <v-card-text>
-                              <div>Word of the Day</div>
+                              <div>Sản phẩm</div>
                               <p class="display-1 text--primary">
-                                be•nev•o•lent
+                              {{ itemInfor.title }}
                               </p>
-                              <p>adjective</p>
+                              <p>Thương mại</p>
                               <div class="text--primary">
-                                well meaning and kindly.<br />
-                                "a benevolent smile"
+                               Chuẩn hóa chất lượng.
                               </div>
                             </v-card-text>
                             <v-card-actions>
                               <v-btn text color="deep-purple accent-4">
-                                Learn More
+                                Tìm hiểu thêm
                               </v-btn>
                             </v-card-actions>
                           </v-card>
@@ -217,6 +216,7 @@ export default {
     return {
       id: this.$route.params.id,
       itemInfor: {},
+      mainImg: "https://picsum.photos/500/300?image=",
       textlabel: "",
       rating: 3,
       imgList: [
@@ -267,6 +267,7 @@ export default {
         value.selected = false;
       });
       this.imgList[this.imgList.indexOf(item)].selected = true;
+      this.id = this.selectedImg.id *5 + 10
     },
   },
 };

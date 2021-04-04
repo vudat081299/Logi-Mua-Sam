@@ -108,19 +108,16 @@
       </v-card-actions>
     </v-card>
     <v-dialog max-width="500px" v-model="dialogBuy">
-      <v-card>
-        <v-card-title>
-          <v-spacer></v-spacer>
-          Thông báo
-          <v-spacer></v-spacer>
-        </v-card-title>
-        <v-layout justify-center style="margin: 20px"> Bạn cần chọn sản phẩm </v-layout>
-        <v-layout justify-center>
-          <v-card-actions>
-            <v-btn @click="closeDialog()" color="primary"> Đóng </v-btn>
-          </v-card-actions>
-        </v-layout>
-      </v-card>
+       <v-card>
+      <v-toolbar dark dense flat>
+        <v-toolbar-title class="white--text">Thông báo</v-toolbar-title>
+      </v-toolbar>
+      <v-card-text class="pa-4">Bạn cần chọn sản phẩm !</v-card-text>
+      <v-card-actions class="pt-0">
+        <v-spacer></v-spacer>
+        <v-btn color="primary darken-1" text @click="closeDialog">Đóng</v-btn>
+      </v-card-actions>
+    </v-card>
     </v-dialog>
   </v-container>
   <!-- <v-data-table :headers="headers" :items="items" width="100%"> </v-data-table> -->
@@ -290,6 +287,16 @@ export default {
   },
   data() {
     return {
+       dialog: false,
+    resolve: null,
+    reject: null,
+    message: null,
+    title: null,
+    options: {
+      color: 'primary',
+      width: 290,
+      zIndex: 200
+    },
       dialogBuy: false,
       items: [],
       search: "",

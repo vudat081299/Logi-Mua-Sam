@@ -154,7 +154,7 @@
         $ • Viet Nam, Electrical Shop
       </div>
 
-      <div>Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.</div>
+      <div>Sàn thương mại điện tử LogiTech.</div>
     </v-card-text>
 
     <v-divider class="mt-2 mx-4"></v-divider>
