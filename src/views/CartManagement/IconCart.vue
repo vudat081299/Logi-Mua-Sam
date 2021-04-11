@@ -1,6 +1,6 @@
 <template>
   <div style="display: flex; justify-content: center; align-items: center">
-    <v-badge :color="setColorBadge()" overlap :content="this.cartNumber" :value="this.cartNumber">
+    <v-badge offset-x="0" offset-y="10" :color="setColorBadge()" left :content="this.cartNumber" :value="this.cartNumber">
       <v-icon dark>mdi-cart</v-icon>
     </v-badge>
     <span style="margin-left: 12px"> Giỏ hàng</span>
@@ -36,7 +36,7 @@ export default {
       if (this.cartNumber === 0) {
         return "";
       } else {
-        return "green";
+        return "red";
       }
     },
   },

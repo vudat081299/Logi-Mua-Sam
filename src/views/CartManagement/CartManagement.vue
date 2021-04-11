@@ -27,7 +27,7 @@
         <v-alert type="success" v-if="this.deleteSuccess">
           {{ this.textAlert }}
         </v-alert>
-        <v-data-table
+        <!-- <v-data-table
           v-model="selectProduct"
           :headers="headers"
           :items="items"
@@ -36,6 +36,17 @@
           :footer-props="footerProps"
           show-select
           :loading="loading"
+        > -->
+        <v-data-table
+          v-model="selectProduct"
+          :headers="headers"
+          :items="items"
+          :search="search"
+          :footer-props="footerProps"
+          show-select
+          :loading="loading"
+          hide-default-footer
+          disable-pagination
         >
           <template v-slot:[`item.product`]="{ item }">
             <div style="display: flex; align-items: center">
