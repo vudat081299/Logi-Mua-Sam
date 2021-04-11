@@ -2,7 +2,7 @@
   <!-- <div style="align-items: stretch">
     <BrandIdentity/>
   </div> -->
-  <v-container>
+  <v-container class="fill-height" style="background-color: red;">
     <!-- <div >
     <IconCart :cartNumber="items.length"/>
     </div> -->

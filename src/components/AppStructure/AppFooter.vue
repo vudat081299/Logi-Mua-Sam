@@ -59,7 +59,7 @@
     </div>
   </div> -->
   <div class="color-bg-secondary">
-    <div class="container-xl p-responsive f6 py-4 d-sm-flex flex-justify-between flex-row-reverse flex-items-center">
+    <div style="max-width: 1800px" class="container-xl p-responsive f6 py-4 d-sm-flex flex-justify-between flex-row-reverse flex-items-center">
       <ul class="list-style-none d-flex flex-items-center mb-3 mb-sm-0 lh-condensed-ultra">
         <li class="mr-3">
           <a href="https://twitter.com/github" data-ga-click="Footer, go to Twitter, text:twitter" class="color-gray-4">
