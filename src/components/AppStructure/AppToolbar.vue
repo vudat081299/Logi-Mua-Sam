@@ -3,8 +3,8 @@
     class="Header-old header-logged-out js-details-container Details position-relative f4 py-2"
     role="banner"
   >
-    <div class="container-xl d-lg-flex flex-items-center p-responsive" style="max-width: 1500px">
-      <div class="d-flex flex-justify-between flex-items-center">
+    <div class="container d-md-flex flex-items-center p-responsive" style="max-width: 1500px">
+      <div class="d-flex flex-justify-start flex-items-center">
         <a class="" href="/" aria-label="Homepage">
           <v-icon class="mx-4" dark x-large>mdi-dev-to</v-icon>
         </a>
@@ -22,47 +22,49 @@
       </div>
       <v-spacer />
 
-      <a
-        href="/cart"
-        class="mr-9 HeaderMenu-link flex-shrink-0 d-inline-block no-underline color-border-tertiary rounded-2 px-2 py-1 js-signup-redesign-target js-signup-redesign-control"
-        data-hydro-click='{"event_type":"analytics.click","payload":{"category":"Sign up","action":"click to sign up for account","label":"ref_page:/about;ref_cta:Sign up;ref_loc:header logged out","originating_url":"https://github.com/about","user_id":null}}'
-        data-hydro-click-hmac="ccd99aea4b7ecb44734b581afed8808b69de7ea682e56eacb5d80a453d1dae48"
-      >
-        <IconCart :cartNumber="this.$store.state.numberCart" />
-      </a>
-      <div v-if="loginState">
-         <v-menu bottom offset-y>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on" icon>
-                <v-avatar>
-                  <v-icon light color="red">mdi-account</v-icon>
-                </v-avatar>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item-group v-model="model">
-                <v-list-item
-                  v-for="item in accounts"
-                  :key="item.text"
-                >
-                  <v-icon style="margin-right: 10px"> {{ item.icon }}</v-icon>
-                  <v-list-item-title>{{ item.text }}</v-list-item-title>
-                </v-list-item>
-              </v-list-item-group>
-            </v-list>
-          </v-menu>
-        Xin chào, {{ username }}
-      </div>
-      <div v-else>
-      <a href="/login" class="HeaderMenu-link flex-shrink-0 no-underline mr-3">
-        Sign in
-      </a>
-      <a
-        href="/signup"
-        class="HeaderMenu-link flex-shrink-0 d-inline-block no-underline border color-border-tertiary rounded px-2 py-1 js-signup-redesign-target js-signup-redesign-control"
-      >
-        Sign up
-      </a>
+      <div class="d-flex flex-justify-end flex-items-center">
+        <a
+          href="/cart"
+          class="mr-9 HeaderMenu-link flex-shrink-0 d-inline-block no-underline color-border-tertiary rounded-2 px-2 py-1 js-signup-redesign-target js-signup-redesign-control"
+          data-hydro-click='{"event_type":"analytics.click","payload":{"category":"Sign up","action":"click to sign up for account","label":"ref_page:/about;ref_cta:Sign up;ref_loc:header logged out","originating_url":"https://github.com/about","user_id":null}}'
+          data-hydro-click-hmac="ccd99aea4b7ecb44734b581afed8808b69de7ea682e56eacb5d80a453d1dae48"
+        >
+          <IconCart :cartNumber="this.$store.state.numberCart" />
+        </a>
+        <div v-if="loginState">
+          <v-menu bottom offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn v-bind="attrs" v-on="on" icon>
+                  <v-avatar>
+                    <v-icon light color="red">mdi-account</v-icon>
+                  </v-avatar>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item-group v-model="model">
+                  <v-list-item
+                    v-for="item in accounts"
+                    :key="item.text"
+                  >
+                    <v-icon style="margin-right: 10px"> {{ item.icon }}</v-icon>
+                    <v-list-item-title>{{ item.text }}</v-list-item-title>
+                  </v-list-item>
+                </v-list-item-group>
+              </v-list>
+            </v-menu>
+          Xin chào, {{ username }}
+        </div>
+        <div v-else>
+        <a href="/login" class="HeaderMenu-link flex-shrink-0 no-underline mr-3">
+          Sign in
+        </a>
+        <a
+          href="/signup"
+          class="HeaderMenu-link flex-shrink-0 d-inline-block no-underline border color-border-tertiary rounded px-2 py-1 js-signup-redesign-target js-signup-redesign-control"
+        >
+          Sign up
+        </a>
+        </div>
       </div>
     </div>
   </header>
