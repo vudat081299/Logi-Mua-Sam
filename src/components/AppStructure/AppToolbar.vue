@@ -6,7 +6,7 @@
     <div class="container d-md-flex flex-items-center p-responsive" style="max-width: 1500px">
       <div class="d-flex flex-justify-start flex-items-center">
         <a class="" href="/" aria-label="Homepage">
-          <v-icon class="mx-4" dark x-large>mdi-dev-to</v-icon>
+          <v-icon class="mr-4" dark x-large>mdi-dev-to</v-icon>
         </a>
         <a href="/" class="HeaderMenu-link flex-shrink-0 no-underline mr-3">
           Logi <span class="font-weight-light">Mua Sam</span>
@@ -33,37 +33,46 @@
         </a>
         <div v-if="loginState">
           <v-menu bottom offset-y>
-              <template v-slot:activator="{ on, attrs }">
+            <template v-slot:activator="{ on, attrs }">
+              <div v-bind="attrs" v-on="on">
+                <a class="HeaderMenu-link flex-shrink-0 no-underline mr-3">
+                  <span>Xin chào, {{ username }}</span>
+                </a>
                 <v-btn v-bind="attrs" v-on="on" icon>
-                  <v-avatar>
-                    <v-icon light color="red">mdi-account</v-icon>
+                  <v-avatar
+                    size="44px"
+                  >
+                    <img
+                      alt="Avatar"
+                      src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
+                    >
                   </v-avatar>
                 </v-btn>
-              </template>
-              <v-list>
-                <v-list-item-group v-model="model">
-                  <v-list-item
-                    v-for="item in accounts"
-                    :key="item.text"
-                  >
-                    <v-icon style="margin-right: 10px"> {{ item.icon }}</v-icon>
-                    <v-list-item-title>{{ item.text }}</v-list-item-title>
-                  </v-list-item>
-                </v-list-item-group>
-              </v-list>
-            </v-menu>
-          Xin chào, {{ username }}
+              </div>
+            </template>
+            <v-list>
+              <v-list-item-group v-model="model">
+                <v-list-item
+                  v-for="item in accounts"
+                  :key="item.text"
+                >
+                  <v-icon style="margin-right: 10px"> {{ item.icon }}</v-icon>
+                  <v-list-item-title>{{ item.text }}</v-list-item-title>
+                </v-list-item>
+              </v-list-item-group>
+            </v-list>
+          </v-menu>
         </div>
         <div v-else>
-        <a href="/login" class="HeaderMenu-link flex-shrink-0 no-underline mr-3">
-          Sign in
-        </a>
-        <a
-          href="/signup"
-          class="HeaderMenu-link flex-shrink-0 d-inline-block no-underline border color-border-tertiary rounded px-2 py-1 js-signup-redesign-target js-signup-redesign-control"
-        >
-          Sign up
-        </a>
+          <a href="/login" class="HeaderMenu-link flex-shrink-0 no-underline mr-3">
+            Sign in
+          </a>
+          <a
+            href="/signup"
+            class="HeaderMenu-link flex-shrink-0 d-inline-block no-underline border color-border-tertiary rounded px-2 py-1 js-signup-redesign-target js-signup-redesign-control"
+          >
+            Sign up
+          </a>
         </div>
       </div>
     </div>
