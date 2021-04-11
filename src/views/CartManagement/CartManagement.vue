@@ -7,13 +7,13 @@
 
         <!-- <span class="subheading" style="font-size: 30px">Giỏ hàng</span> -->
         
-        <h2
+        <h1
           id="user-content-items"
           class="mb-6 font-mktg h2-5-mktg-fluid h1-sm-mktg-fluid h0-lg-mktg-fluid mb-3"
           style="padding-left: 20px"
         >
           Giỏ hàng
-        </h2>
+        </h1>
         <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
@@ -27,9 +27,29 @@
         </v-text-field>
       </v-card-title>
       <v-card-text>
-        <v-alert type="success" v-if="this.deleteSuccess">
-          {{ this.textAlert }}
-        </v-alert>
+        <v-snackbar
+          v-model="this.deleteSuccess"
+          :multi-line="true"
+        >
+        
+          <h1
+            id="user-content-items"
+            class="ont-mktg h6-9-mktg-fluid h5-sm-mktg-fluid h4-lg-mktg-fluid"
+          >
+            {{ this.textAlert }}
+
+          </h1>
+          <template v-slot:action="{ attrs }">
+            <v-btn
+              color="red"
+              text
+              v-bind="attrs"
+              @click="snackbar = false"
+            >
+              Đóng
+            </v-btn>
+          </template>
+        </v-snackbar>
         <!-- <v-data-table
           v-model="selectProduct"
           :headers="headers"
@@ -136,7 +156,7 @@
                 max-height="90px"
                 max-width="135px"
               ></v-img>
-              <span style="margin-left: 15px">{{ item.product }}</span>
+              <span class="black--text font-weight-medium" style="margin-left: 15px">{{ item.product }}</span>
             </div>
           </template>
           
@@ -168,34 +188,40 @@
             <h5 
               id="user-content-items"
               class="font-mktg h7-10-mktg-fluid h6-sm-mktg-fluid h5-lg-mktg-fluid"
-            ><span class="text-decoration-underline">đ</span>{{ item.cash }}</h5>
+            >{{ item.cash }} <span class="text-decoration-underline">đ</span></h5>
           </template>
 
           <template v-slot:[`item.func`]="{ item }">
-            <v-icon large @click="deleteCart(item.id)">mdi-delete</v-icon>
+            <v-icon large @click="deleteCart(item)">mdi-delete</v-icon>
           </template>
-          <template slot="no-data"> Không có dữ liệu </template>
-          <template slot="empty-wrapper"> Không có dữ liệu </template>
+          <template slot="no-data">Chưa có sản phẩm</template>
+          <template slot="empty-wrapper">Chưa có sản phẩm</template>
         </v-data-table>
 
       </v-card-text>
-      <v-card-actions>
+      <v-card-actions class="pa-3">
         <v-spacer></v-spacer>
         <span style="margin-right: 20px; font-size: 18px"
-          >Tổng tiền hàng ( {{ this.totalProduct }} sản phẩm):
-          <span style="color: red; font-size: 20px">
-            {{ formatPrice(this.totalCash) }}
-          </span>
+          >Tổng tiền hàng ({{ this.totalProduct }} sản phẩm):
+          <h1
+            id="user-content-items"
+            class="font-mktg h6-9-mktg-fluid h5-sm-mktg-fluid h4-lg-mktg-fluid"
+          >
+            <span style="color: red; font-size: 27px">
+              <!-- {{ formatPrice(this.totalCash) }} -->
+              {{ totalCash }} <span class="text-decoration-underline">đ</span>
+            </span>
+          </h1>
         </span>
         <v-btn
           width="20%"
-          height="50px"
+          height="60px"
           color="#FF424E"
           class="white--text"
           elevation="0"
           @click="buyProduct"
         >
-          <span style="font-size: 15px"> Mua hàng </span>
+          <span style="font-size: 18px"> Mua hàng </span>
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -250,6 +276,7 @@ export default {
       numberTextField: 0,
       images: [],
       plus: 1,
+      checkChangeStateCart: false
     }
   },
   components: {
@@ -260,6 +287,23 @@ export default {
     productPick: Object,
   },
   watch: {
+    checkChangeStateCart: {
+      handler: function () {
+        this.items.forEach(function (value, index, array) {
+          if (value.number >= 100) {
+            array[index].number = 100
+          }
+          array[index].cash = value.number * value.cash_product
+        })
+      },
+      immediate: true,
+    },
+    selected: {
+      handler: function () {
+        this.changeValueTextField();
+      },
+      immediate: true
+    },
     selectProduct: {
       handler: function () {
         // if (this.selectProduct !== []) {
@@ -352,7 +396,6 @@ export default {
           this.items.forEach(function (value, index, array) {
             array[index].cash = value.number * value.cash_product
           })
-          console.log(this.items)
           this.$store.state.numberCart = this.items.length;
           this.loading = false;
         });
@@ -367,9 +410,7 @@ export default {
       this.dialogBuy = false;
     },
     buyProduct() {
-      console.log(this.selectProduct);
       if (this.selectProduct.length === 0) {
-        console.log("Ban can chon san pham");
         this.dialogBuy = true;
       } else {
         localStorage.setItem("listProduct", JSON.stringify(this.selectProduct));
@@ -391,29 +432,42 @@ export default {
       this.numberProduct = number;
     },
     changeValueTextField() {
+      this.totalProduct = 0;
+      this.totalCash = 0;
+      console.log(this.totalCash)
+      console.log(this.selectProduct)
       if (this.selectProduct !== []) {
         this.totalProduct = 0;
         this.totalCash = 0;
         for (var index = 0; index < this.selectProduct.length; index++) {
-          this.totalCash +=
-            this.selectProduct[index].cash_product *
-            this.selectProduct[index].number;
+          this.totalCash += this.selectProduct[index].cash_product * this.selectProduct[index].number;
           this.totalProduct += eval(this.selectProduct[index].number);
         }
+        this.checkChangeStateCart = !this.checkChangeStateCart
       } else {
         this.totalProduct = 0;
         this.totalCash = 0;
       }
     },
-    deleteCart(id) {
+    deleteCart(item) {
       axios
         .delete(
-          "https://5f7e99cb0198da0016893b3a.mockapi.io/usermanager/cart/" + id
+          "https://5f7e99cb0198da0016893b3a.mockapi.io/usermanager/cart/" + item.id
         )
         .then((response) => {
-          console.log(response);
-          this.getListCart();
+          
+          var filtered = this.selectProduct.filter(function(value, index, arr){ 
+              return value !== item;
+          });
+          this.selectProduct = filtered
+          
+          var filteredCartItems = this.items.filter(function(value, index, arr){ 
+              return value !== item;
+          });
+          this.items = filteredCartItems
+          // this.getListCart();
           this.deleteSuccess = true;
+          this.changeValueTextField()
           setTimeout(() => {
             this.deleteSuccess = false;
           }, 1500);
@@ -438,5 +492,9 @@ export default {
 
 .main-container {
   width: 80%;
+}
+
+.v-btn {
+  text-transform: none;
 }
 </style>
