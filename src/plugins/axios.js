@@ -14,7 +14,7 @@ function createInstance(baseURL) {
 }
 instance.interceptors.request.use(function (config) {
     const token = localStorage.getItem('access_token');
-    config.headers['x-access-token'] =  token;
+    config.headers.Authorization =  token;
     return config;
 });
 

@@ -1,6 +1,6 @@
 <template>
-  <v-card shaped color="#EEEEEE">
-    <v-card flat outlined>
+  <v-card shaped color="#FFF3E0" flat>
+    <v-card flat outlined color="#EEEEEE">
       <v-card-title>{{ item.product }}</v-card-title>
       <v-row align="center" justify="center">
         <v-col cols="6" class="d-flex justify-start align-center">
@@ -52,7 +52,7 @@
         {{ formatPrice("30000") }}
       </v-col>
     </v-row>
-    <!-- <v-card height="5vh"> -->
+    <v-card color="#FAFAFA">
     <v-row align="center" justify="center">
       <v-col cols="5" class="d-flex justify-end"></v-col>
       <!-- <v-col cols="2" class="d-flex justify-end">
@@ -71,7 +71,7 @@
         >{{ formatPrice(item.cash_product * item.number + 30000) }}
       </v-col>
     </v-row>
-    <!-- </v-card> -->
+    </v-card>
   </v-card>
 </template>
 

@@ -12,54 +12,44 @@
             Các mặt hàng
           </h1>
           <v-spacer></v-spacer>
-          <!-- <a
-            href="/cart"
-            class="mr-9 HeaderMenu-link flex-shrink-0 d-inline-block no-underline color-border-tertiary rounded-2 px-2 py-1 js-signup-redesign-target js-signup-redesign-control"
-            data-hydro-click='{"event_type":"analytics.click","payload":{"category":"Sign up","action":"click to sign up for account","label":"ref_page:/about;ref_cta:Sign up;ref_loc:header logged out","originating_url":"https://github.com/about","user_id":null}}'
-            data-hydro-click-hmac="ccd99aea4b7ecb44734b581afed8808b69de7ea682e56eacb5d80a453d1dae48"
-          >
-            <div
-              style="
-                display: flex;
-                justify-content: center;
-                align-items: center;
-              "
-            >
-              <v-badge
-                :color="setColorBadge()"
-                overlap
-                :content="this.cartNumber"
-                :value="this.cartNumber"
-              >
-                <v-icon dark color="black">mdi-cart</v-icon>
-              </v-badge>
-              <span style="margin-left: 12px; color: black"> Giỏ hàng</span>
-            </div>
-          </a> -->
+          <v-col sm="5">
           <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          label="Tìm kiếm"
-          style="margin-right: 40px"
-        ></v-text-field>
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Tìm kiếm"
+            style="margin-right: 40px"
+            filled
+            rounded
+            height="60px"
+            dense
+          ></v-text-field>
+          </v-col>
         </v-card-title>
         <v-card-text>
-          <v-container>
-            <v-row justify="center" align="center">
               <v-card
-                class="justify-center d-flex flex-wrap"
+                class="d-flex justify-center flex-wrap"
                 color="#ffffff"
                 flat
                 tile
                 :loading="loading"
               >
+              
+            <!-- <v-row justify="center" align="center"> -->
                 <LoadingCircleOverlay :dialog="loading" />
-                <div v-for="product in productList" :key="product.id">
-                  <Items :item="product"></Items>
+                <!-- <v-card-title class="justify-start justify-space-around"> -->
+                  
+                <div v-for="(product, index) in productList" :key="product.id">
+                  <Items :item="product" v-if="showPage(index)"></Items>
                 </div>
+                
+                <!-- </v-card-title> -->
+                
+            <!-- </v-row> -->
               </v-card>
-            </v-row>
-          </v-container>
+          <v-pagination
+            v-model="page"
+            :length="Math.ceil(productList.length / numberOfPage)"
+          ></v-pagination>
         </v-card-text>
       </v-card>
     </v-row>
@@ -71,6 +61,13 @@ import axios from "axios";
 import Items from "@/components/Items";
 import LoadingCircleOverlay from "@/components/LoadingCircleOverlay";
 export default {
+  watch: {
+    page: {
+      handler: function () {
+        console.log(this.page);
+      },
+    },
+  },
   components: {
     Items,
     LoadingCircleOverlay,
@@ -81,12 +78,24 @@ export default {
   },
   data() {
     return {
+      page: 1,
+      numberOfPage: 20,
+      search: "",
       productList: [],
       loading: false,
       cartNumber: 0,
     };
   },
   methods: {
+    showPage(index) {
+      if (
+        index >= this.page * this.numberOfPage - this.numberOfPage &&
+        index <= this.page * this.numberOfPage - 1
+      ) {
+        return true;
+      }
+      return false;
+    },
     getListProduct() {
       this.loading = true;
       axios

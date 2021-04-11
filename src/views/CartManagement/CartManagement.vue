@@ -21,6 +21,9 @@
           append-icon="mdi-magnify"
           label="Tìm kiếm"
           style="padding-top: 12px"
+          filled
+            rounded
+            dense
         ></v-text-field
       ></v-card-title>
       <v-card-text>
@@ -32,10 +35,12 @@
           :headers="headers"
           :items="items"
           :search="search"
-          height="60vh"
+          height="65vh"
           :footer-props="footerProps"
           show-select
           :loading="loading"
+           hide-default-footer
+           fixed-header
         >
           <template v-slot:[`item.product`]="{ item }">
             <div style="display: flex; align-items: center">
@@ -57,6 +62,26 @@
               {{ formatPrice(item.cash_product * item.number) }}
             </div>
           </template>
+          <template v-slot:[`header.data-table-select`]="{ props, on }">
+        <v-simple-checkbox
+          color="primary"
+          v-if="props.indeterminate"
+          v-ripple
+          v-bind="props"
+          :value="props.indeterminate"
+          v-on="on"
+        ></v-simple-checkbox>
+        <v-simple-checkbox
+          color="red"
+          v-if="!props.indeterminate"
+          v-ripple
+          v-bind="props"
+          v-on="on"
+        ></v-simple-checkbox>
+      </template>
+      <template v-slot:[`item.data-table-select`]="{isSelected,select}">
+      <v-simple-checkbox color="red" v-ripple :value="isSelected" @input="select($event)"></v-simple-checkbox>
+    </template>
           <template v-slot:[`item.number`]="{ item }">
             <v-text-field
               v-model="item.number"
@@ -81,7 +106,7 @@
             </v-text-field>
           </template>
           <template v-slot:[`item.func`]="{ item }">
-            <v-icon @click="deleteCart(item.id)">mdi-delete</v-icon>
+            <v-icon color="red" @click="deleteCart(item.id)">mdi-delete</v-icon>
           </template>
           <template slot="no-data"> Không có dữ liệu </template>
           <template slot="empty-wrapper"> Không có dữ liệu </template>
@@ -108,16 +133,16 @@
       </v-card-actions>
     </v-card>
     <v-dialog max-width="500px" v-model="dialogBuy">
-       <v-card>
-      <v-toolbar dark dense flat>
-        <v-toolbar-title class="white--text">Thông báo</v-toolbar-title>
-      </v-toolbar>
-      <v-card-text class="pa-4">Bạn cần chọn sản phẩm !</v-card-text>
-      <v-card-actions class="pt-0">
-        <v-spacer></v-spacer>
-        <v-btn color="primary darken-1" text @click="closeDialog">Đóng</v-btn>
-      </v-card-actions>
-    </v-card>
+      <v-card>
+        <v-toolbar dark dense flat>
+          <v-toolbar-title class="white--text">Thông báo</v-toolbar-title>
+        </v-toolbar>
+        <v-card-text class="pa-4">Bạn cần chọn sản phẩm !</v-card-text>
+        <v-card-actions class="pt-0">
+          <v-spacer></v-spacer>
+          <v-btn color="primary darken-1" text @click="closeDialog">Đóng</v-btn>
+        </v-card-actions>
+      </v-card>
     </v-dialog>
   </v-container>
   <!-- <v-data-table :headers="headers" :items="items" width="100%"> </v-data-table> -->
@@ -185,12 +210,12 @@ export default {
       immediate: true,
     },
   },
-  created() {
-    this.getListCart();
-    // this.selectProduct = this.productPick
-  },
+  // created() {
+  //   this.getListCart();
+  //   // this.selectProduct = this.productPick
+  // },
   mounted() {
-    this.getListCart();
+    this.checkLogin();
     // this.selectProduct[0] = this.$store.state.product
     // console.log(this.selectProduct)
   },
@@ -212,6 +237,13 @@ export default {
     },
   },
   methods: {
+    checkLogin() {
+      if (!this.$cookies.get("token")) {
+        this.$router.push("/login");
+      } else {
+        this.getListCart();
+      }
+    },
     getListCart() {
       this.loading = true;
       axios
@@ -287,23 +319,23 @@ export default {
   },
   data() {
     return {
-       dialog: false,
-    resolve: null,
-    reject: null,
-    message: null,
-    title: null,
-    options: {
-      color: 'primary',
-      width: 290,
-      zIndex: 200
-    },
+      dialog: false,
+      resolve: null,
+      reject: null,
+      message: null,
+      title: null,
+      options: {
+        color: "primary",
+        width: 290,
+        zIndex: 200,
+      },
       dialogBuy: false,
       items: [],
       search: "",
       footerProps: {
         "items-per-page-text": "Số sản phẩm trên một trang",
         "items-per-page-all-text": "Tất cả",
-        "items-per-page-options": [10, 20, -1],
+        "items-per-page-options": [-1, -1, -1],
       },
       selectProduct: [],
       deleteSuccess: false,

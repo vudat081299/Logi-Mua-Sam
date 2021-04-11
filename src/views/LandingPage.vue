@@ -49,9 +49,6 @@
         </div>
 
 <div class="position-relative z-1">
-  <div class="features-new--background position-absolute width-full left-0 right-0 z-n1">
-    <img class="width-full height-auto" src="https://github.githubassets.com/images/modules/site/features/launchpad/backgrounds/bg-whats-new.svg" aria-hidden="true" alt="" width="1676" height="1040">
-  </div>
   <div class="p-responsive-fluid container-xl overflow-x-hidden pt-4 d-flex flex-column flex-md-row">
     <div class="col-4">
       <a href="https://docs.github.com/github/setting-up-and-managing-your-github-user-account/managing-your-theme-settings" class="d-block hover-grow rounded-2 box-shadow-card-border-mktg overflow-hidden position-relative no-underline" data-ga-click="Features, click to learn about Codespaces, ref_page:/features;ref_cta:Learn More;ref_loc:whats new section">
@@ -101,7 +98,7 @@
   </div>
 </div>
 
-        <div class="my-6 mx-auto text-center">
+        <div class="mx-auto text-center">
           <div class="d-inline-block border p-4 rounded-2">
             <span class="d-inline-block f4-mktg-fluid">
               Theo dõi chúng tôi
@@ -159,6 +156,8 @@
         d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25
          1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25
           1.25a2 2 0 01-2.83 0z"></path></svg></a>Appendix</h2> -->
+          
+      
       <GoodsManagement />
       </v-row>
     </v-container>
@@ -177,7 +176,8 @@ export default {
     GoodsManagement
   },
   data () {
-    return {}
+    return {
+    }
   },
   methods: {
     goto (refName) {

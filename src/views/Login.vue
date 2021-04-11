@@ -1,11 +1,26 @@
 <template>
   <v-container id="form" class="">
     <v-row align="center" justify="center" no-gutters>
-      <v-card :disabled="disabled" :loading="loading" min-width="450px" max-width="450px" width="450px" height="600px" class="rounded-lg" outlined>
+      <v-card
+        :disabled="disabled"
+        :loading="loading"
+        min-width="450px"
+        max-width="450px"
+        width="450px"
+        height="600px"
+        class="rounded-lg"
+        outlined
+      >
+       <v-window v-model="step">
+                <v-window-item :value="1">
         <v-row class="">
           <v-col cols="12" class="pt-6 pb-6">
             <v-card-text>
-              <v-form class="login-form" ref="loginForm" @submit.prevent="signin">
+              <v-form
+                class="login-form"
+                ref="loginForm"
+                @submit.prevent="signin"
+              >
                 <!-- <v-row class="justify-center align-center my-4">
                   <img width="60px" height="60px" alt="Vue logo" src="@/assets/logo.png">
                   <h1
@@ -14,12 +29,12 @@
                     LogiTech
                   </h1> -->
                 <!-- </v-row> -->
-                <BrandIdentity :leading="'ml-n2'" class="my-4" :position="'justify-center'"/>
-                <h1
-                  class="text-center display-1 mb-10"
-                >
-                  Đăng nhập
-                </h1>
+                <BrandIdentity
+                  :leading="'ml-n2'"
+                  class="my-4"
+                  :position="'justify-center'"
+                />
+                <h1 class="text-center display-1 mb-10">Đăng nhập</h1>
                 <v-col>
                   <v-text-field
                     v-model="account"
@@ -43,6 +58,23 @@
                     v-on:keyup.enter="login"
                     :rules="passwordRules"
                   />
+                  <div class="text-center mt-4">
+                  <v-btn class="mx-2" fab color="blue" outlined>
+                    <v-icon>mdi-facebook</v-icon>
+                  </v-btn>
+
+                  <v-btn class="mx-2" fab color="red" outlined>
+                    <v-icon>mdi-google</v-icon>
+                  </v-btn>
+                  <v-btn class="mx-2" fab color="green" outlined>
+                    <v-icon>mdi-email</v-icon>
+                  </v-btn>
+                </div>
+                </v-col>
+                </v-window-item>
+                <v-window-item value="2">
+
+                </v-window-item>
                   <a
                     href="/forgetpass"
                     class="align-center font-weight-bold text-decoration-none primary--text"
@@ -50,12 +82,11 @@
                     <!-- text-decoration-none -->
                     Quên tài khoản hoặc mật khẩu?
                   </a>
-                </v-col>
                 <v-layout justify-center>
-                  <p style="color: red;"> {{ messenger }} </p>
+                  <p style="color: red">{{ messenger }}</p>
                 </v-layout>
                 <div class="text-center">
-                          <!-- <a
+                  <!-- <a
                             class="mt-3 overline no-text-decoration"
                             :class="`${bgColor}--text`"
                             @click="forgetPass"
@@ -63,32 +94,32 @@
                             Quên mật khẩu?
                           </a> -->
                 </div>
-                <v-spacer/>
+                <v-spacer />
                 <v-col>
-                  <br/><br/><br/>
+                  <br /><br /><br />
                   <v-row class="align-center">
-                      <a
-                        href="/signup"
-                        class="ml-3 align-center font-weight-bold text-decoration-none primary--text"
-                      >
-                        <!-- text-decoration-none -->
-                        Tạo tài khoản
-                      </a>
-                        <v-spacer></v-spacer>
-                        <v-btn
-                          large
-                          :color="buttonColor"
-                          @click="login"
-                          class="mr-3 elevation-0 primary--text"
-                        >
-                          Tiếp tục
-                        </v-btn>
+                    <a
+                      href="/signup"
+                      class="ml-3 align-center font-weight-bold text-decoration-none primary--text"
+                    >
+                      <!-- text-decoration-none -->
+                      Tạo tài khoản
+                    </a>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      large
+                      :color="buttonColor"
+                      @click="login"
+                      class="mr-3 elevation-0 primary--text"
+                    >
+                      Tiếp tục
+                    </v-btn>
                   </v-row>
                 </v-col>
               </v-form>
             </v-card-text>
           </v-col>
-                  <!-- <v-col
+          <!-- <v-col
                     cols="12"
                     md="4"
                     class="darken-2 vcenter"
@@ -107,8 +138,8 @@
                     </div>
                   </v-col> -->
         </v-row>
-              <!--SignUp-->
-              <!-- <v-window-item :value="2">
+        <!--SignUp-->
+        <!-- <v-window-item :value="2">
                 <v-row class="fill-height">
                   <v-col
                     cols="12"
@@ -169,52 +200,69 @@
                   </v-col>
                 </v-row>
               </v-window-item> -->
-          </v-card>
+      </v-card>
     </v-row>
-    <NotificationDialog @hide="hideNotificationDialog"
-      :title='titleNotificationDialog'
-      :content='contentNotificationDialog'
-      :dialog='notificationDialog'/>
+    <NotificationDialog
+      @hide="hideNotificationDialog"
+      :title="titleNotificationDialog"
+      :content="contentNotificationDialog"
+      :dialog="notificationDialog"
+    />
+    <v-dialog max-width="500px" v-model="dialogLogin">
+      <v-card>
+        <v-toolbar dark dense flat>
+          <v-toolbar-title class="white--text">Thông báo</v-toolbar-title>
+        </v-toolbar>
+        <v-card-text class="pa-4">{{ text }}</v-card-text>
+        <v-card-actions class="pt-0">
+          <v-spacer></v-spacer>
+          <v-btn color="primary darken-1" text @click="closeDialog">Đóng</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-import NotificationDialog from '@/components/NotificationDialog.vue'
-import BrandIdentity from '@/components/BrandIdentity.vue'
+import NotificationDialog from "@/components/NotificationDialog.vue";
+import BrandIdentity from "@/components/BrandIdentity.vue";
+import axios from "axios";
 
 export default {
-  name: 'Login',
+  name: "Login",
   props: {
     majorColor: {
       type: String,
-      default: 'blue'
+      default: "blue",
     },
     typeColor: {
       type: String,
-      default: 'darken-2'
+      default: "darken-2",
     },
     buttonColor: {
       type: String,
-      default: 'blue lighten-5'
-    }
+      default: "blue lighten-5",
+    },
   },
   components: {
     NotificationDialog,
-    BrandIdentity
+    BrandIdentity,
   },
   computed: {
-    loginForm () {
-      return {
-        account: this.account,
-        password: this.password
-      }
-    }
+    // loginForm () {
+    //   return {
+    //     account: this.account,
+    //     password: this.password
+    //   }
+    // }
   },
-  data () {
+  data() {
     return {
+      step: 1,
       usingDevAccount: true,
+      dialogLogin: false,
 
       // Reactive login form
       loading: false,
@@ -225,65 +273,95 @@ export default {
       notificationDialog: false,
 
       // Dialog content
-      titleNotificationDialog: '',
-      contentNotificationDialog: '',
+      titleNotificationDialog: "",
+      contentNotificationDialog: "",
+      text: "",
 
       // Data
-      account: '',
-      password: '',
-      messenger: '',
+      account: "",
+      password: "",
+      messenger: "",
 
       // Rules
       accountRules: [
-        v => !!v || 'Không được để trống',
-        v => (/[!#$%^&*,`~'")(+=_-]/.test(v) === false) || 'Tài khoản không được chứa ký tự đặc biệt'
+        (v) => !!v || "Không được để trống",
+        (v) =>
+          /[!#$%^&*,`~'")(+=_-]/.test(v) === false ||
+          "Tài khoản không được chứa ký tự đặc biệt",
       ],
       passwordRules: [
-        v => !!v || 'Không được để trống',
-        v => (/[!#$%^&*, `~'")(+=_-]/.test(v) === false) || 'Mật khẩu không được chứa ký tự đặc biệt'
-      ]
-    }
+        (v) => !!v || "Không được để trống",
+        (v) =>
+          /[!#$%^&*, `~'")(+=_-]/.test(v) === false ||
+          "Mật khẩu không được chứa ký tự đặc biệt",
+      ],
+    };
   },
   methods: {
-    validate () {
-      this.$refs.loginForm.validate()
-      return this.$refs.loginForm.validate()
+    closeDialog() {
+      this.dialogLogin = false;
     },
-    login () {
-      if (!this.validate()) {
-        return
+    validate() {
+      this.$refs.loginForm.validate();
+      return this.$refs.loginForm.validate();
+    },
+    login() {
+      if (this.validate()) {
+        const params = new URLSearchParams();
+        params.append("username", this.account);
+        params.append("password", this.password);
+        this.loading = true;
+        axios
+          .post(this.$store.state.url + "login", params, {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          })
+          .then((response) => {
+            this.loading = false;
+            console.log(response);
+            if (response.data.status === 200) {
+              localStorage.clear();
+              this.$cookies.set("token", response.data.data.token);
+              localStorage.setItem("username", response.data.data.username)
+              this.$router.push("/")
+            } else {
+              this.text = "Có lỗi xảy ra!";
+              this.dialogLogin = true;
+            }
+          });
+        // axios
+        //   .post("https://110b2eeabd40.ngrok.io/login", {
+        //     // headers: {
+        //     //   "Content-Type": "application/x-www-form-urlencoded",
+        //     // },
+        //     username: this.account,
+        //     password: this.password
+        //   })
+        //   .then((response) => {
+        //     this.loading = false;
+        //     console.log(response);
+        //     if (response.data.status === 200) {
+        //       localStorage.clear();
+        //       this.$cookies.set("token", response.data.data.token);
+        //     } else {
+        //       this.text = "Có lỗi xảy ra!";
+        //       this.dialogLogin = true;
+        //     }
+        //   });
       }
-      this.loading = true
-      this.disabled = true
-      console.log(this.account + this.password)
-      if (this.usingDevAccount) {
-        if (this.account === 'vudat81299@gmail.com' && this.password === 'vudat81299') {
-          localStorage.setItem('didLogin', '1')
-          this.$router.push('/').catch(() => {})
-        } else {
-          // this.notificationDialogAction('Lỗi đăng nhập', 'Bạn đã nhập sai tài khoản hoặc mật khẩu!')
-        }
-      } else {
-        localStorage.setItem('didLogin', '1')
-        this.$router.push('/').catch(() => {})
-      }
-      setTimeout(() => {
-        this.loading = false
-        this.disabled = false
-        this.notificationDialogAction('Lỗi đăng nhập', 'Bạn đã nhập sai tài khoản hoặc mật khẩu!')
-      }, 2000)
     },
-    check () {
-      localStorage.setItem('didLogin', '0')
+    check() {
+      localStorage.setItem("didLogin", "0");
     },
-    notificationDialogAction (title, content) {
-      this.notificationDialog = true
-      this.titleNotificationDialog = title
-      this.contentNotificationDialog = content
+    notificationDialogAction(title, content) {
+      this.notificationDialog = true;
+      this.titleNotificationDialog = title;
+      this.contentNotificationDialog = content;
     },
-    hideNotificationDialog () {
-      this.notificationDialog = false
-    }
-  }
-}
+    hideNotificationDialog() {
+      this.notificationDialog = false;
+    },
+  },
+};
 </script>
