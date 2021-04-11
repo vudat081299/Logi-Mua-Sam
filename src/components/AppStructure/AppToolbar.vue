@@ -3,7 +3,7 @@
     class="Header-old header-logged-out js-details-container Details position-relative f4 py-2"
     role="banner"
   >
-    <div class="container d-md-flex flex-items-center p-responsive" style="max-width: 1500px">
+    <div class="container d-md-flex flex-items-center p-responsive" style="max-width: 1800px">
       <div class="d-flex flex-justify-start flex-items-center">
         <a class="" href="/" aria-label="Homepage">
           <v-icon class="mr-4" dark x-large>mdi-dev-to</v-icon>
