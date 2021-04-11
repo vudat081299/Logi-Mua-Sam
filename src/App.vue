@@ -1,7 +1,7 @@
 <template>
   <v-app v-resize="onResize">
     <AppToolbar/>
-    <v-main :style="{ backgroundImage: getBg() }">
+    <v-main class="mx-auto main-content" :style="{ backgroundImage: getBg() }">
       <!-- style="right: 0px; left: 256px" -->
       <!-- Provides the application the proper gutter -->
       <v-container fluid class="pa-0 pb-9 fill-height">
@@ -257,11 +257,10 @@ export default {
 }
 
 .main-content {
-  width: 1000px;
-  max-width: 1000px;
-  height: 72px;
-  padding: 0px;
-  padding-top: 64px;
+  width: 1200px;
+  max-width: 1200px;
+  min-width: 1200px;
+  overflow-x:auto;
 }
 
 /* toolbar */

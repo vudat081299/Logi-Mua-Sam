@@ -1,26 +1,11 @@
 <template>
   <v-container id="form" class="">
     <v-row align="center" justify="center" no-gutters>
-      <v-card
-        :disabled="disabled"
-        :loading="loading"
-        min-width="450px"
-        max-width="450px"
-        width="450px"
-        height="600px"
-        class="rounded-lg"
-        outlined
-      >
-       <v-window v-model="step">
-                <v-window-item :value="1">
+      <v-card :disabled="disabled" :loading="loading" min-width="450px" max-width="450px" width="450px" height="600px" class="rounded-lg" outlined>
         <v-row class="">
           <v-col cols="12" class="pt-6 pb-6">
             <v-card-text>
-              <v-form
-                class="login-form"
-                ref="loginForm"
-                @submit.prevent="signin"
-              >
+              <v-form class="login-form" ref="loginForm" @submit.prevent="signin">
                 <!-- <v-row class="justify-center align-center my-4">
                   <img width="60px" height="60px" alt="Vue logo" src="@/assets/logo.png">
                   <h1
@@ -29,12 +14,12 @@
                     LogiTech
                   </h1> -->
                 <!-- </v-row> -->
-                <BrandIdentity
-                  :leading="'ml-n2'"
-                  class="my-4"
-                  :position="'justify-center'"
-                />
-                <h1 class="text-center display-1 mb-10">Đăng nhập</h1>
+                <BrandIdentity :leading="'ml-n2'" class="my-4" :position="'justify-center'"/>
+                <h1
+                  class="text-center display-1 mb-10"
+                >
+                  Đăng nhập
+                </h1>
                 <v-col>
                   <v-text-field
                     v-model="account"
@@ -58,23 +43,6 @@
                     v-on:keyup.enter="login"
                     :rules="passwordRules"
                   />
-                  <div class="text-center mt-4">
-                  <v-btn class="mx-2" fab color="blue" outlined>
-                    <v-icon>mdi-facebook</v-icon>
-                  </v-btn>
-
-                  <v-btn class="mx-2" fab color="red" outlined>
-                    <v-icon>mdi-google</v-icon>
-                  </v-btn>
-                  <v-btn class="mx-2" fab color="green" outlined>
-                    <v-icon>mdi-email</v-icon>
-                  </v-btn>
-                </div>
-                </v-col>
-                </v-window-item>
-                <v-window-item value="2">
-
-                </v-window-item>
                   <a
                     href="/forgetpass"
                     class="align-center font-weight-bold text-decoration-none primary--text"
@@ -82,11 +50,12 @@
                     <!-- text-decoration-none -->
                     Quên tài khoản hoặc mật khẩu?
                   </a>
+                </v-col>
                 <v-layout justify-center>
-                  <p style="color: red">{{ messenger }}</p>
+                  <p style="color: red;"> {{ messenger }} </p>
                 </v-layout>
                 <div class="text-center">
-                  <!-- <a
+                          <!-- <a
                             class="mt-3 overline no-text-decoration"
                             :class="`${bgColor}--text`"
                             @click="forgetPass"
@@ -94,32 +63,32 @@
                             Quên mật khẩu?
                           </a> -->
                 </div>
-                <v-spacer />
+                <v-spacer/>
                 <v-col>
-                  <br /><br /><br />
+                  <br/><br/><br/>
                   <v-row class="align-center">
-                    <a
-                      href="/signup"
-                      class="ml-3 align-center font-weight-bold text-decoration-none primary--text"
-                    >
-                      <!-- text-decoration-none -->
-                      Tạo tài khoản
-                    </a>
-                    <v-spacer></v-spacer>
-                    <v-btn
-                      large
-                      :color="buttonColor"
-                      @click="login"
-                      class="mr-3 elevation-0 primary--text"
-                    >
-                      Tiếp tục
-                    </v-btn>
+                      <a
+                        href="/signup"
+                        class="ml-3 align-center font-weight-bold text-decoration-none primary--text"
+                      >
+                        <!-- text-decoration-none -->
+                        Tạo tài khoản
+                      </a>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          large
+                          :color="buttonColor"
+                          @click="login"
+                          class="mr-3 elevation-0 primary--text"
+                        >
+                          Tiếp tục
+                        </v-btn>
                   </v-row>
                 </v-col>
               </v-form>
             </v-card-text>
           </v-col>
-          <!-- <v-col
+                  <!-- <v-col
                     cols="12"
                     md="4"
                     class="darken-2 vcenter"
@@ -138,8 +107,8 @@
                     </div>
                   </v-col> -->
         </v-row>
-        <!--SignUp-->
-        <!-- <v-window-item :value="2">
+              <!--SignUp-->
+              <!-- <v-window-item :value="2">
                 <v-row class="fill-height">
                   <v-col
                     cols="12"
@@ -200,26 +169,12 @@
                   </v-col>
                 </v-row>
               </v-window-item> -->
-      </v-card>
+          </v-card>
     </v-row>
-    <NotificationDialog
-      @hide="hideNotificationDialog"
-      :title="titleNotificationDialog"
-      :content="contentNotificationDialog"
-      :dialog="notificationDialog"
-    />
-    <v-dialog max-width="500px" v-model="dialogLogin">
-      <v-card>
-        <v-toolbar dark dense flat>
-          <v-toolbar-title class="white--text">Thông báo</v-toolbar-title>
-        </v-toolbar>
-        <v-card-text class="pa-4">{{ text }}</v-card-text>
-        <v-card-actions class="pt-0">
-          <v-spacer></v-spacer>
-          <v-btn color="primary darken-1" text @click="closeDialog">Đóng</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <NotificationDialog @hide="hideNotificationDialog"
+      :title='titleNotificationDialog'
+      :content='contentNotificationDialog'
+      :dialog='notificationDialog'/>
   </v-container>
 </template>
 

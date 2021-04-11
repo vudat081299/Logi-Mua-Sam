@@ -12,10 +12,10 @@
     <div class="pt-lg-3 font-mktg">
       <div class="container-xl p-responsive">
         <div class="col-12 col-lg-7 mb-8 mx-auto text-center">
-          <h1 class="h3-5-mktg-fluid h3-sm-mktg-fluid h2-lg-mktg-fluid mb-0">
+          <h1 class="h3-5-mktg-fluid h3-sm-mktg-fluid h2-lg-mktg-fluid my-2">
             Logi Mua Sắm <br class="d-block d-lg-none">
           </h1>
-          <h1 class="h3-5-mktg-fluid h3-sm-mktg-fluid h2-lg-mktg-fluid mb-3">
+          <h1 class="h3-5-mktg-fluid h3-sm-mktg-fluid h2-lg-mktg-fluid my-4">
             tiếp cận xu hướng
           </h1>
 
