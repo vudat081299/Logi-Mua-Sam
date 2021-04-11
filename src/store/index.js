@@ -8,7 +8,7 @@ export default new Vuex.Store({
     numberCart: 0,
     product: {},
     selectProductList: [],
-    url: "https://a70f9f9e6ce0.ngrok.io/",
+    url: "https://4de4e6821bde.ngrok.io/",
     login: false
   },
   mutations: {

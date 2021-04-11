@@ -50,6 +50,7 @@
           :loading="loading"
           hide-default-footer
           disable-pagination
+          fixed-header
         >
           <template v-slot:[`item.product`]="{ item }">
             <div style="display: flex; align-items: center">

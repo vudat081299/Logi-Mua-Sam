@@ -267,7 +267,7 @@ export default {
         params.append("password", this.password);
         this.loading = true;
         axios
-          .post(this.$store.state.url + "login", params, {
+          .post(this.$store.state.url + "public/login", params, {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
             },

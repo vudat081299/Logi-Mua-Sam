@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-card>
+      <v-card flat>
         <v-card-title>
           <v-breadcrumbs class="pa-0" :items="breadcrumbList">
             <template v-slot:divider>
