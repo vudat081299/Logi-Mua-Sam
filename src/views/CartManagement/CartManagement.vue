@@ -1,11 +1,19 @@
 <template>
-  <v-container fluid class="mx-auto fill-height justify-center align-start" style="">
+  <v-container fluid class="main-container mx-auto fill-height justify-center align-start" style="">
     <v-card width="100vw" flat>
       <v-card-title>
         <!-- <BrandIdentity/>
         <v-divider class="mx-4" vertical inset></v-divider> -->
 
-        <span class="subheading" style="font-size: 30px">Giỏ hàng</span>
+        <!-- <span class="subheading" style="font-size: 30px">Giỏ hàng</span> -->
+        
+        <h2
+          id="user-content-items"
+          class="mb-6 font-mktg h2-5-mktg-fluid h1-sm-mktg-fluid h0-lg-mktg-fluid mb-3"
+          style="padding-left: 20px"
+        >
+          Giỏ hàng
+        </h2>
         <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
@@ -108,9 +116,9 @@
           v-model="selectProduct"
           :headers="headers"
           :items="items"
-          :single-select="singleSelect"
           :loading="loading"
-          item-key="name"
+          item-key="id"
+          :single-select="false"
           show-select
           class="elevation-1"
           :search="search"
@@ -119,15 +127,22 @@
           fixed-header
         >
           <template v-slot:top>
-            <v-switch
-              v-model="singleSelect"
-              label="Single select"
-              class="pa-3"
-            ></v-switch>
+          </template>
+
+          <template v-slot:[`item.product`]="{ item }">
+            <div style="display: flex; align-items: center">
+              <v-img
+                :src="`https://picsum.photos/500/300?image=${item.id * 5 + 10}`"
+                max-height="90px"
+                max-width="135px"
+              ></v-img>
+              <span style="margin-left: 15px">{{ item.product }}</span>
+            </div>
           </template>
           
           <template v-slot:[`item.number`]="{ item }">
             <v-text-field
+              outlined
               v-model="item.number"
               prepend-icon="mdi-minus-circle-outline"
               append-outer-icon="mdi-plus-circle-outline"
@@ -142,15 +157,22 @@
               "
               class="centered-input inputPrice"
               type="number"
-              style="margin-top: 20px"
+              style="margin-top: 20px; width:150px;"
               @change="changeValueTextField()"
               input="Number"
             >
             </v-text-field>
           </template>
           
+          <template v-slot:[`item.cash`]="{ item }">
+            <h5 
+              id="user-content-items"
+              class="font-mktg h7-10-mktg-fluid h6-sm-mktg-fluid h5-lg-mktg-fluid"
+            ><span class="text-decoration-underline">đ</span>{{ item.cash }}</h5>
+          </template>
+
           <template v-slot:[`item.func`]="{ item }">
-            <v-icon color="red" @click="deleteCart(item.id)">mdi-delete</v-icon>
+            <v-icon large @click="deleteCart(item.id)">mdi-delete</v-icon>
           </template>
           <template slot="no-data"> Không có dữ liệu </template>
           <template slot="empty-wrapper"> Không có dữ liệu </template>
@@ -197,6 +219,39 @@ import BrandIdentity from "@/components/BrandIdentity";
 import axios from "axios";
 import IconCart from "@/views/CartManagement/IconCart";
 export default {
+  data() {
+    return {
+      selected: [],
+      dialog: false,
+      resolve: null,
+      reject: null,
+      message: null,
+      title: null,
+      options: {
+        color: "primary",
+        width: 290,
+        zIndex: 200,
+      },
+      dialogBuy: false,
+      items: [],
+      search: "",
+      footerProps: {
+        "items-per-page-text": "Số sản phẩm trên một trang",
+        "items-per-page-all-text": "Tất cả",
+        "items-per-page-options": [-1, -1, -1],
+      },
+      selectProduct: [],
+      deleteSuccess: false,
+      textAlert: "Đã xóa thành công!",
+      totalProduct: 0,
+      totalCash: 0,
+      numberProduct: 0,
+      loading: false,
+      numberTextField: 0,
+      images: [],
+      plus: 1,
+    }
+  },
   components: {
     BrandIdentity,
     IconCart,
@@ -271,12 +326,12 @@ export default {
           align: "start",
           sortable: true,
           value: "product",
-          width: "50%",
+          width: "45%",
         },
-        { text: "Đơn giá", value: "cash_product", sortable: true, align: "start" },
-        { text: "Số lượng", value: "number", sortable: true, align: "center", width: "15%" },
-        { text: "Số tiền", value: "cash", sortable: true, align: "start" },
-        { text: "Thao tác", value: "func", sortable: false, width: "10%", align: "start" },
+        { text: "Đơn giá", value: "cash_product", sortable: true, align: "start", width: "10%" },
+        { text: "Số lượng", value: "number", sortable: true, align: "start", width: "20%" },
+        { text: "Số tiền", value: "cash", sortable: true, align: "start", width: "15%" },
+        { text: "Thao tác", value: "func", sortable: false, align: "start", width: "10%" },
       ];
     },
   },
@@ -294,6 +349,10 @@ export default {
         .get("https://5f7e99cb0198da0016893b3a.mockapi.io/usermanager/cart")
         .then((response) => {
           this.items = response.data;
+          this.items.forEach(function (value, index, array) {
+            array[index].cash = value.number * value.cash_product
+          })
+          console.log(this.items)
           this.$store.state.numberCart = this.items.length;
           this.loading = false;
         });
@@ -360,39 +419,7 @@ export default {
           }, 1500);
         });
     },
-  },
-  data() {
-    return {
-      dialog: false,
-      resolve: null,
-      reject: null,
-      message: null,
-      title: null,
-      options: {
-        color: "primary",
-        width: 290,
-        zIndex: 200,
-      },
-      dialogBuy: false,
-      items: [],
-      search: "",
-      footerProps: {
-        "items-per-page-text": "Số sản phẩm trên một trang",
-        "items-per-page-all-text": "Tất cả",
-        "items-per-page-options": [-1, -1, -1],
-      },
-      selectProduct: [],
-      deleteSuccess: false,
-      textAlert: "Đã xóa thành công!",
-      totalProduct: 0,
-      totalCash: 0,
-      numberProduct: 0,
-      loading: false,
-      numberTextField: 0,
-      images: [],
-      plus: 1,
-    };
-  },
+  }
 };
 </script>
 
@@ -407,5 +434,9 @@ export default {
 }
 .centered-input input {
   text-align: center;
+}
+
+.main-container {
+  width: 80%;
 }
 </style>
