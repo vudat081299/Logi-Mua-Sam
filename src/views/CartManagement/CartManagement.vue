@@ -1,46 +1,28 @@
 <template>
-  <!-- <div style="align-items: stretch">
-    <BrandIdentity/>
-  </div> -->
-  <v-container class="fill-height" style="background-color: red;">
-    <!-- <div >
-    <IconCart :cartNumber="items.length"/>
-    </div> -->
-    <v-card color="#ffffff00" flat>
+  <v-container fluid class="mx-auto fill-height justify-center align-start" style="">
+    <v-card width="100vw" flat>
       <v-card-title>
-        <BrandIdentity />
-
-        <v-divider class="mx-4" vertical inset></v-divider>
+        <!-- <BrandIdentity/>
+        <v-divider class="mx-4" vertical inset></v-divider> -->
 
         <span class="subheading" style="font-size: 30px">Giỏ hàng</span>
-
         <v-spacer></v-spacer>
-
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
-          label="Tìm kiếm"
+          label="Tìm kiếm sản phẩm trong giỏ"
           style="padding-top: 12px"
           filled
-            rounded
-            dense
-        ></v-text-field
-      ></v-card-title>
+          rounded
+          dense
+        >
+        </v-text-field>
+      </v-card-title>
       <v-card-text>
         <v-alert type="success" v-if="this.deleteSuccess">
           {{ this.textAlert }}
         </v-alert>
         <!-- <v-data-table
-          v-model="selectProduct"
-          :headers="headers"
-          :items="items"
-          :search="search"
-          height="65vh"
-          :footer-props="footerProps"
-          show-select
-          :loading="loading"
-        > -->
-        <v-data-table
           v-model="selectProduct"
           :headers="headers"
           :items="items"
@@ -56,8 +38,8 @@
             <div style="display: flex; align-items: center">
               <v-img
                 :src="`https://picsum.photos/500/300?image=${item.id * 5 + 10}`"
-                max-height="120px"
-                max-width="120px"
+                max-height="90px"
+                max-width="135px"
               ></v-img>
               <span style="margin-left: 15px">{{ item.product }}</span>
             </div>
@@ -120,7 +102,60 @@
           </template>
           <template slot="no-data"> Không có dữ liệu </template>
           <template slot="empty-wrapper"> Không có dữ liệu </template>
+        </v-data-table> -->
+
+        <v-data-table
+          v-model="selectProduct"
+          :headers="headers"
+          :items="items"
+          :single-select="singleSelect"
+          :loading="loading"
+          item-key="name"
+          show-select
+          class="elevation-1"
+          :search="search"
+          hide-default-footer
+          disable-pagination
+          fixed-header
+        >
+          <template v-slot:top>
+            <v-switch
+              v-model="singleSelect"
+              label="Single select"
+              class="pa-3"
+            ></v-switch>
+          </template>
+          
+          <template v-slot:[`item.number`]="{ item }">
+            <v-text-field
+              v-model="item.number"
+              prepend-icon="mdi-minus-circle-outline"
+              append-outer-icon="mdi-plus-circle-outline"
+              @click:append-outer="
+                (item.number = increment(item.number)) && changeValueTextField()
+              "
+              dense
+              @click:prepend="
+                item.number > 1
+                  ? (item.number = item.number - 1) && changeValueTextField()
+                  : (item.number = 1)
+              "
+              class="centered-input inputPrice"
+              type="number"
+              style="margin-top: 20px"
+              @change="changeValueTextField()"
+              input="Number"
+            >
+            </v-text-field>
+          </template>
+          
+          <template v-slot:[`item.func`]="{ item }">
+            <v-icon color="red" @click="deleteCart(item.id)">mdi-delete</v-icon>
+          </template>
+          <template slot="no-data"> Không có dữ liệu </template>
+          <template slot="empty-wrapper"> Không có dữ liệu </template>
         </v-data-table>
+
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -155,7 +190,6 @@
       </v-card>
     </v-dialog>
   </v-container>
-  <!-- <v-data-table :headers="headers" :items="items" width="100%"> </v-data-table> -->
 </template>
 
 <script>
@@ -239,10 +273,10 @@ export default {
           value: "product",
           width: "50%",
         },
-        { text: "Đơn giá", value: "cash_product", align: "center" },
-        { text: "Số lượng", value: "number", align: "center", width: "15%" },
-        { text: "Số tiền", value: "cash", align: "center" },
-        { text: "Thao tác", value: "func", width: "10%", align: "center" },
+        { text: "Đơn giá", value: "cash_product", sortable: true, align: "start" },
+        { text: "Số lượng", value: "number", sortable: true, align: "center", width: "15%" },
+        { text: "Số tiền", value: "cash", sortable: true, align: "start" },
+        { text: "Thao tác", value: "func", sortable: false, width: "10%", align: "start" },
       ];
     },
   },
@@ -369,7 +403,7 @@ export default {
   > thead
   > tr:last-child
   > th {
-  font-size: 15px;
+  font-size: 18px;
 }
 .centered-input input {
   text-align: center;
