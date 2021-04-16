@@ -126,7 +126,7 @@
                       ></v-rating>
 
                       <div class="caption ml-1">
-                        ( {{ itemInfor.rating }} lượt đánh giá)
+                        (5 lượt đánh giá)
                       </div>
                     </v-row>
                     <v-row class="pt-2">
@@ -137,7 +137,7 @@
                             <v-card-text>
                               <div>Sản phẩm</div>
                               <p class="display-1 text--primary">
-                              {{ itemInfor.title }}
+                              {{ itemInfor.name }}
                               </p>
                               <p>Thương mại</p>
                               <div class="text--primary">
@@ -186,31 +186,15 @@ export default {
   },
   mounted() {},
   created() {
-    axios
-      .get(
-        "https://5f7e99cb0198da0016893b3a.mockapi.io/usermanager/list/" +
-          this.id
-      )
-      .then((response) => {
-        this.itemInfor = response.data;
-        this.breadcrumbList = [
-          {
-            text: "Trang chủ",
-            disabled: false,
-            href: "/",
-          },
-          {
-            text: "Mặt hàng",
-            disabled: false,
-            href: "/goods",
-          },
-          {
-            text: this.itemInfor.title,
-            disabled: true,
-            href: "breadcrumbs_link_1",
-          },
-        ];
-      });
+    this.getInforProduct();
+    // axios
+    //   .get(
+    //     "https://5f7e99cb0198da0016893b3a.mockapi.io/usermanager/list/" +
+    //       this.id
+    //   )
+    //   .then((response) => {
+        
+    //   });
   },
   data() {
     return {
@@ -269,6 +253,28 @@ export default {
       this.imgList[this.imgList.indexOf(item)].selected = true;
       this.id = this.selectedImg.id *5 + 10
     },
+    async getInforProduct () {
+      const response = await this.$http.get("public/products/" + this.id);
+      console.log(response)
+this.itemInfor = response.data.data;
+        this.breadcrumbList = [
+          {
+            text: "Trang chủ",
+            disabled: false,
+            href: "/",
+          },
+          {
+            text: "Mặt hàng",
+            disabled: false,
+            href: "/goods",
+          },
+          {
+            text: this.itemInfor.name,
+            disabled: true,
+            href: "breadcrumbs_link_1",
+          },
+        ];
+    }
   },
 };
 </script>

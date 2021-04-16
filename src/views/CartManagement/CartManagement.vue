@@ -358,7 +358,8 @@ export default {
   //   // this.selectProduct = this.productPick
   // },
   mounted() {
-    this.checkLogin();
+    this.getListCart();
+    // this.checkLogin();
     // this.selectProduct[0] = this.$store.state.product
     // console.log(this.selectProduct)
   },

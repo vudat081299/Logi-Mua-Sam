@@ -53,7 +53,7 @@ const routes = [
     meta: { requiresLogin: true }
   },
   {
-    path: '/detailitem/:id',
+    path: '/product/:id',
     name: 'DetailItem',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

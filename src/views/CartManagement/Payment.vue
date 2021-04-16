@@ -73,10 +73,7 @@
             <ItemPayment :item="item" />
           </div>
         </v-card>
-      </v-card-text>
-      <v-container>
-        <v-row>
-          <v-col cols="6">
+        <v-row align="center" justify="center">
             <v-container>
               <v-card class="justify-center flex-wrap" flat outlined>
                 <v-card-title>Phương thức thanh toán </v-card-title>
@@ -84,46 +81,48 @@
                 <v-card-actions> </v-card-actions>
               </v-card>
             </v-container>
-          </v-col>
-          <v-col>
-            <v-container>
+        </v-row>
+      </v-card-text>
+      <v-card-actions>
+        <v-container>
+          <v-row align="center" justify="end">
               <v-card
-                class="justify-center flex-wrap"
+                class="justify-center"
                 color="#E8F5E9"
               >
                 <v-card-title>Tổng tiền</v-card-title>
                 <v-card-text>
                   <v-row align="center" justify="end">
-                    <v-col cols="8" class="d-flex justify-end">
+                    <v-col cols="9" class="d-flex justify-end">
                       <span style="margin-right: 20px; font-size: 18px"
                         >Tổng tiền hàng ( {{ this.totalProduct }} sản phẩm):
                       </span>
                     </v-col>
-                    <v-col cols="4" class="d-flex justify-end font-weight-bold">
+                    <v-col cols="3" class="d-flex justify-end font-weight-bold">
                       <span style="font-size: 18px">
                         {{ formatPrice(this.totalCash) }}
                       </span>
                     </v-col>
                   </v-row>
                   <v-row align="center" justify="end">
-                    <v-col cols="8" class="d-flex justify-end">
+                    <v-col cols="9" class="d-flex justify-end">
                       <span style="margin-right: 20px; font-size: 18px"
                         >Phí vận chuyển:
                       </span>
                     </v-col>
-                    <v-col cols="4" class="d-flex justify-end font-weight-bold">
+                    <v-col cols="3" class="d-flex justify-end font-weight-bold">
                       <span style="font-size: 18px">
                         {{ formatPrice(this.ship) }}
                       </span>
                     </v-col>
                   </v-row>
                   <v-row align="center" justify="end">
-                    <v-col cols="8" class="d-flex justify-end">
+                    <v-col cols="9" class="d-flex justify-end">
                       <span style="margin-right: 20px; font-size: 18px"
                         >Tổng thanh toán:
                       </span>
                     </v-col>
-                    <v-col cols="4" class="d-flex justify-end font-weight-bold">
+                    <v-col cols="3" class="d-flex justify-end font-weight-bold">
                       <span style="color: red; font-size: 18px">
                         {{ formatPrice(this.totalCash + this.ship) }}
                       </span>
@@ -145,10 +144,10 @@
                   </v-btn>
                 </v-card-actions>
               </v-card>
-            </v-container>
-          </v-col>
-        </v-row>
-      </v-container>
+           
+          </v-row>
+           </v-container>
+           </v-card-actions>
     </v-card>
     <v-dialog max-width="500px" v-model="dialogAddAddress">
       <AddressDelivery v-on:closeAdd="closeAdd"/>

@@ -29,9 +29,9 @@
                 <div class="pa-3 text-h4 black--text">
                   {{
                     formatPrice(
-                      itemInfor.cash[0].cash_product -
-                        (itemInfor.cash[0].cash_product *
-                          Math.ceil(itemInfor.cash[0].cash_sale / 10000)) /
+                      itemInfor.price -
+                        (itemInfor.price *
+                          10) /
                           100
                     )
                   }}
@@ -39,7 +39,7 @@
                     class="black--text text-decoration-line-through"
                     style="font-size: 13px; margin-left: 10px"
                   >
-                    {{ formatPrice(itemInfor.cash[0].cash_product) }}
+                    {{ formatPrice(itemInfor.price) }}
                   </span>
                 </div>
               </v-col>
@@ -60,7 +60,7 @@
                     border-radius: 4px;
                   "
                 >
-                  - {{ Math.ceil(itemInfor.cash[0].cash_sale / 10000) }}%</span
+                  - 10%</span
                 >
               </v-col>
               <!-- <div class="ml-2 black--text" style="font-size: 13px;">
@@ -106,7 +106,7 @@
               </div>
               <v-spacer></v-spacer>
               <div class="text-subtitle-2 orange--text">
-                {{ itemInfor.number_product }} sản phẩm có sẵn
+                {{ itemInfor.amount }} sản phẩm có sẵn
               </div>
             </div>
           </v-container>
@@ -199,6 +199,7 @@ export default {
   methods: {
     setValueForCart() {
 this.cartValue = this.itemInfor
+console.log(this.itemInfor)
     },
     addToCart() {
       axios

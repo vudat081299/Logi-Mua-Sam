@@ -1,7 +1,7 @@
 <template>
   <v-app v-resize="onResize">
     <AppToolbar/>
-    <v-main class="mx-auto main-content" :style="{ backgroundImage: getBg() }">
+    <v-main class="main-content" :style="{ backgroundImage: getBg() }">
       <!-- style="right: 0px; left: 256px" -->
       <!-- Provides the application the proper gutter -->
       <v-container fluid class="pa-0 pb-9 fill-height">
@@ -203,7 +203,7 @@ export default {
   },
   methods: {
     getBg() {
-      if (this.logInStatus) {
+      if (!this.logInStatus) {
         return "";
       } else {
         return "url('" + require("@/assets/background.jpeg") + "')";

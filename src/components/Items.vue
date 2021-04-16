@@ -17,7 +17,7 @@
             > -->
         <v-img
           :class="{ 'on-hover': hover }"
-          :src="`https://picsum.photos/500/300?image=${item.id}`"
+          :src="item.urlAvatar"
           height="200px"
           class="ma-4 mb-2 rounded-t-sm hover-img"
           @click="detailItem(item)"
@@ -45,12 +45,12 @@
                 top: -1px;
                 border-radius: 2px;
               "
-              >Ad</span
+              >{{ item.code }}</span
             >
             <!-- Máy nhào bột/thực phẩm đa năng DK30: Dùng để nhào, trộn mọi loại
               thực phẩm. Hàng chính hãng Thailand. Dùng cho hộ gia đình, hộ kinh
               doanh, doanh nghiệp. -->
-            {{ item.title }}
+            {{ item.name }}
           </a>
           <v-row class="ma-0 px-0 align-center">
             <v-rating
@@ -63,7 +63,7 @@
               size="13"
             ></v-rating>
 
-            <div class="caption ml-1">( {{ item.rating }} đánh giá )</div>
+            <div class="caption ml-1">( 5 đánh giá )</div>
           </v-row>
           <v-row class="ma-0 pa-0 align-center">
             <v-col>
@@ -71,14 +71,14 @@
               class="black--text text-decoration-line-through mb-n2"
               style="font-size: 11px; text-align: left; height: 10px"
             >
-              {{ formatPrice(item.cash[0].cash_product) }}
+              {{ formatPrice(item.price) }}
             </div>
             </v-col>
           </v-row>
           <v-row class="ma-0 px-0 align-center">
             <v-col cols="8">
               <div class="text-subtitle-2 black--text">
-                {{ formatPrice(item.cash[0].cash_product - (item.cash[0].cash_product * Math.ceil(item.cash[0].cash_sale / 10000) / 100)) }}
+                {{ formatPrice(item.price - (item.price * 10) / 100) }}
               </div>
             </v-col>
             <v-col cols="4">
@@ -97,7 +97,7 @@
                   border-radius: 4px;
                   float: right;
                 "
-                > - {{ Math.ceil(item.cash[0].cash_sale / 10000) }}%</span
+                > - 10%</span
               >
             </v-col>
 
@@ -256,7 +256,8 @@ export default {
       transparent: "rgba(255, 255, 255, 0)",
     };
   },
-  mounted() {},
+  mounted() {
+  },
   watch: {},
   methods: {
     formatPrice(n) {
@@ -274,7 +275,7 @@ export default {
     detailItem(item) {
       this.inforItem = item;
       console.log(this.inforItem);
-      this.$router.push("/detailitem/" + item.id);
+      this.$router.push("/product/" + item.id);
     },
   },
 };

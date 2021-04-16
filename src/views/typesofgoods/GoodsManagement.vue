@@ -96,20 +96,27 @@ export default {
       }
       return false;
     },
-    getListProduct() {
-      this.loading = true;
-      axios
-        .get("https://5f7e99cb0198da0016893b3a.mockapi.io/usermanager/list")
-        .then((response) => {
-          this.productList = response.data;
-          this.loading = false;
-        });
+    // getListProduct() {
+    //   this.loading = true;
+    //   axios
+    //     .get("https://5f7e99cb0198da0016893b3a.mockapi.io/usermanager/list")
+    //     .then((response) => {
+    //       this.productList = response.data;
+    //       this.loading = false;
+    //     });
+    // },
+
+    async getListProduct() {
+      const response = await this.$http.get("public/products/list");
+      console.log(response)
+     this.productList = response.data.data;
+    //       this.loading = false;
+      this.loading = false;
     },
     getListCart() {
       axios
         .get("https://5f7e99cb0198da0016893b3a.mockapi.io/usermanager/cart")
         .then((response) => {
-          console.log(response);
           this.cartNumber = response.data.length;
         });
     },
