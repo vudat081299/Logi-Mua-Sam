@@ -14,8 +14,6 @@
         <a
           href="/#items"
           class="ml-4 HeaderMenu-link flex-shrink-0 no-underline mr-3"
-          v-bind="attrs"
-          v-on="on"
         >
           <span class="font-weight-light">Mặt hàng</span>
         </a>

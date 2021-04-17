@@ -107,6 +107,7 @@ export default {
     // },
 
     async getListProduct() {
+      this.loading = true
       const response = await this.$http.get("public/products/list");
       console.log(response)
      this.productList = response.data.data;

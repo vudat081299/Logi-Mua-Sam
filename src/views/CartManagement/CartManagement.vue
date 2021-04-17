@@ -148,7 +148,11 @@
         >
           <template v-slot:top>
           </template>
-
+<template v-slot:[`item.cash_product`]="{ item }">
+            <div class="pa-3 black--text">
+              {{ formatPrice(item.cash_product) }}
+            </div>
+          </template>
           <template v-slot:[`item.product`]="{ item }">
             <div style="display: flex; align-items: center">
               <v-img
@@ -161,6 +165,7 @@
           </template>
           
           <template v-slot:[`item.number`]="{ item }">
+            <v-row align="right" justify="end">
             <v-text-field
               outlined
               v-model="item.number"
@@ -182,13 +187,14 @@
               input="Number"
             >
             </v-text-field>
+            </v-row>
           </template>
           
           <template v-slot:[`item.cash`]="{ item }">
             <h5 
               id="user-content-items"
               class="font-mktg h7-10-mktg-fluid h6-sm-mktg-fluid h5-lg-mktg-fluid"
-            >{{ item.cash }} <span class="text-decoration-underline">đ</span></h5>
+            >{{ formatPrice(item.cash) }}</h5>
           </template>
 
           <template v-slot:[`item.func`]="{ item }">
@@ -209,7 +215,7 @@
           >
             <span style="color: red; font-size: 27px">
               <!-- {{ formatPrice(this.totalCash) }} -->
-              {{ totalCash }} <span class="text-decoration-underline">đ</span>
+              {{ formatPrice(totalCash) }}
             </span>
           </h1>
         </span>
@@ -371,12 +377,14 @@ export default {
           align: "start",
           sortable: true,
           value: "product",
-          width: "45%",
+          width: "40%",
         },
-        { text: "Đơn giá", value: "cash_product", sortable: true, align: "start", width: "10%" },
-        { text: "Số lượng", value: "number", sortable: true, align: "start", width: "20%" },
-        { text: "Số tiền", value: "cash", sortable: true, align: "start", width: "15%" },
-        { text: "Thao tác", value: "func", sortable: false, align: "start", width: "10%" },
+        { text: "Đơn giá", value: "cash_product", sortable: true, align: "end", width: "20%" },
+        { text: "", align: "center", width: "5%" },
+        { text: "Số lượng", value: "number", sortable: true, align: "center", width: "10%" },
+        { text: "Số tiền", value: "cash", sortable: true, align: "end"},
+        { text: "", align: "center", width: "2%" },
+        { text: "Thao tác", value: "func", sortable: false, align: "center", width: "8%" },
       ];
     },
   },

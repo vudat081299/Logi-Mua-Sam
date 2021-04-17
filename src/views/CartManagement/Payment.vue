@@ -89,8 +89,11 @@
               <v-card
                 class="justify-center"
                 color="#E8F5E9"
+                width="40%"
               >
-                <v-card-title>Tổng tiền</v-card-title>
+                <v-card-title>
+                  <h1>Tổng tiền</h1>
+                  </v-card-title>
                 <v-card-text>
                   <v-row align="center" justify="end">
                     <v-col cols="9" class="d-flex justify-end">

@@ -1,5 +1,14 @@
 <template>
   <v-container>
+    <div class="text-center">
+    <v-overlay :value="loading" color="#033058">
+      <v-progress-circular
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+    </v-overlay>
+    <!-- </v-dialog> -->
+  </div>
     <v-row>
       <v-card flat>
         <v-card-title>
@@ -9,6 +18,8 @@
             </template>
           </v-breadcrumbs></v-card-title
         >
+        <v-card-text>
+        </v-card-text>
         <v-container class="pa-0 fill-height align-start">
           <v-col>
             <v-row>
@@ -29,8 +40,8 @@
                     >
                       <v-img
                         contain
-                        :src="mainImg + id"
-                        :lazy-src="mainImg + id"
+                        :src="avatar"
+                        :lazy-src="avatar"
                         class=""
                         max-height="415"
                         max-width="415"
@@ -50,7 +61,6 @@
                         </template>
                       </v-img>
                     </div>
-
                     <v-card
                       class="d-flex mx-auto flex-wrap align-center"
                       color="#ffffff00"
@@ -58,7 +68,7 @@
                       tile
                       max-width="415"
                     >
-                      <template v-for="item in imgList">
+                      <template v-for="( item ) in imgList">
                         <v-card
                           class="elevation-0 pa-0 ma-1"
                           tile
@@ -68,7 +78,6 @@
                           <!-- :color="item.selected === true ? '#e3e3e3' : '#ffffff00'" -->
                           <!-- :style="item.selected === true ? 'border-width: 1px; border-style: solid; border-color: #cccccc;' : ''" -->
                           <!-- style="border-width: 1px; border-style: solid; border-color: #cccccc;" -->
-
                           <v-hover v-slot="{ hover }">
                             <v-img
                               :style="
@@ -77,12 +86,8 @@
                                   : ''
                               "
                               :class="{ 'on-hover': hover }"
-                              :src="`https://picsum.photos/500/300?image=${
-                                item.id * 5 + 10
-                              }`"
-                              :lazy-src="`https://picsum.photos/10/6?image=${
-                                item.id * 5 + 10
-                              }`"
+                              :src="item.src"
+                              :lazy-src="item.src"
                               height="75px"
                               width="75px"
                               class="ma-0 hover-img"
@@ -110,7 +115,7 @@
                     <span class="text-caption"
                       >Thương hiệu:
                       <a href="/" class="text-decoration-none primary--text">
-                        LogiTech
+                        {{ itemInfor.brands }}
                       </a>
                       <p class="text-h5">{{ itemInfor.title }}</p>
                     </span>
@@ -124,10 +129,7 @@
                         dense
                         size="15"
                       ></v-rating>
-
-                      <div class="caption ml-1">
-                        (5 lượt đánh giá)
-                      </div>
+                      <div class="caption ml-1">(5 lượt đánh giá)</div>
                     </v-row>
                     <v-row class="pt-2">
                       <v-col cols="7">
@@ -135,13 +137,13 @@
                         <template>
                           <v-card class="mx-auto" max-width="344">
                             <v-card-text>
-                              <div>Sản phẩm</div>
+                              <div>Tên sản phẩm</div>
                               <p class="display-1 text--primary">
-                              {{ itemInfor.name }}
+                                {{ itemInfor.name }}
                               </p>
-                              <p>Thương mại</p>
+                              <p>Miêu tả sản phẩm</p>
                               <div class="text--primary">
-                               Chuẩn hóa chất lượng.
+                                {{ itemInfor.description }}
                               </div>
                             </v-card-text>
                             <v-card-actions>
@@ -153,7 +155,7 @@
                         </template>
                       </v-col>
                       <v-col class="pl-0" cols="5">
-                        <OwnerShopOfProductDetail />
+                        <OwnerShopOfProductDetail :itemInfor="itemInfor" />
                       </v-col>
                     </v-row>
                     <!-- </v-row> -->
@@ -174,7 +176,7 @@
 import OwnerShopOfProductDetail from "@/components/OwnerShopOfProductDetail.vue";
 import PickProductPurchaseDetail from "@/components/PickProductPurchaseDetail.vue";
 import Items from "@/components/Items";
-import axios from "axios";
+import LoadingCircleOverlay from '@/components/LoadingCircleOverlay'
 
 export default {
   name: "DetailItem",
@@ -182,59 +184,42 @@ export default {
     // HelloWorld
     OwnerShopOfProductDetail,
     PickProductPurchaseDetail,
+    LoadingCircleOverlay,
     Items,
   },
-  mounted() {},
-  created() {
+   watch: {
+      loading (val) {
+        val && setTimeout(() => {
+          this.overlay = false
+        }, 3000)
+      },
+    },
+  mounted() {
     this.getInforProduct();
+  },
+  created() {
+    // this.getInforProduct();
     // axios
     //   .get(
     //     "https://5f7e99cb0198da0016893b3a.mockapi.io/usermanager/list/" +
     //       this.id
     //   )
     //   .then((response) => {
-        
+
     //   });
   },
   data() {
     return {
+      loading: false,
+      avatar: "",
+      selected: 0,
       id: this.$route.params.id,
+      srcList: [],
       itemInfor: {},
       mainImg: "https://picsum.photos/500/300?image=",
       textlabel: "",
       rating: 3,
-      imgList: [
-        {
-          id: 1,
-          src: "@/assets/e8d149d839d14346d2c14731f7f84f30.jpg",
-          selected: false,
-        },
-        {
-          id: 2,
-          src: "@/assets/julien.gif",
-          selected: false,
-        },
-        {
-          id: 3,
-          src: "@/assets/julien.gif",
-          selected: true,
-        },
-        {
-          id: 4,
-          src: "@/assets/julien.gif",
-          selected: false,
-        },
-        {
-          id: 5,
-          src: "@/assets/julien.gif",
-          selected: false,
-        },
-        {
-          id: 6,
-          src: "@/assets/julien.gif",
-          selected: false,
-        },
-      ],
+      imgList: [],
       selectedImg: {
         id: 1,
         src: "@/assets/e8d149d839d14346d2c14731f7f84f30.jpg",
@@ -251,30 +236,73 @@ export default {
         value.selected = false;
       });
       this.imgList[this.imgList.indexOf(item)].selected = true;
-      this.id = this.selectedImg.id *5 + 10
+      this.avatar = this.selectedImg.src;
     },
-    async getInforProduct () {
+     async getInforProduct() {
+      //  axios
+      // .get(this.$store.state.url + "public/products/" +
+      //     this.id
+      // )
+      // .then((response) => {
+
+    //   });
+      this.loading = true
       const response = await this.$http.get("public/products/" + this.id);
-      console.log(response)
-this.itemInfor = response.data.data;
-        this.breadcrumbList = [
-          {
-            text: "Trang chủ",
-            disabled: false,
-            href: "/",
-          },
-          {
-            text: "Mặt hàng",
-            disabled: false,
-            href: "/goods",
-          },
-          {
-            text: this.itemInfor.name,
-            disabled: true,
-            href: "breadcrumbs_link_1",
-          },
-        ];
-    }
+      console.log(response);
+      this.itemInfor = response.data.data;
+      this.avatar = this.itemInfor.urlAvatar
+      this.imgList = [
+        {
+          id: 0,
+          src: this.itemInfor.urlImage[0],
+          selected: false
+        },
+        {
+          id: 1,
+          src: this.itemInfor.urlImage[1],
+          selected: false
+        },
+        {
+          id: 2,
+          src: this.itemInfor.urlImage[2],
+          selected: false
+        },
+        {
+          id: 3,
+          src: this.itemInfor.urlImage[3],
+          selected: false
+        },
+        {
+          id: 4,
+          src: this.itemInfor.urlImage[4],
+          selected: false
+        },
+        {
+          id: 5,
+          src: this.itemInfor.urlImage[5],
+          selected: false
+        },
+      ]
+      console.log(this.imgList)
+      this.breadcrumbList = [
+        {
+          text: "Trang chủ",
+          disabled: false,
+          href: "/",
+        },
+        {
+          text: "Mặt hàng",
+          disabled: false,
+          href: "/goods",
+        },
+        {
+          text: this.itemInfor.name,
+          disabled: true,
+          href: "breadcrumbs_link_1",
+        },
+      ];
+      this.loading = false
+    },
   },
 };
 </script>

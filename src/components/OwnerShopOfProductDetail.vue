@@ -30,7 +30,7 @@
           OVERLINE
         </div> -->
         <v-list-item-title class="title">
-          LogiTech Shop
+          {{ itemInfor.brands }}
         </v-list-item-title>
         <!-- <v-list-item-subtitle>
           $ • Viet Nam, Electrical Shop
@@ -202,6 +202,9 @@ import TestCard from '@/components/TestCard.vue'
 export default {
   components: {
     TestCard
+  },
+  props: {
+    itemInfor: Object
   },
   data: () => ({
     loading: false,
