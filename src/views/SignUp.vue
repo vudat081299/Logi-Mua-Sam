@@ -65,7 +65,7 @@
                               ></v-select>
                             </v-col>
                           </v-row>
-                            <v-row class="py-0">
+                          <v-row class="py-0">
                             <v-col class="py-0" cols="12">
                               <v-text-field
                                 outlined
@@ -423,12 +423,13 @@ export default {
     return {
       genderList: ["Nam", "Nữ", "Khác"],
 
-valid: false,
+      valid: false,
       showPassword: false,
       isLoadingDialog: false,
       disabled: false,
       loading: false,
       dialogRegister: false,
+      signUpStatus: false,
       account: "",
       text: "",
 
@@ -510,15 +511,19 @@ valid: false,
   methods: {
     // Common func
     closeDialog() {
-      this.dialogRegister = false;
-      this.firstName = null,
-      this.lastName = null,
-      this.account = null,
-      this.gmail = null,
-      this.password = null,
-      this.confirmPassword = null
-      
-       this.$refs.signupForm1.reset()
+      if (this.signUpStatus) {
+        this.dialogRegister = false;
+        (this.firstName = null),
+          (this.lastName = null),
+          (this.account = null),
+          (this.gmail = null),
+          (this.password = null),
+          (this.confirmPassword = null);
+
+        this.$refs.signupForm1.reset();
+      } else {
+         this.dialogRegister = false;
+      }
     },
     validate() {
       if (this.e1 === 1) {
@@ -566,31 +571,48 @@ valid: false,
         this.confirming();
       }
     },
-    register() {
+    async register() {
       if (this.validate()) {
-        axios
-          .post(this.$store.state.url + "register", {
-            username: this.account,
-            password: this.password,
-            name: this.firstName + " " + this.lastName,
-            email: this.gmail,
-            permission: "create, update",
-          },
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-          })
-          .then((response) => {
-            console.log(response);
-            if (response.status === 200) {
-              this.text = "Đăng ký thành công!";
-              this.dialogRegister = true;
-            } else {
-              this.text = "Có lỗi xảy ra!";
-              this.dialogRegister = true;
-            }
-          });
+        // axios
+        //   .post(this.$store.state.url + "register", {
+        //     username: this.account,
+        //     password: this.password,
+        //     name: this.firstName + " " + this.lastName,
+        //     email: this.gmail,
+        //     permission: "create, update",
+        //   },
+        //   {
+        //     headers: {
+        //       "Content-Type": "application/x-www-form-urlencoded",
+        //     },
+        //   })
+        //   .then((response) => {
+        //     console.log(response);
+        //     if (response.status === 200) {
+        //       this.text = "Đăng ký thành công!";
+        //       this.dialogRegister = true;
+        //     } else {
+        //       this.text = "Có lỗi xảy ra!";
+        //       this.dialogRegister = true;
+        //     }
+        //   });
+        const params = new URLSearchParams();
+        params.append("username", this.account);
+        params.append("password", this.password);
+        params.append("name", this.firstName + " " + this.lastName);
+        params.append("email", this.gmail);
+        params.append("permission", "create, update");
+
+        const response = await this.$http.post("public/register", params);
+        console.log(response);
+        if (response.data.status === 200) {
+          this.text = "Đăng ký thành công!";
+          this.signUpStatus = true;
+          this.dialogRegister = true;
+        } else {
+          this.text = response.data.message;
+          this.dialogRegister = true;
+        }
       }
     },
   },

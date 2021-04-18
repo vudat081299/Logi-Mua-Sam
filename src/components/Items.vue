@@ -7,7 +7,7 @@
         tile
         color="#ffffff00"
         width="300px"
-        height="350px"
+        height="380px"
       >
         <!-- :elevation="hover ? 2 : 0" -->
         <!-- :style="`border-top: ${hover ? 4 : 0}px solid #42A5F5;border-right: ${hover ? 4 : 0}px solid #42A5F5;border-bottom: ${hover ? 4 : 0}px solid #42A5F5;border-left: ${hover ? 4 : 0}px solid #42A5F5;`" -->
@@ -52,6 +52,9 @@
               doanh, doanh nghiệp. -->
             {{ item.name }}
           </a>
+          <v-row class="ma-0 px-0 align-center">
+            {{ item.description }}
+          </v-row>
           <v-row class="ma-0 px-0 align-center">
             <v-rating
               v-model="rating[item.id]"
