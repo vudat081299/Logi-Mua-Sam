@@ -47,7 +47,7 @@ export default {
       // } else {
       return setTimeout(() => {
         this.min = false
-      }, 2000)
+      }, 5000)
       // }
       // val && setTimeout(() => {
       //   this.min = false

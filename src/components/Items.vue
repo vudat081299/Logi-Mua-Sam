@@ -288,19 +288,6 @@ export default {
 .container {
   max-width: 2000px;
 }
-.v-card {
-  /* transition: opacity 1.2s ease-in-out; */
-  /* border-width: 1px;
-  border-style: solid;
-  border-color: #000000; */
-}
-.hover-card:not(.on-hover) {
-  /* box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.10), 0 0px 0px 0 rgba(0, 0, 0, 0.10) !important;
-  z-index: 0; */
-
-  /* opacity: 0.95; */
-  /* border-width: 0px; */
-}
 .hover-card {
   box-shadow: -9px -9px 20px 0 rgba(240, 240, 240, 1),
     9px 9px 20px 0 rgba(240, 240, 240, 1) !important;
@@ -340,12 +327,6 @@ export default {
   /* autoprefixer: on */
   overflow: hidden;
   text-overflow: ellipsis;
-}
-.bottom-gradient {
-  /* background-image: linear-gradient(to bottom, rgba(220, 220, 220, 0.3) 0%, transparent 150px); */
-}
-.bottom-gradient:not(.on-hover) {
-  /* background-image: linear-gradient(to bottom, rgba(245, 245, 245, 0) 0%, transparent 0px); */
 }
 .repeating-gradient {
   background-image: repeating-linear-gradient(
